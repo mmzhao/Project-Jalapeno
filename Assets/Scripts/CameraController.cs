@@ -4,18 +4,35 @@ using UnityEngine;
 
 public class CameraController: MonoBehaviour {
 
-    public GameObject target;
+    public Transform target;
     Camera thisCamera;
-    public Vector3 cameraAngle;
-    Vector3 defaultCameraAngle = new Vector3();
-	// Use this for initialization
+    public bool customAngle;
+    public Vector3 customCameraAngle;
+    Quaternion defaultCameraAngle = Quaternion.Euler(Mathf.Rad2Deg * Mathf.Atan2(4f,3f), 0, 0);
+    Quaternion cameraAngle;
+
+    float maxOrthographicSize = 20;
+
+    Vector3 offset;
+    public float smoothing = 5f;
+
 	void Start () {
         thisCamera = gameObject.GetComponent<Camera>();
-
+        thisCamera.orthographic = true;
+        if (!customAngle)
+        {
+            cameraAngle = defaultCameraAngle;
+        }
+        else
+        {
+            cameraAngle = Quaternion.Euler(customCameraAngle);
+        }
+        offset = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2, -Mathf.Cos(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2);
+        transform.position = target.position + offset;
+        transform.rotation = cameraAngle;
 	}
 	
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		
 	}
 }

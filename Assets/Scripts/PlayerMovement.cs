@@ -32,21 +32,18 @@ public class PlayerMovement : MonoBehaviour
         // Store the input axes.
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");
-        Debug.Log("heh");
     }
 
     void FixedUpdate ()
     {
-        Debug.Log(h);
-        Debug.Log(v);
         // Move the player around the scene.
         Move (h, v);
 
         // Turn the player to face the mouse cursor.
-        Turning ();
+//        Turning ();
 
         // Animate the player.
-        Animating (h, v);
+//        Animating (h, v);
     }
 
 

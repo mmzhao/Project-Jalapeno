@@ -6,6 +6,7 @@ Obj/
 UnityGenerated/
 Library/
 Assets/AssetStoreTools*
+*.meta
 
 # ===================================== #
 # Visual Studio / MonoDevelop generated #
@@ -33,3 +34,8 @@ ExportedObj/
 Icon?
 ehthumbs.db
 Thumbs.db
+
+# ====================== #
+# Some other random shit #
+# ====================== #
+Assets/Standard Assets

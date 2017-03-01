@@ -116,30 +116,25 @@ public class PlayerMovement : MonoBehaviour
     public class Idle : PlayerState
     {
         PlayerController pc;
-        float moveX;
-        float moveZ;
 
         public Idle(PlayerController playerController)
         {
             this.pc = playerController;
-            this.moveX = playerController.movement.x;
-            this.moveZ = playerController.movement.z;
         }
 
         public void Enter()
         {
-            this.moveX = Input.GetAxisRaw("Horizontal");
-            this.moveZ = Input.GetAxisRaw("Vertical");
+
         }
 
         public void Exit()
         {
-            pc.rb.AddForce(new Vector3(moveX, 0, moveZ));
+            // pc.rb.AddForce(new Vector3(moveX, 0, moveZ));
         }
 
         public void FixedUpdate()
         {
-            if (moveX != 0 || moveZ != 0)
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
                 pc.stateEnded = true;
             }
@@ -156,8 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
         public void Update()
         {
-            this.moveX = Input.GetAxisRaw("Horizontal");
-            this.moveZ = Input.GetAxisRaw("Vertical");
+
         }
     }
 
@@ -187,12 +181,15 @@ public class PlayerMovement : MonoBehaviour
 
         public void FixedUpdate()
         {
-            //if (pc.rb.velocity.magnitude < pc.maxSpeed)
-            //{
-                pc.rb.AddForce(100 * moveX, 0, 100 * moveZ);
-            //}
+            // Debug.Log(pc.maxSpeed);
+            // if (pc.rb.velocity.magnitude < pc.maxSpeed)
+            // {
+            //     pc.rb.AddForce(50 * moveX, 0, 50 * moveZ);
+            // }
+            Move(moveX, moveZ);
             //if (pc.rb.velocity.magnitude < .5)
         }
+
 
         public PlayerState HandleInput()
         {
@@ -208,5 +205,17 @@ public class PlayerMovement : MonoBehaviour
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
         }
+
+        public void Move (float h, float v)
+        {
+           // Set the movement vector based on the axis input.
+           pc.movement.Set (h, 0f, v);
+
+           // Normalise the movement vector and make it proportional to the speed per second.
+           pc.movement = pc.movement.normalized * pc.maxSpeed * Time.deltaTime;
+
+           // Move the player to it's current position plus the movement.
+           pc.rb.MovePosition (pc.transform.position + pc.movement);
+       }
     }
 }

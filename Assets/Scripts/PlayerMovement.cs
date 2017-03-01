@@ -124,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
 
         public void Enter()
         {
-
+            pc.curSpeed = 0;
         }
 
         public void Exit()
@@ -158,25 +158,28 @@ public class PlayerMovement : MonoBehaviour
     class Running : PlayerState
     {
         PlayerController pc;
-        float moveX;
-        float moveZ;
+        public Vector3 movement;
+        public float curSpeed;
+        public float moveX;
+        public float moveZ;
 
         public Running(PlayerController playerController)
         {
             this.pc = playerController;
-            this.moveX = playerController.movement.x;
-            this.moveZ = playerController.movement.z;
+            this.movement = playerController.movement;
+            this.curSpeed = playerController.curSpeed;
         }
 
         public void Enter()
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
+            // pc.movement.Set(moveX, 0, moveZ);
         }
 
         public void Exit()
         {
-            pc.rb.velocity = new Vector3();
+
         }
 
         public void FixedUpdate()
@@ -186,8 +189,20 @@ public class PlayerMovement : MonoBehaviour
             // {
             //     pc.rb.AddForce(50 * moveX, 0, 50 * moveZ);
             // }
-            Move(moveX, moveZ);
-            //if (pc.rb.velocity.magnitude < .5)
+            // // Vector3 movement = pc.movement.normalized * pc.curSpeed * Time.deltaTime;
+            // pc.maxSpeed = 1.0f;
+            // float change = .1f;
+            // Vector3 inputMovement = new Vector3(this.moveX, 0, this.moveZ).normalized * pc.maxSpeed;
+            // pc.movement += (inputMovement - pc.movement) * change;
+            // pc.rb.MovePosition (pc.transform.position + pc.movement);
+            pc.curSpeed += .1f * pc.maxSpeed;
+            if (pc.curSpeed > pc.maxSpeed)
+            {
+                pc.curSpeed = pc.maxSpeed;
+            }
+            pc.movement.Set(moveX, 0, moveZ);
+            Move();
+            // if (pc.rb.velocity.magnitude < .5)
         }
 
 
@@ -206,16 +221,12 @@ public class PlayerMovement : MonoBehaviour
             this.moveZ = Input.GetAxisRaw("Vertical");
         }
 
-        public void Move (float h, float v)
+        public void Move ()
         {
-           // Set the movement vector based on the axis input.
-           pc.movement.Set (h, 0f, v);
+            Vector3 dif = pc.movement.normalized * pc.curSpeed * Time.deltaTime;
+            Debug.Log(pc.movement.normalized * pc.curSpeed);
 
-           // Normalise the movement vector and make it proportional to the speed per second.
-           pc.movement = pc.movement.normalized * pc.maxSpeed * Time.deltaTime;
-
-           // Move the player to it's current position plus the movement.
-           pc.rb.MovePosition (pc.transform.position + pc.movement);
+            pc.rb.MovePosition (pc.transform.position + dif);
        }
     }
 }

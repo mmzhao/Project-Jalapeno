@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour {
     public Rigidbody rb;
     public bool stateEnded;
     public float maxSpeed;
+    public float curSpeed;
 
 
 

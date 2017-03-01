@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
     [HideInInspector] public Rigidbody rb;
     [HideInInspector] public bool stateEnded;
     public float maxSpeed = 40.0f;
+    [HideInInspector] public float curSpeed;
 
     void Awake ()
     {
@@ -46,6 +47,5 @@ public class PlayerController : MonoBehaviour {
             nextState = null;
             currentState.Enter();
         }
-        print(currentState);
     }
 }

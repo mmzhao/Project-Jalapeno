@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour {
 
     PlayerState currentState;
     PlayerState nextState;
-    public Vector3 movement;
-    public Rigidbody rb;
-    public bool stateEnded;
-    public float maxSpeed;
-
-
-
+    [HideInInspector] public Vector3 movement;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public bool stateEnded;
+    public float maxSpeed = 40.0f;
 
     void Awake ()
     {
@@ -22,7 +21,6 @@ public class PlayerController : MonoBehaviour {
         rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
-        maxSpeed = 40.0f;
         currentState = new PlayerMovement.Idle(this);
 	}
 	

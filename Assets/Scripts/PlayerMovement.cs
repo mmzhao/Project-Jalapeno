@@ -122,17 +122,17 @@ public class PlayerMovement : MonoBehaviour
             this.pc = playerController;
         }
 
-        public void Enter()
+        public override void Enter()
         {
 
         }
 
-        public void Exit()
+        public override void Exit()
         {
             // pc.rb.AddForce(new Vector3(moveX, 0, moveZ));
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        public PlayerState HandleInput()
+        public override PlayerState HandleInput()
         {
             if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
             {
@@ -149,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
             return null;
         }
 
-        public void Update()
+        public override void Update()
         {
 
         }
@@ -168,18 +168,18 @@ public class PlayerMovement : MonoBehaviour
             this.moveZ = playerController.movement.z;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
         }
 
-        public void Exit()
+        public override void Exit()
         {
             pc.rb.velocity = new Vector3();
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             // Debug.Log(pc.maxSpeed);
             // if (pc.rb.velocity.magnitude < pc.maxSpeed)
@@ -191,7 +191,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        public PlayerState HandleInput()
+        public override PlayerState HandleInput()
         {
             if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
             {
@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
             return null;
         }
 
-        public void Update()
+        public override void Update()
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
@@ -217,5 +217,7 @@ public class PlayerMovement : MonoBehaviour
            // Move the player to it's current position plus the movement.
            pc.rb.MovePosition (pc.transform.position + pc.movement);
        }
+
+       
     }
 }

@@ -1,10 +1,11 @@
-﻿public interface PlayerState
+﻿public abstract class PlayerState
 {
+    PlayerController pc;
 
-    void Enter();
-    void FixedUpdate();
-    void Update();
-    void Exit();
-    PlayerState HandleInput();
+    public abstract void Enter();
+    public abstract void FixedUpdate();
+    public abstract void Update();
+    public abstract void Exit();
+    public abstract PlayerState HandleInput();
 
 }

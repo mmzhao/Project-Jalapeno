@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
+        rb.freezeRotation = true;
         currentState = new PlayerMovement.Idle(this);
 	}
 	
@@ -45,5 +46,6 @@ public class PlayerController : MonoBehaviour {
             nextState = null;
             currentState.Enter();
         }
+        print(currentState);
     }
 }

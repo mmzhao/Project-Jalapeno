@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     public Vector3 movement;
     public Rigidbody rb;
     public bool stateEnded;
-    public float maxSpeed;
+    public float maxSpeed = 5;
 
 
 
@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour {
 	void Start () {
         rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+
         currentState = new PlayerMovement.Idle(this);
 	}
 	

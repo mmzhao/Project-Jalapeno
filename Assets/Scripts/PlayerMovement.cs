@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
         public PlayerState HandleInput()
         {
-            if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
+            if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
             {
                 return new Running(pc);
             }
@@ -187,10 +187,10 @@ public class PlayerMovement : MonoBehaviour
 
         public void FixedUpdate()
         {
-            if (pc.rb.velocity.magnitude < pc.maxSpeed)
-            {
-                pc.rb.AddForce(moveX, 0, moveZ);
-            }
+            //if (pc.rb.velocity.magnitude < pc.maxSpeed)
+            //{
+                pc.rb.AddForce(100 * moveX, 0, 100 * moveZ);
+            //}
             //if (pc.rb.velocity.magnitude < .5)
         }
 

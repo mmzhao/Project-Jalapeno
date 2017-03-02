@@ -40,6 +40,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
+//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         currentState.FixedUpdate();
         if (nextState != null)
         {

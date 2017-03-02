@@ -27,7 +27,7 @@ public class CameraController: MonoBehaviour {
         {
             cameraAngle = Quaternion.Euler(customCameraAngle);
         }
-        offset = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2, -Mathf.Cos(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2);
+        offset = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 3, -Mathf.Cos(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 3);
         transform.position = target.position + offset;
         transform.rotation = cameraAngle;
 	}

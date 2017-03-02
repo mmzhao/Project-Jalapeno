@@ -13,17 +13,17 @@ public class PlayerMovement : MonoBehaviour
             this.pc = playerController;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             pc.curSpeed = 0;
         }
 
-        public void Exit()
+        public override void Exit()
         {
             // pc.rb.AddForce(new Vector3(moveX, 0, moveZ));
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
             if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
             {
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        public PlayerState HandleInput()
+        public override PlayerState HandleInput()
         {
             if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
             {
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
             return null;
         }
 
-        public void Update()
+        public override void Update()
         {
 
         }
@@ -61,19 +61,19 @@ public class PlayerMovement : MonoBehaviour
             this.curSpeed = playerController.curSpeed;
         }
 
-        public void Enter()
+        public override void Enter()
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
             // pc.movement.Set(moveX, 0, moveZ);
         }
 
-        public void Exit()
+        public override void Exit()
         {
 
         }
 
-        public void FixedUpdate()
+        public override void FixedUpdate()
         {
 //			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
             if (moveX != 0 || moveZ != 0)
@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        public PlayerState HandleInput()
+        public override PlayerState HandleInput()
         {
             if (pc.stateEnded && (!Input.GetButton("Vertical") && !Input.GetButton("Vertical")))
             {
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             return null;
         }
 
-        public void Update()
+        public override void Update()
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
@@ -126,5 +126,7 @@ public class PlayerMovement : MonoBehaviour
 
             pc.rb.MovePosition (pc.transform.position + dif);
        }
+
+       
     }
 }

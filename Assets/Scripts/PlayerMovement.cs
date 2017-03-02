@@ -224,7 +224,6 @@ public class PlayerMovement : MonoBehaviour
         public void Move ()
         {
             Vector3 dif = pc.movement.normalized * pc.curSpeed * Time.deltaTime;
-            Debug.Log(pc.movement.normalized * pc.curSpeed);
 
             pc.rb.MovePosition (pc.transform.position + dif);
        }

@@ -11,7 +11,7 @@ public class CameraController: MonoBehaviour {
     Quaternion defaultCameraAngle = Quaternion.Euler(Mathf.Rad2Deg * Mathf.Atan2(4f,3f), 0, 0);
     Quaternion cameraAngle;
 
-    float maxOrthographicSize = 20;
+    public float maxOrthographicSize = 20;
 
     Vector3 offset;
     public float smoothing = 5f;

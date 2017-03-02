@@ -6,20 +6,23 @@ public class PlayerController : MonoBehaviour {
 
     PlayerState currentState;
     PlayerState nextState;
-    [HideInInspector] public Vector3 movement;
-    [HideInInspector] public Rigidbody rb;
-    [HideInInspector] public bool stateEnded;
+    public Vector3 movement { get; set; }
+    public Rigidbody rb;
+    public bool stateEnded { get; set; }
     public float maxSpeed = 40.0f;
-    [HideInInspector] public float curSpeed;
+    public float curSpeed { get; set; }
 
     void Awake ()
     {
-
+        
     }
 
 	// Use this for initialization
 	void Start () {
-        rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
+        }
         rb.freezeRotation = true;
 
         currentState = new PlayerMovement.Idle(this);

@@ -7,6 +7,5 @@ public abstract class EnemyState {
     public abstract void FixedUpdate();
     public abstract void Update();
     public abstract void Exit();
-    public abstract EnemyState HandleInput();
 
 }

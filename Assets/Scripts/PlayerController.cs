@@ -9,12 +9,12 @@ public class PlayerController : MonoBehaviour {
     public Vector3 movement { get; set; }
     public Rigidbody rb;
     public bool stateEnded { get; set; }
-    public float maxSpeed = 40.0f;
+    public float maxSpeed;
     public float curSpeed { get; set; }
 
     void Awake ()
     {
-        
+		maxSpeed = 40.0f;
     }
 
 	// Use this for initialization

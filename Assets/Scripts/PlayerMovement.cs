@@ -123,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Vector3 dif = pc.movement.normalized * pc.curSpeed * Time.deltaTime;
             pc.rb.MovePosition (pc.transform.position + dif);
-       }
+        }
 
        
     }

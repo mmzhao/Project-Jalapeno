@@ -13,10 +13,22 @@ public class EnemyController : MonoBehaviour {
 	public bool stateEnded { get; set; }
 	public float maxSpeed;
 	public float curSpeed { get; set; }
+	public float targetRange = 30.0f;
+
+	LineRenderer lineRenderer;
 
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
+
+		float theta_scale = 0.1f;             //Set lower to add more points
+		int size = (int) ((2.0f * Mathf.PI) / theta_scale) + 1; //Total number of points in circle.
+
+		lineRenderer = gameObject.AddComponent<LineRenderer>();
+		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
+		//		lineRenderer.SetColors(c1, c2);
+		lineRenderer.SetWidth(0.2f, 0.2f);
+		lineRenderer.SetVertexCount(size);
 	}
 
 	// Use this for initialization
@@ -32,12 +44,26 @@ public class EnemyController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-		currentState.Update();
+		
 	}
 
 	void FixedUpdate()
 	{
+		float theta_scale = 0.1f;
+		float x = 0;
+		float z = 0;
+		float r = targetRange;
+
+		int i = 0;
+		for(float theta = 0; theta < 2 * Mathf.PI; theta += 0.1f) {
+			x = r*Mathf.Cos(theta) + rb.position.x;
+			z = r*Mathf.Sin(theta) + rb.position.z;
+
+			Vector3 pos = new Vector3(x, rb.position.y, z);
+			lineRenderer.SetPosition(i, pos);
+			i+=1;
+		}
+
 		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
 		currentState.FixedUpdate();
 		if (nextState != null)

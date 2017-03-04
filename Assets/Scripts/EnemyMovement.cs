@@ -58,7 +58,6 @@ public class EnemyMovement : MonoBehaviour {
 			this.ec = enemyController;
 			this.movement = enemyController.movement;
 			this.curSpeed = enemyController.curSpeed;
-			this.targetRange = 30;
 		}
 
 		public override void Enter()
@@ -79,7 +78,7 @@ public class EnemyMovement : MonoBehaviour {
 //				Debug.Log (player.transform.position);
 //				Debug.Log (ec.rb.position);
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
-				if (vecToPlayer.magnitude <= targetRange) 
+				if (vecToPlayer.magnitude <= ec.targetRange) 
 				{
 					Move (vecToPlayer);
 				}

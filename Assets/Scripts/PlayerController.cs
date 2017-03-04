@@ -11,10 +11,12 @@ public class PlayerController : MonoBehaviour {
     public bool stateEnded { get; set; }
     public float maxSpeed;
     public float curSpeed { get; set; }
+    public float dashSpeed;
 
     void Awake ()
     {
 		maxSpeed = 40.0f;
+		dashSpeed = 200.0f;
     }
 
 	// Use this for initialization
@@ -30,6 +32,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		// Debug.Log(currentState);
         movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
         
         currentState.Update();

@@ -15,20 +15,24 @@ public class EnemyController : MonoBehaviour {
 	public float curSpeed { get; set; }
 	public float targetRange = 30.0f;
 
+	// render latch circle
 	LineRenderer lineRenderer;
 
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
 
-		float theta_scale = 0.1f;             //Set lower to add more points
-		int size = (int) ((2.0f * Mathf.PI) / theta_scale) + 1; //Total number of points in circle.
 
+		// latch range circle setup
+		float theta_scale = 0.1f;             //Set lower to add more points
+		int size = (int) ((2.0f * Mathf.PI) / theta_scale) + 2; //Total number of points in circle.
+		
 		lineRenderer = gameObject.AddComponent<LineRenderer>();
 		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
 		//		lineRenderer.SetColors(c1, c2);
 		lineRenderer.SetWidth(0.2f, 0.2f);
 		lineRenderer.SetVertexCount(size);
+		// latch range circle setup
 	}
 
 	// Use this for initialization
@@ -49,13 +53,14 @@ public class EnemyController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+		// draw latch range circle
 		float theta_scale = 0.1f;
 		float x = 0;
 		float z = 0;
 		float r = targetRange;
 
 		int i = 0;
-		for(float theta = 0; theta < 2 * Mathf.PI; theta += 0.1f) {
+		for(float theta = 0; theta-theta_scale < 2 * Mathf.PI; theta += theta_scale) {
 			x = r*Mathf.Cos(theta) + rb.position.x;
 			z = r*Mathf.Sin(theta) + rb.position.z;
 
@@ -63,6 +68,8 @@ public class EnemyController : MonoBehaviour {
 			lineRenderer.SetPosition(i, pos);
 			i+=1;
 		}
+		// draw latch range circle
+
 
 		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
 		currentState.FixedUpdate();

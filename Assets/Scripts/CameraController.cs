@@ -11,7 +11,7 @@ public class CameraController: MonoBehaviour {
     Quaternion defaultCameraAngle = Quaternion.Euler(Mathf.Rad2Deg * Mathf.Atan2(4f,3f), 0, 0);
     Quaternion cameraAngle;
 
-    float maxOrthographicSize = 20;
+    public float maxOrthographicSize = 20;
 
     Vector3 offset;
     public float smoothing = 5f;
@@ -27,7 +27,7 @@ public class CameraController: MonoBehaviour {
         {
             cameraAngle = Quaternion.Euler(customCameraAngle);
         }
-        offset = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2, -Mathf.Cos(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 2);
+        offset = new Vector3(0, Mathf.Sin(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 3, -Mathf.Cos(Mathf.Deg2Rad * cameraAngle.eulerAngles.x) * maxOrthographicSize * 3);
         transform.position = target.position + offset;
         transform.rotation = cameraAngle;
 	}

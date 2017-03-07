@@ -6,12 +6,15 @@ public class PlayerController : MonoBehaviour {
 
     PlayerState currentState;
     PlayerState nextState;
+
     public Vector3 movement { get; set; }
     public Rigidbody rb;
     public bool stateEnded { get; set; }
     public float maxSpeed;
     public float curSpeed { get; set; }
     public float dashSpeed;
+    public enum Direction { N, NE, E, SE, S, SW, W, NW };
+    public Direction facing = Direction.N;
 
     void Awake ()
     {
@@ -53,6 +56,42 @@ public class PlayerController : MonoBehaviour {
             currentState = nextState;
             nextState = null;
             currentState.Enter();
+        }
+    }
+
+    // Input is (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
+    public Direction FloattoDir(float input)
+    {
+        if (input == 1)
+        {
+            return Direction.N;
+        } else if (input == 4)
+        {
+            return Direction.NE;
+        }
+        else if (input == 3)
+        {
+            return Direction.E;
+        }
+        else if (input == 2)
+        {
+            return Direction.SE;
+        }
+        else if (input == -1)
+        {
+            return Direction.S;
+        }
+        else if (input == -4)
+        {
+            return Direction.SW;
+        }
+        else if (input == -3)
+        {
+            return Direction.W;
+        }
+        else
+        {
+            return Direction.NW;
         }
     }
 }

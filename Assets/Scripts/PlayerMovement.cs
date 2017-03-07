@@ -25,8 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
         public override void FixedUpdate()
         {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            // Check for directional inputs
+            float vertical = Input.GetAxisRaw("Vertical");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            if (horizontal != 0 || vertical != 0)
             {
+                // Change the direction we're facing
+                pc.facing = pc.FloattoDir(vertical + 3 * horizontal);
+                // End State
                 pc.stateEnded = true;
             }
         }

@@ -17,6 +17,7 @@ public class EnemyController : MonoBehaviour {
 	public float targetRange = 30.0f;
     public NavMeshAgent navAgent { get; set; }
 
+    bool pathIsDrawn = false;
 
 	// render latch circle
 	LineRenderer lineRenderer;
@@ -77,11 +78,12 @@ public class EnemyController : MonoBehaviour {
 			lineRenderer.SetPosition(i, pos);
 			i+=1;
 		}
-		// draw latch range circle
+
+        // draw latch range circle
 
 
-		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
-		currentState.FixedUpdate();
+        //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+        currentState.FixedUpdate();
 		if (nextState != null)
 		{
 			stateEnded = false;

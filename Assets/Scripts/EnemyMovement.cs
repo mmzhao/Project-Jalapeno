@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour {
 
@@ -49,6 +50,8 @@ public class EnemyMovement : MonoBehaviour {
 	public class Targeting : EnemyState
 	{
 		EnemyController ec;
+        GameObject player;
+        NavMeshAgent navAgent;
 		public Vector3 movement;
 		public float curSpeed;
 		public float targetRange;
@@ -58,7 +61,9 @@ public class EnemyMovement : MonoBehaviour {
 			this.ec = enemyController;
 			this.movement = enemyController.movement;
 			this.curSpeed = enemyController.curSpeed;
-		}
+            this.player = GameObject.FindGameObjectWithTag("Player");
+            this.navAgent = enemyController.navAgent;
+        }
 
 		public override void Enter()
 		{
@@ -72,7 +77,6 @@ public class EnemyMovement : MonoBehaviour {
 
 		public override void FixedUpdate()
 		{
-			GameObject player = GameObject.FindGameObjectWithTag ("Player");
 			if (player != null)
 			{
 //				Debug.Log (player.transform.position);
@@ -80,16 +84,20 @@ public class EnemyMovement : MonoBehaviour {
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
 				if (vecToPlayer.magnitude <= ec.targetRange) 
 				{
-					Move (vecToPlayer);
-				}
+                    //					Move (vecToPlayer);
+                    navAgent.SetDestination(player.transform.position);
+				} else
+                {
+                    navAgent.SetDestination(ec.transform.position);
+                }
 			}
 
 		}
 
 		public override void Update()
 		{
-			
-		}
+
+        }
 
 		public void Move (Vector3 dir)
 		{

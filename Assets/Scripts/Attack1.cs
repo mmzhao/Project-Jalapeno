@@ -15,13 +15,14 @@ public class Attack1 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
+        donecount = 10;
     }
 
     // Create hitboxes, start animation
     public override void Enter()
     {
         hitbox = new BoxCollider();
-        hitbox.transform.position = (new Vector3(0, 0, 0));
+        hitbox.center = (new Vector3(0, 0, 0));
         hitbox.size = (new Vector3(5, 5, 5));
     }
 

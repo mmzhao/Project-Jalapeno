@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Calculates (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
-    public Direction FloattoDir(float vertical, float horizontal)
+    public Direction FloatToDir(float vertical, float horizontal)
     {
         float input = vertical + 3 * horizontal;
         if (input == 1)

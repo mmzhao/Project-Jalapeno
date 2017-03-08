@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
             if (horizontal != 0 || vertical != 0)
             {
                 // Change the direction we're facing
-                pc.facing = pc.FloattoDir(vertical, horizontal);
+                pc.facing = pc.FloatToDir(vertical, horizontal);
                 // End State
                 pc.stateEnded = true;
                 return;

@@ -16,8 +16,7 @@ public class EnemyController : MonoBehaviour {
 	public float curSpeed { get; set; }
 	public float targetRange = 30.0f;
     public NavMeshAgent navAgent { get; set; }
-
-    bool pathIsDrawn = false;
+    
 
 	// render latch circle
 	LineRenderer lineRenderer;

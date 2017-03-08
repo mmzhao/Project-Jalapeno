@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour {
     public float dashSpeed;
     public Direction facing = Direction.N;
 
+
     void Awake ()
     {
 		maxSpeed = 40.0f;
@@ -58,9 +59,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Input is (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
-    public Direction FloattoDir(float input)
+    // Calculates (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
+    public Direction FloattoDir(float vertical, float horizontal)
     {
+        float input = vertical + 3 * horizontal;
         if (input == 1)
         {
             return Direction.N;

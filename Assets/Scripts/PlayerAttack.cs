@@ -5,7 +5,8 @@ using UnityEngine;
 public abstract class PlayerAttack : PlayerState {
 
     protected PlayerController pc;
-    protected Collider[] hitboxes;
+    protected int counter;
+    protected int donecount;
 
     // Create hitboxes, start animation
     public override abstract void Enter();

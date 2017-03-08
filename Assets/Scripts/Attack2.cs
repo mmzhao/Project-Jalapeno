@@ -3,26 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Attack2 : PlayerAttack {
-    
-     /** Fields from PlayerAttack:
-     * PlayerController pc;
-     * Collider[] hitboxes;
-     */
 
-    public Attack2(PlayerController controller)
+    /** Fields from PlayerAttack:
+     * PlayerController pc;
+     * int counter;
+     * int donecount;
+     */
+    BoxCollider hitbox;
+
+    public Attack1(PlayerController controller)
     {
         pc = controller;
+        counter = 0;
     }
 
     // Create hitboxes, start animation
     public override void Enter()
     {
-        return;
+        hitbox = new BoxCollider();
+        hitbox.transform.position = (new Vector3(0, 0, 0));
+        hitbox.size = (new Vector3(5, 5, 5));
     }
 
     public override void FixedUpdate()
     {
-        return;
+        counter += 1;
+        if (counter == donecount)
+        {
+            pc.stateEnded = true;
+        }
     }
 
     public override void Update()
@@ -33,6 +42,6 @@ public class Attack2 : PlayerAttack {
     // Destroy hitboxes
     public override void Exit()
     {
-        return;
+        GameObject.Destroy(hitbox);
     }
 }

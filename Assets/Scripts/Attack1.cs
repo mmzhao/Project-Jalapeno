@@ -15,12 +15,24 @@ public class Attack1 : PlayerAttack {
     }
 
     // Create hitboxes, start animation
-    public override void Enter();
+    public override void Enter()
+    {
+        return;
+    }
 
-    public override void FixedUpdate();
+    public override void FixedUpdate()
+    {
+        return;
+    }
 
-    public override void Update();
+    public override void Update()
+    {
+        return;
+    }
 
     // Destroy hitboxes
-    public override void Exit();
+    public override void Exit()
+    {
+        return;
+    }
 }

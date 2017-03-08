@@ -14,7 +14,8 @@ public class Health : MonoBehaviour
 //	PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
 //	bool isDead;                                                // Whether the player is dead.
 	bool damaged;                                               // True when the player gets damaged.
-
+	int numFlashes = 3;
+	int curFlashes;
 
 	void Awake ()
 	{
@@ -29,8 +30,12 @@ public class Health : MonoBehaviour
 	void Update ()
 	{
 		// If the player has just been damaged...
+//		Debug.Log(damaged);
 		if(damaged)
 		{
+			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
+			sr.color = Color.red;
+			curFlashes++;
 			// ... set the colour of the damageImage to the flash colour.
 //			damageImage.color = flashColour;
 		}
@@ -39,15 +44,21 @@ public class Health : MonoBehaviour
 		{
 			// ... transition the colour back to clear.
 //			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
+			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
+			sr.color = Color.white;
 		}
 
 		// Reset the damaged flag.
-		damaged = false;
+		if (curFlashes >= numFlashes) {
+			damaged = false;
+		}
 	}
 
 
 	public void TakeDamage (int amount)
 	{
+		curFlashes = 0;
+
 		// Set the damaged flag so the screen will flash.
 		damaged = true;
 

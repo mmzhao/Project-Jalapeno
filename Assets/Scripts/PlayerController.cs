@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public float curSpeed { get; set; }
     public float dashSpeed;
-    public enum Direction { N, NE, E, SE, S, SW, W, NW };
     public Direction facing = Direction.N;
 
     void Awake ()

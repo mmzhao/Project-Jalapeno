@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour {
     public float curSpeed { get; set; }
     public float dashSpeed;
     public enum Direction { N, NE, E, SE, S, SW, W, NW };
-    public Direction facing = Direction.N;
+    public Direction facing = Direction.NW;
 
     void Awake ()
     {
@@ -60,9 +60,10 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // Input is (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
-    public Direction FloattoDir(float input)
+    // Calculates (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).
+    public Direction FloatToDir(float vertical, float horizontal)
     {
+        float input = vertical + 3 * horizontal;
         if (input == 1)
         {
             return Direction.N;

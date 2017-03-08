@@ -2,41 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAttack : PlayerState {
+public abstract class PlayerAttack : PlayerState {
 
-    PlayerController pc;
-    GameObject hitboxes;
-    Collider[] colliders;
+    protected PlayerController pc;
+    protected int counter;
+    protected int donecount;
 
-	PlayerAttack(PlayerController playerController)
+    // Create hitboxes, start animation
+    public override abstract void Enter();
+
+    public override abstract void FixedUpdate();
+ 
+    public override abstract void Update();
+
+    // Destroy hitboxes
+    public override abstract void Exit();
+
+    public override PlayerState HandleInput()
     {
-        this.pc = playerController;
-        hitboxes = pc.gameObject.transform.Find("Hitboxes").gameObject;
-        colliders = hitboxes.GetComponents<Collider>();
-    }
-
-    public override void Enter()
-    {
-        
-    }
-
-    public override void FixedUpdate()
-    {
-
-    }
-
-    public override void Update()
-    {
-
-    }
-
-    public override void Exit()
-    {
-
-    }
-
-	public override PlayerState HandleInput()
-    {
-        return null;
+        return new PlayerMovement.Idle(pc);
     }
 }

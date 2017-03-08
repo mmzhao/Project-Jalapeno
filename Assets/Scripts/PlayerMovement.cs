@@ -24,21 +24,40 @@ public class PlayerMovement : MonoBehaviour
         }
 
         public override void FixedUpdate()
-        {
+        {   // Check for attack inputs
+            float attack1 = Input.GetAxisRaw("Attack1");
+            float attack2 = Input.GetAxisRaw("Attack2");
+            if (attack1 != 0 || attack2 != 0)
+            {
+                pc.stateEnded = true;
+                return;
+            }
             // Check for directional inputs
             float vertical = Input.GetAxisRaw("Vertical");
             float horizontal = Input.GetAxisRaw("Horizontal");
             if (horizontal != 0 || vertical != 0)
             {
                 // Change the direction we're facing
-                pc.facing = pc.FloattoDir(vertical + 3 * horizontal);
+                pc.facing = pc.FloatToDir(vertical, horizontal);
                 // End State
                 pc.stateEnded = true;
+                return;
             }
         }
 
         public override PlayerState HandleInput()
         {
+            if (pc.stateEnded && (Input.GetButton("Attack1") || Input.GetButton("Attack2")))
+            {
+                if (Input.GetButton("Attack1"))
+                {
+                    return new Attack1(pc);
+                }
+                if (Input.GetButton("Attack2"))
+                {
+                    return new Attack2(pc);
+                }
+            }
             if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
             {
                 if (Input.GetButton("Dash"))
@@ -105,7 +124,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (pc.curSpeed == 0 || Input.GetAxisRaw("Dash") != 0)
+            if (pc.curSpeed == 0 || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
             {
                 pc.stateEnded = true;
             }

@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
         PlayerController pc;
         public Vector3 dir;
         int numMoves = 4;
-        int curMoves = 0;
+        int curMoves;
 
         public Dash(PlayerController playerController)
         {

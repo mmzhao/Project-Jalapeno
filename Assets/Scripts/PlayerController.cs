@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour {
     void FixedUpdate()
     {
 //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+//		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
         currentState.FixedUpdate();
         if (nextState != null)
         {

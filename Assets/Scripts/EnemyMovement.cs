@@ -5,48 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour {
 
-//	public class Idle : EnemyState
-//	{
-//		EnemyController ec;
-//
-//		public Idle(EnemyController enemyController)
-//		{
-//			this.ec = enemyController;
-//		}
-//
-//		public override void Enter()
-//		{
-//			ec.curSpeed = 0;
-//		}
-//
-//		public override void Exit()
-//		{
-//			
-//		}
-//
-//		public override void FixedUpdate()
-//		{
-//			if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-//			{
-//				ec.stateEnded = true;
-//			}
-//		}
-//
-//		public override PlayerState HandleInput()
-//		{
-//			if (ec.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
-//			{
-//				return new Running(pc);
-//			}
-//			return null;
-//		}
-//
-//		public override void Update()
-//		{
-//
-//		}
-//	}
-
 	public class Targeting : EnemyState
 	{
 		EnemyController ec;
@@ -55,6 +13,7 @@ public class EnemyMovement : MonoBehaviour {
 		public Vector3 movement;
 		public float curSpeed;
 		public float targetRange;
+		public float attackRange;
 
 		public Targeting(EnemyController enemyController)
 		{
@@ -63,6 +22,8 @@ public class EnemyMovement : MonoBehaviour {
 			this.curSpeed = enemyController.curSpeed;
             this.player = GameObject.FindGameObjectWithTag("Player");
             this.navAgent = enemyController.navAgent;
+			this.targetRange = enemyController.targetRange;
+			this.attackRange = enemyController.attackRange;
         }
 
 		public override void Enter()
@@ -72,16 +33,19 @@ public class EnemyMovement : MonoBehaviour {
 
 		public override void Exit()
 		{
-
+			navAgent.SetDestination(ec.transform.position);
 		}
 
 		public override void FixedUpdate()
 		{
 			if (player != null)
 			{
-				Vector3 vecToPlayer = player.transform.position - ec.transform.position;
-                print(vecToPlayer.magnitude);
-                if (vecToPlayer.magnitude <= ec.targetRange) 
+
+//				Debug.Log (player.transform.position);
+//				Debug.Log (ec.rb.position);
+				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
+				if (vecToPlayer.magnitude <= targetRange) 
+
 				{
 
                     //					Move (vecToPlayer);
@@ -92,6 +56,14 @@ public class EnemyMovement : MonoBehaviour {
                 }
 			}
 
+			if (player != null)
+			{
+				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
+				if (vecToPlayer.magnitude <= attackRange) 
+				{
+					ec.nextState = new EnemyAttack.Attack(ec, vecToPlayer.normalized);
+				}
+			}
 		}
 
 		public override void Update()

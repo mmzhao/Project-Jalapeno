@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -14,6 +15,9 @@ public class EnemyController : MonoBehaviour {
 	public float maxSpeed;
 	public float curSpeed { get; set; }
 	public float targetRange = 30.0f;
+    public NavMeshAgent navAgent { get; set; }
+
+    bool pathIsDrawn = false;
 
 	// render latch circle
 	LineRenderer lineRenderer;
@@ -32,23 +36,29 @@ public class EnemyController : MonoBehaviour {
 		//		lineRenderer.SetColors(c1, c2);
 		lineRenderer.SetWidth(0.2f, 0.2f);
 		lineRenderer.SetVertexCount(size);
-		// latch range circle setup
-	}
+        // latch range circle setup
+
+        //variable initializations
+        GameObject rootParent = this.transform.root.gameObject;
+        if (rb == null)
+        {
+            rb = rootParent.GetComponent<Rigidbody>();
+        }
+        if (navAgent == null)
+        {
+            navAgent = rootParent.GetComponent<NavMeshAgent>();
+        }
+    }
 
 	// Use this for initialization
 	void Start () {
-		if (rb == null)
-		{
-			rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
-		}
-		rb.freezeRotation = true;
-
-		currentState = new EnemyMovement.Targeting(this);
+        rb.freezeRotation = true;
+        currentState = new EnemyMovement.Targeting(this);
 	}
     
 	// Update is called once per frame
 	void Update () {
-		
+        currentState.Update();
 	}
 
 	void FixedUpdate()
@@ -68,11 +78,12 @@ public class EnemyController : MonoBehaviour {
 			lineRenderer.SetPosition(i, pos);
 			i+=1;
 		}
-		// draw latch range circle
+
+        // draw latch range circle
 
 
-		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
-		currentState.FixedUpdate();
+        //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+        currentState.FixedUpdate();
 		if (nextState != null)
 		{
 			stateEnded = false;

@@ -41,16 +41,16 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		// Debug.Log(currentState);
-        Vector3 newMovement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        if (!newMovement.Equals(movement))
+        // Debug.Log(currentState);
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
+        movement = new Vector3(moveX, 0, moveY);
+
+        if (moveX != 0 || moveY != 0)
         {
-            movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             anim.SetFloat("LastInputX", Input.GetAxisRaw("Horizontal"));
             anim.SetFloat("LastInputY", Input.GetAxisRaw("Vertical"));
         }
-        
-        
         currentState.Update();
         if (stateEnded)
         {
@@ -60,8 +60,10 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
-//		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
+
+
+        //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+        //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
         currentState.FixedUpdate();
         if (nextState != null)
         {

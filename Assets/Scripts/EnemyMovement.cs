@@ -40,11 +40,14 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			if (player != null)
 			{
+
 //				Debug.Log (player.transform.position);
 //				Debug.Log (ec.rb.position);
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
 				if (vecToPlayer.magnitude <= targetRange) 
+
 				{
+
                     //					Move (vecToPlayer);
                     navAgent.SetDestination(player.transform.position);
 				} else
@@ -65,7 +68,7 @@ public class EnemyMovement : MonoBehaviour {
 
 		public override void Update()
 		{
-
+            navAgent.SetDestination(player.transform.position);
         }
 
 		public void Move (Vector3 dir)

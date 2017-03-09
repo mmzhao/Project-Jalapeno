@@ -1,6 +1,6 @@
 ﻿public abstract class PlayerState
 {
-    PlayerController pc;
+    protected PlayerController pc;
 
     public abstract void Enter();
     public abstract void FixedUpdate();

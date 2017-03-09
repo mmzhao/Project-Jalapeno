@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class Attack1 : PlayerAttack {
     public override void Enter()
     {
         hitbox = new BoxCollider();
-        hitbox.center = (new Vector3(0, 0, 0));
+        hitbox.transform.position = (pc.rb.transform.position + new Vector3(0, 0, 0));
         hitbox.size = (new Vector3(5, 5, 5));
     }
 

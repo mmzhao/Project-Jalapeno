@@ -11,6 +11,9 @@ public class Attack1 : PlayerAttack {
      */
     BoxCollider hitbox;
 
+    // make a sphere to show hitbox
+    GameObject mySphere;
+
     public Attack1(PlayerController controller)
     {
         pc = controller;
@@ -21,9 +24,23 @@ public class Attack1 : PlayerAttack {
     // Create hitboxes, start animation
     public override void Enter()
     {
-        hitbox = new BoxCollider();
+        hitbox = pc.gameObject.AddComponent<BoxCollider>();
+        Debug.Log(pc);
+        Debug.Log(pc.rb);
+        Debug.Log(pc.rb.transform.position);
+        Debug.Log(hitbox);
+        Debug.Log(hitbox.transform);
+        Debug.Log(hitbox.transform.position);
         hitbox.transform.position = (pc.rb.transform.position + new Vector3(0, 0, 0));
+        Debug.Log(pc.rb.transform.position);
         hitbox.size = (new Vector3(5, 5, 5));
+
+        // make a sphere to show hitbox
+        mySphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        Renderer ren = mySphere.GetComponents<Renderer>()[0];
+        ren.material.color = Color.green;
+        mySphere.transform.localScale = new Vector3(10, 1, 10);
+        mySphere.transform.position = hitbox.transform.position;
     }
 
     public override void FixedUpdate()
@@ -44,5 +61,8 @@ public class Attack1 : PlayerAttack {
     public override void Exit()
     {
         GameObject.Destroy(hitbox);
+
+        // Destry the sphere
+        GameObject.Destroy(mySphere);
     }
 }

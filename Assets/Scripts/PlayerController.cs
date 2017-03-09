@@ -14,20 +14,26 @@ public class PlayerController : MonoBehaviour {
     public float curSpeed { get; set; }
     public float dashSpeed;
     public Direction facing = Direction.N;
-
+    public Animator anim;
 
     void Awake ()
     {
 		maxSpeed = 40.0f;
 		dashSpeed = 200.0f;
-    }
 
-	// Use this for initialization
-	void Start () {
         if (rb == null)
         {
             rb = this.transform.root.gameObject.GetComponent<Rigidbody>();
         }
+        if (anim == null)
+        {
+            anim = this.transform.root.gameObject.GetComponent<Animator>();
+        }
+    }
+
+	// Use this for initialization
+	void Start () {
+        
         rb.freezeRotation = true;
 
         currentState = new PlayerMovement.Idle(this);
@@ -36,7 +42,14 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		// Debug.Log(currentState);
-        movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        Vector3 newMovement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        if (!newMovement.Equals(movement))
+        {
+            movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            anim.SetFloat("LastInputX", Input.GetAxisRaw("Horizontal"));
+            anim.SetFloat("LastInputY", Input.GetAxisRaw("Vertical"));
+        }
+        
         
         currentState.Update();
         if (stateEnded)

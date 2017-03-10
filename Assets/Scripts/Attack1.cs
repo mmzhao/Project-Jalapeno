@@ -34,7 +34,7 @@ public class Attack1 : PlayerAttack {
         // make a sphere to show hitbox
         myCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         Renderer ren = myCube.GetComponents<Renderer>()[0];
-        ren.material.color = Color.green;
+		ren.material.color = Color.blue;
         myCube.transform.localScale = new Vector3(10, 1, 10);
         myCube.transform.position = hitbox.center;
     }

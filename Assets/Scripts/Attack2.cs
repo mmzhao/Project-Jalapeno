@@ -11,7 +11,7 @@ public class Attack2 : PlayerAttack {
      */
     BoxCollider hitbox;
 
-    public Attack2(PlayerController controller)
+    public Attack2(PlayerController controller) : base(controller)
     {
         pc = controller;
         counter = 0;

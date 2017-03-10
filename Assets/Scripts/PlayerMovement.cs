@@ -6,11 +6,11 @@ public class PlayerMovement : MonoBehaviour
 	
     public class Idle : PlayerState
     {
-        PlayerController pc;
+        new protected static readonly int playerState = (int) PlayerStateIndex.IDLE;
 
-        public Idle(PlayerController playerController)
+        public Idle(PlayerController pc) : base(pc)
         {
-            this.pc = playerController;
+            this.pc.anim.SetInteger(animState, playerState);
         }
 
         public override void Enter()
@@ -77,15 +77,16 @@ public class PlayerMovement : MonoBehaviour
 
     class Running : PlayerState
     {
-        PlayerController pc;
+        new protected static readonly int playerState = (int)PlayerStateIndex.RUN;
+
         public Vector3 movement;
         public float curSpeed;
         public float moveX;
         public float moveZ;
 
-        public Running(PlayerController playerController)
+        public Running(PlayerController playerController) : base(playerController)
         {
-            this.pc = playerController;
+            this.pc.anim.SetInteger(animState, playerState);
             this.movement = playerController.movement;
             this.curSpeed = playerController.curSpeed;
         }
@@ -163,14 +164,15 @@ public class PlayerMovement : MonoBehaviour
 
     class Dash : PlayerState
     {
+        new protected static readonly int playerState = 2;
+
         PlayerController pc;
         public Vector3 dir;
         int numMoves = 4;
         int curMoves;
 
-        public Dash(PlayerController playerController)
+        public Dash(PlayerController playerController) : base(playerController)
         {
-            pc = playerController;
             curMoves = 0;
         }
 

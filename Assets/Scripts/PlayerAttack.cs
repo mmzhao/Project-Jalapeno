@@ -4,9 +4,13 @@ using UnityEngine;
 
 public abstract class PlayerAttack : PlayerState {
 
-    protected PlayerController pc;
     protected int counter;
     protected int donecount;
+     
+    public PlayerAttack(PlayerController pc) : base(pc)
+    {
+
+    }
 
     // Create hitboxes, start animation
     public override abstract void Enter();

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,9 +9,10 @@ public class Attack1 : PlayerAttack {
      * int counter;
      * int donecount;
      */
+    new protected static readonly int playerState = 3;
     BoxCollider hitbox;
 
-    public Attack1(PlayerController controller)
+    public Attack1(PlayerController controller) : base(controller)
     {
         pc = controller;
         counter = 0;

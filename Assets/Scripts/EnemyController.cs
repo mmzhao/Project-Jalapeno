@@ -16,80 +16,59 @@ public class EnemyController : MonoBehaviour {
 	public float curSpeed { get; set; }
 	public float targetRange = 30.0f;
 	public float attackRange = 10.0f;
-    public NavMeshAgent navAgent { get; set; }
-    
+	public NavMeshAgent navAgent { get; set; }
+	public GameObject ap;
+
 
 	// render latch circle
-	LineRenderer lineRenderer;
+	GameObject latchRadius;
+	GameObject attackRadius;
 
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
-
-
-		// latch/attack range circle setup
-		float theta_scale = 0.1f;             //Set lower to add more points
-		int size = (int) ((2.0f * Mathf.PI) / theta_scale) + 2; //Total number of points in circle.
-		size *= 2;
-		
-		lineRenderer = gameObject.AddComponent<LineRenderer>();
-		lineRenderer.material = new Material(Shader.Find("Particles/Additive"));
-		//		lineRenderer.SetColors(c1, c2);
-		lineRenderer.SetWidth(0.2f, 0.2f);
-		lineRenderer.SetVertexCount(size);
-        // latch/attack range circle setup
-
-        //variable initializations
-        GameObject rootParent = this.transform.root.gameObject;
-        if (rb == null)
-        {
-            rb = rootParent.GetComponent<Rigidbody>();
-        }
-        if (navAgent == null)
-        {
-            navAgent = rootParent.GetComponent<NavMeshAgent>();
-        }
-    }
+		//variable initializations
+		GameObject rootParent = this.transform.root.gameObject;
+		if (rb == null)
+		{
+			rb = rootParent.GetComponent<Rigidbody>();
+		}
+		if (navAgent == null)
+		{
+			navAgent = rootParent.GetComponent<NavMeshAgent>();
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
-        rb.freezeRotation = true;
-        currentState = new EnemyMovement.Targeting(this);
+		rb.freezeRotation = true;
+		currentState = new EnemyMovement.Targeting(this);
+
+		latchRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		Renderer ren = latchRadius.GetComponents<Renderer> () [0];
+		ren.material.color = Color.green;
+		latchRadius.transform.localScale = new Vector3 (2*targetRange, .1f, 2*targetRange);
+
+		attackRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		Renderer ren2 = attackRadius.GetComponents<Renderer> () [0];
+		ren2.material.color = Color.red;
+		attackRadius.transform.localScale = new Vector3 (2*attackRange, .1f, 2*attackRange);
 	}
-    
+
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 	void FixedUpdate()
 	{
-		// draw latch/attack range circle
-		float theta_scale = 0.1f;
-		float x,x2 = 0;
-		float z,z2 = 0;
-		float r = targetRange;
-		float r2 = attackRange;
+		latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
-		int i = 0;
-		for(float theta = 0; theta-theta_scale < 2 * Mathf.PI; theta += theta_scale) {
-			x = r*Mathf.Cos(theta) + rb.position.x;
-			z = r*Mathf.Sin(theta) + rb.position.z;
-			x2 = r2*Mathf.Cos(theta) + rb.position.x;
-			z2 = r2*Mathf.Sin(theta) + rb.position.z;
-			Vector3 pos = new Vector3(x, .5f, z);
-			Vector3 pos2 = new Vector3(x2, .5f, z2);
-			lineRenderer.SetPosition(i, pos);
-			i+=1;
-			lineRenderer.SetPosition(i, pos2);
-			i+=1;
-		}
-        // draw latch/attack range circle
+		attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
 
-
-        //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
-//		Debug.Log(currentState);
-        currentState.FixedUpdate();
+		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+		//		Debug.Log(currentState);
+		currentState.FixedUpdate();
 		if (nextState != null)
 		{
 			stateEnded = false;

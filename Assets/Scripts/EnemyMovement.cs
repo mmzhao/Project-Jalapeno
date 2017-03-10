@@ -8,8 +8,8 @@ public class EnemyMovement : MonoBehaviour {
 	public class Targeting : EnemyState
 	{
 		EnemyController ec;
-        GameObject player;
-        NavMeshAgent navAgent;
+		GameObject player;
+		NavMeshAgent navAgent;
 		public Vector3 movement;
 		public float curSpeed;
 		public float targetRange;
@@ -20,20 +20,21 @@ public class EnemyMovement : MonoBehaviour {
 			this.ec = enemyController;
 			this.movement = enemyController.movement;
 			this.curSpeed = enemyController.curSpeed;
-            this.player = GameObject.FindGameObjectWithTag("Player");
-            this.navAgent = enemyController.navAgent;
+			this.player = GameObject.FindGameObjectWithTag("Player");
+			//            this.navAgent = enemyController.navAgent;
 			this.targetRange = enemyController.targetRange;
 			this.attackRange = enemyController.attackRange;
-        }
+			//			this.navAgent.speed = enemyController.maxSpeed;
+		}
 
 		public override void Enter()
 		{
-			
+
 		}
 
 		public override void Exit()
 		{
-			navAgent.SetDestination(ec.transform.position);
+			//			navAgent.SetDestination(ec.transform.position);
 		}
 
 		public override void FixedUpdate()
@@ -41,19 +42,19 @@ public class EnemyMovement : MonoBehaviour {
 			if (player != null)
 			{
 
-//				Debug.Log (player.transform.position);
-//				Debug.Log (ec.rb.position);
+				//				Debug.Log (player.transform.position);
+				//				Debug.Log (ec.rb.position);
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
 				if (vecToPlayer.magnitude <= targetRange) 
 
 				{
 
-                    //					Move (vecToPlayer);
-                    navAgent.SetDestination(player.transform.position);
+					Move (vecToPlayer);
+					//                    navAgent.SetDestination(player.transform.position);
 				} else
-                {
-                    navAgent.SetDestination(ec.transform.position);
-                }
+				{
+					//                    navAgent.SetDestination(ec.transform.position);
+				}
 			}
 
 			if (player != null)
@@ -68,8 +69,8 @@ public class EnemyMovement : MonoBehaviour {
 
 		public override void Update()
 		{
-            navAgent.SetDestination(player.transform.position);
-        }
+			//            navAgent.SetDestination(player.transform.position);
+		}
 
 		public void Move (Vector3 dir)
 		{

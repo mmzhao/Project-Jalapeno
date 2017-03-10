@@ -11,20 +11,33 @@ public class Attack1 : PlayerAttack {
      */
     new protected static readonly int playerState = 3;
     BoxCollider hitbox;
+    Direction facing;
+
+    // make a cube to show hitbox
+    GameObject myCube;
 
     public Attack1(PlayerController controller) : base(controller)
     {
         pc = controller;
         counter = 0;
         donecount = 10;
+        facing = pc.facing;
     }
 
     // Create hitboxes, start animation
     public override void Enter()
     {
-        hitbox = new BoxCollider();
-        hitbox.transform.position = (pc.rb.transform.position + new Vector3(0, 0, 0));
-        hitbox.size = (new Vector3(5, 5, 5));
+        hitbox = pc.gameObject.AddComponent<BoxCollider>();
+        Debug.Log(facing);
+        hitbox.center = (pc.rb.transform.position + 10 * DirectionUtil.DirToVector(facing));
+        hitbox.size = (new Vector3(10, 1, 10));
+
+        // make a sphere to show hitbox
+        myCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Renderer ren = myCube.GetComponents<Renderer>()[0];
+		ren.material.color = Color.blue;
+        myCube.transform.localScale = new Vector3(10, 1, 10);
+        myCube.transform.position = hitbox.center;
     }
 
     public override void FixedUpdate()
@@ -45,5 +58,8 @@ public class Attack1 : PlayerAttack {
     public override void Exit()
     {
         GameObject.Destroy(hitbox);
+
+        // Destry the sphere
+        GameObject.Destroy(myCube);
     }
 }

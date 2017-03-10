@@ -24,22 +24,24 @@ public class PlayerMovement : MonoBehaviour
         }
 
         public override void FixedUpdate()
-        {   // Check for attack inputs
-            float attack1 = Input.GetAxisRaw("Attack1");
-            float attack2 = Input.GetAxisRaw("Attack2");
-            if (attack1 != 0 || attack2 != 0)
-            {
-                pc.stateEnded = true;
-                return;
-            }
+        {
             // Check for directional inputs
             float vertical = Input.GetAxisRaw("Vertical");
             float horizontal = Input.GetAxisRaw("Horizontal");
             if (horizontal != 0 || vertical != 0)
             {
                 // Change the direction we're facing
-                pc.facing = pc.FloatToDir(vertical, horizontal);
+                pc.facing = DirectionUtil.FloatToDir(vertical, horizontal);
                 // End State
+                pc.stateEnded = true;
+                return;
+            }
+
+            // Check for attack inputs
+            float attack1 = Input.GetAxisRaw("Attack1");
+            float attack2 = Input.GetAxisRaw("Attack2");
+            if (attack1 != 0 || attack2 != 0)
+            {
                 pc.stateEnded = true;
                 return;
             }
@@ -108,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
 //          GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
             if (moveX != 0 || moveZ != 0)
             {
+                pc.facing = DirectionUtil.FloatToDir(moveZ, moveX);
                 pc.curSpeed += .1f * pc.maxSpeed;
                 if (pc.curSpeed > pc.maxSpeed)
                 {
@@ -136,6 +139,14 @@ public class PlayerMovement : MonoBehaviour
 
         public override PlayerState HandleInput()
         {
+            if (pc.stateEnded && Input.GetButton("Attack1"))
+            {
+                return new Attack1(pc);
+            }
+            if (pc.stateEnded && Input.GetButton("Attack2"))
+            {
+                return new Attack2(pc);
+            }
             if (pc.stateEnded && Input.GetButton("Dash"))
             {
                 return new Dash(pc);

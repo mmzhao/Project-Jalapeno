@@ -18,7 +18,7 @@ public class Attack2 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 100;
+        donecount = 20;
     }
 
     // Create hitboxes, start animation
@@ -39,7 +39,7 @@ public class Attack2 : PlayerAttack {
         mySphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         Renderer ren = mySphere.GetComponents<Renderer>()[0];
         ren.material.color = Color.green;
-        mySphere.transform.localScale = new Vector3(10, 1, 10);
+        mySphere.transform.localScale = new Vector3(30, 1, 30);
         mySphere.transform.position = hitbox.transform.position;
     }
 

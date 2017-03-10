@@ -10,37 +10,33 @@ public class Attack1 : PlayerAttack {
      * int donecount;
      */
     BoxCollider hitbox;
+    Direction facing;
 
-    // make a sphere to show hitbox
-    GameObject mySphere;
+    // make a cube to show hitbox
+    GameObject myCube;
 
     public Attack1(PlayerController controller)
     {
         pc = controller;
         counter = 0;
         donecount = 10;
+        facing = pc.facing;
     }
 
     // Create hitboxes, start animation
     public override void Enter()
     {
         hitbox = pc.gameObject.AddComponent<BoxCollider>();
-        Debug.Log(pc);
-        Debug.Log(pc.rb);
-        Debug.Log(pc.rb.transform.position);
-        Debug.Log(hitbox);
-        Debug.Log(hitbox.transform);
-        Debug.Log(hitbox.transform.position);
-        hitbox.transform.position = (pc.rb.transform.position + new Vector3(0, 0, 0));
-        Debug.Log(pc.rb.transform.position);
-        hitbox.size = (new Vector3(5, 5, 5));
+        Debug.Log(facing);
+        hitbox.center = (pc.rb.transform.position + 10 * DirectionUtil.DirToVector(facing));
+        hitbox.size = (new Vector3(10, 1, 10));
 
         // make a sphere to show hitbox
-        mySphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-        Renderer ren = mySphere.GetComponents<Renderer>()[0];
+        myCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Renderer ren = myCube.GetComponents<Renderer>()[0];
         ren.material.color = Color.green;
-        mySphere.transform.localScale = new Vector3(10, 1, 10);
-        mySphere.transform.position = hitbox.transform.position;
+        myCube.transform.localScale = new Vector3(10, 1, 10);
+        myCube.transform.position = hitbox.center;
     }
 
     public override void FixedUpdate()
@@ -63,6 +59,6 @@ public class Attack1 : PlayerAttack {
         GameObject.Destroy(hitbox);
 
         // Destry the sphere
-        GameObject.Destroy(mySphere);
+        GameObject.Destroy(myCube);
     }
 }

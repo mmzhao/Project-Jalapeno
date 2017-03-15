@@ -16,7 +16,7 @@ public class Attack2 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 20;
+        donecount = 8;
     }
 
     // Create hitboxes, start animation

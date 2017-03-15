@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour {
 
     void Awake ()
     {
-		maxSpeed = 40.0f;
+		maxSpeed = 50.0f;
 		dashSpeed = 200.0f;
 
         if (rb == null)
@@ -74,4 +74,16 @@ public class PlayerController : MonoBehaviour {
             currentState.Enter();
         }
     }
+
+	void OnTriggerEnter (Collider other)
+	{
+//		Debug.Log ("e");
+//		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
+		if(other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
+		{
+//			Debug.Log ("hit " + other.gameObject.name);
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
+		}
+	}
+
 }

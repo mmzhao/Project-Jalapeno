@@ -1,0 +1,300 @@
+fileFormatVersion: 2
+guid: 81fa0ff850d374b94ac0683e368f0e30
+timeCreated: 1489532134
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Enemy_Rough_0
+    21300002: Enemy_Rough_1
+    21300004: Enemy_Rough_2
+    21300006: Enemy_Rough_4
+    21300008: Enemy_Rough_5
+    21300010: Enemy_Rough_6
+    21300012: Enemy_Rough_8
+    21300014: Enemy_Rough_9
+    21300016: Enemy_Rough_11
+    21300018: Enemy_Rough_12
+    21300020: Enemy_Rough_13
+    21300022: Enemy_Rough_15
+    21300024: Enemy_Rough_16
+    21300026: Enemy_Rough_17
+    21300028: Enemy_Rough_19
+    21300030: Enemy_Rough_20
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Enemy_Rough_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1029
+        width: 375
+        height: 781
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_1
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 1151
+        width: 750
+        height: 626
+      alignment: 9
+      pivot: {x: 0.3135, y: 0.412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_2
+      rect:
+        serializedVersion: 2
+        x: 1682
+        y: 1151
+        width: 902
+        height: 619
+      alignment: 9
+      pivot: {x: 0.215, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_4
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 1147
+        width: 732
+        height: 630
+      alignment: 9
+      pivot: {x: 0.313, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_5
+      rect:
+        serializedVersion: 2
+        x: 3886
+        y: 1144
+        width: 380
+        height: 867
+      alignment: 9
+      pivot: {x: 0.5, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_6
+      rect:
+        serializedVersion: 2
+        x: 4539
+        y: 1144
+        width: 735
+        height: 630
+      alignment: 9
+      pivot: {x: 0.6915, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_8
+      rect:
+        serializedVersion: 2
+        x: 5561
+        y: 1148
+        width: 911
+        height: 621
+      alignment: 9
+      pivot: {x: 0.79, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_9
+      rect:
+        serializedVersion: 2
+        x: 6749
+        y: 1153
+        width: 753
+        height: 625
+      alignment: 9
+      pivot: {x: 0.6825, y: 0.412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_11
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 378
+        height: 775
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_12
+      rect:
+        serializedVersion: 2
+        x: 698
+        y: 120
+        width: 750
+        height: 626
+      alignment: 9
+      pivot: {x: 0.3135, y: 0.412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_13
+      rect:
+        serializedVersion: 2
+        x: 1720
+        y: 116
+        width: 910
+        height: 620
+      alignment: 9
+      pivot: {x: 0.215, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_15
+      rect:
+        serializedVersion: 2
+        x: 2915
+        y: 114
+        width: 736
+        height: 628
+      alignment: 9
+      pivot: {x: 0.316, y: 0.41}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_16
+      rect:
+        serializedVersion: 2
+        x: 3930
+        y: 113
+        width: 381
+        height: 869
+      alignment: 9
+      pivot: {x: 0.5, y: 0.31}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_17
+      rect:
+        serializedVersion: 2
+        x: 4589
+        y: 118
+        width: 735
+        height: 630
+      alignment: 9
+      pivot: {x: 0.683, y: 0.405}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_19
+      rect:
+        serializedVersion: 2
+        x: 5606
+        y: 117
+        width: 911
+        height: 617
+      alignment: 9
+      pivot: {x: 0.79, y: 0.43}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Rough_20
+      rect:
+        serializedVersion: 2
+        x: 6793
+        y: 119
+        width: 750
+        height: 625
+      alignment: 9
+      pivot: {x: 0.6825, y: 0.412}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

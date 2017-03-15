@@ -14,8 +14,8 @@ public class EnemyController : MonoBehaviour {
 	public bool stateEnded { get; set; }
 	public float maxSpeed;
 	public float curSpeed { get; set; }
-	public float targetRange = 30.0f;
-	public float attackRange = 10.0f;
+	public float targetRange;
+	public float attackRange;
 	public NavMeshAgent navAgent { get; set; }
 	public GameObject ap;
 
@@ -27,6 +27,8 @@ public class EnemyController : MonoBehaviour {
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
+		targetRange = 30.0f;
+		attackRange = 20.0f;
 		//variable initializations
 		GameObject rootParent = this.transform.root.gameObject;
 		if (rb == null)

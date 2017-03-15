@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     pc.curSpeed = pc.maxSpeed;
                 }
-                pc.movement.Set(moveX, 0, moveZ);
+				pc.movement = new Vector3(moveX, 0, moveZ);
                 Move();
             }
             else

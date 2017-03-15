@@ -19,7 +19,7 @@ public class Attack1 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 10;
+        donecount = 4;
         facing = pc.facing;
     }
 

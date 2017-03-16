@@ -57,8 +57,10 @@ public class EnemyMovement : MonoBehaviour {
                 }
                 else
 				{
-					//                    navAgent.SetDestination(ec.transform.position);
-				}
+                    //                    navAgent.SetDestination(ec.transform.position);
+                    ec.anim.SetFloat("moveX", 0);
+                    ec.anim.SetFloat("moveZ", 0);
+                }
 			}
 
 			if (player != null)

@@ -76,7 +76,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    class Running : PlayerState
+    public class Running : PlayerState
     {
         new protected static readonly int playerState = (int)PlayerStateIndex.RUN;
 
@@ -166,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
        
     }
 
-    class Dash : PlayerState
+    public class Dash : PlayerState
     {
         new protected static readonly int playerState = 2;
 
@@ -204,18 +204,26 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        public override PlayerState HandleInput()
-        {
-            if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")) )
-            {
-                return new Running(pc);
-            }
-            else
-            {
-                return new Idle(pc);
-            }
-            // return null;
-        }
+		public override PlayerState HandleInput()
+		{
+			if (pc.stateEnded && Input.GetButton("Attack1"))
+			{
+				return new Attack1(pc);
+			}
+			if (pc.stateEnded && Input.GetButton("Attack2"))
+			{
+				return new Attack2(pc);
+			}
+			if (pc.stateEnded && Input.GetButton("Dash"))
+			{
+				return new Dash(pc);
+			}
+			if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
+			{
+				return new Running(pc);
+			}
+			return null;
+		}
 
         public override void Update()
         {

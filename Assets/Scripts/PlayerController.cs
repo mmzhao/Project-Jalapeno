@@ -13,9 +13,13 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public float curSpeed { get; set; }
     public float dashSpeed;
-    public Direction facing = Direction.NW;
+	public Direction facing = Direction.NW;
+	//	Attack1 prefab
+	public GameObject ap1;
     public Animator anim;
-    public Camera playerCamera;
+	public Camera playerCamera;
+
+
     public Vector3 playerToMouse { get; set; }
     void Awake ()
     {

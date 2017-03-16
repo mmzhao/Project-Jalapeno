@@ -116,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
                     pc.curSpeed = pc.maxSpeed;
                 }
 				pc.movement = new Vector3(moveX, 0, moveZ);
-                Move();
+                pc.rb.velocity = pc.movement.normalized * pc.curSpeed;
             }
             else
             {
@@ -161,12 +161,6 @@ public class PlayerMovement : MonoBehaviour
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
-        }
-
-        public void Move ()
-        {
-            Vector3 dif = pc.movement.normalized * pc.curSpeed * Time.deltaTime;
-            pc.rb.MovePosition (pc.transform.position + dif);
         }
 
        

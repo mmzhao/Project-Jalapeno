@@ -14,7 +14,11 @@
     public abstract void Update();
     public abstract void Exit();
     public abstract PlayerState HandleInput();
-
+    public virtual void Animate()
+    {
+        pc.anim.SetFloat("p2mX", pc.playerToMouse.x); //player-to-mouse-X
+        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z); //player-to-mouse-Z
+    }
 }
 
 public enum PlayerStateIndex

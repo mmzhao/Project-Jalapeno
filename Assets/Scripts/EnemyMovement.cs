@@ -50,8 +50,12 @@ public class EnemyMovement : MonoBehaviour {
 				{
 
 					Move (vecToPlayer);
-					//                    navAgent.SetDestination(player.transform.position);
-				} else
+                    Vector3 normalized = vecToPlayer;
+                    ec.anim.SetFloat("moveX", normalized.x);
+                    ec.anim.SetFloat("moveZ", normalized.z);
+                    //                    navAgent.SetDestination(player.transform.position);
+                }
+                else
 				{
 					//                    navAgent.SetDestination(ec.transform.position);
 				}
@@ -63,7 +67,7 @@ public class EnemyMovement : MonoBehaviour {
 				if (vecToPlayer.magnitude <= attackRange) 
 				{
 					ec.nextState = new EnemyAttack.Attack(ec, vecToPlayer.normalized);
-				}
+                }
 			}
 		}
 

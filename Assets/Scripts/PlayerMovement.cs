@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
             if (horizontal != 0 || vertical != 0)
             {
                 // Change the direction we're facing
-                pc.facing = DirectionUtil.FloatToDir(vertical, horizontal);
+                pc.facing = DirectionUtil.FloatToDir(pc.movement.z, pc.movement.x);
                 // End State
                 pc.stateEnded = true;
                 return;
@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
         public override void Update()
         {
-
         }
     }
 
@@ -177,7 +176,6 @@ public class PlayerMovement : MonoBehaviour
     {
         new protected static readonly int playerState = 2;
 
-        PlayerController pc;
         public Vector3 dir;
         int numMoves = 4;
         int curMoves;

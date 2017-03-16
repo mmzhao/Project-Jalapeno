@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour {
 	public float attackRange;
 	public NavMeshAgent navAgent { get; set; }
 	public GameObject ap;
-
+    public Animator anim;
 
 	// render latch circle
 	GameObject latchRadius;
@@ -39,7 +39,11 @@ public class EnemyController : MonoBehaviour {
 		{
 			navAgent = rootParent.GetComponent<NavMeshAgent>();
 		}
-	}
+        if (anim == null)
+        {
+            anim = rootParent.GetComponent<Animator>();
+        }
+    }
 
 	// Use this for initialization
 	void Start () {

@@ -15,7 +15,8 @@ public class PlayerController : MonoBehaviour {
     public float dashSpeed;
     public Direction facing = Direction.NW;
     public Animator anim;
-
+    public Camera playerCamera;
+    public Vector3 playerToMouse { get; set; }
     void Awake ()
     {
 		maxSpeed = 50.0f;
@@ -29,6 +30,11 @@ public class PlayerController : MonoBehaviour {
         {
             anim = this.transform.root.gameObject.GetComponent<Animator>();
         }
+        if (playerCamera == null)
+        {
+            playerCamera = Camera.main;
+        }
+
     }
 
 	// Use this for initialization
@@ -41,16 +47,24 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        // Debug.Log(currentState);
-        float moveX = Input.GetAxisRaw("Horizontal");
-        float moveY = Input.GetAxisRaw("Vertical");
-        movement = new Vector3(moveX, 0, moveY);
+        //register all the inputs that need to be dynamically tracked
+        //movement key inputs
+        movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-        if (moveX != 0 || moveY != 0)
+        //mouse position
+        Ray camRay = playerCamera.ScreenPointToRay(Input.mousePosition);
+        RaycastHit floorHit;
+        if (Physics.Raycast(camRay, out floorHit, playerCamera.farClipPlane, LayerMask.GetMask("MouseRaycast")))
         {
-            anim.SetFloat("LastInputX", Input.GetAxisRaw("Horizontal"));
-            anim.SetFloat("LastInputY", Input.GetAxisRaw("Vertical"));
+            Vector3 p2m = floorHit.point - transform.position;
+            p2m.y = 0f;
+            playerToMouse = p2m.normalized;
         }
+
+        //Animate
+        currentState.Animate();
+
+        //carry out state-specific orders
         currentState.Update();
         if (stateEnded)
         {

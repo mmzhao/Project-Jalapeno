@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 1e61803f9302a4598b7f0e2e1f028666
-timeCreated: 1489051182
+timeCreated: 1489709695
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -13,6 +13,20 @@ TextureImporter:
     21300012: MC_Rough_27
     21300014: MC_Rough_28
     21300016: MC_Rough_29
+    21300018: MC_Rough_1
+    21300020: MC_Rough_2
+    21300022: MC_Rough_4
+    21300024: MC_Rough_5
+    21300026: MC_Rough_6
+    21300028: MC_Rough_7
+    21300030: MC_Rough_10
+    21300032: MC_Rough_11
+    21300034: MC_Rough_12
+    21300036: MC_Rough_25
+    21300038: MC_Rough_26
+    21300040: MC_Rough_30
+    21300042: MC_Rough_31
+    21300044: MC_Rough_32
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -127,28 +141,119 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_Rough_18
+      name: MC_Rough_1
       rect:
         serializedVersion: 2
-        x: 731
-        y: 5468
-        width: 13
-        height: 13
+        x: 2993
+        y: 7859
+        width: 11
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_Rough_19
+      name: MC_Rough_2
       rect:
         serializedVersion: 2
-        x: 6219
-        y: 4600
-        width: 900
-        height: 875
+        x: 8497
+        y: 7054
+        width: 848
+        height: 829
+      alignment: 9
+      pivot: {x: 0.5091645, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_4
+      rect:
+        serializedVersion: 2
+        x: 3954
+        y: 6997
+        width: 848
+        height: 805
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_5
+      rect:
+        serializedVersion: 2
+        x: 5052
+        y: 7060
+        width: 791
+        height: 767
+      alignment: 9
+      pivot: {x: 0.421404, y: 0.5033772}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_6
+      rect:
+        serializedVersion: 2
+        x: 6101
+        y: 7060
+        width: 1037
+        height: 761
+      alignment: 9
+      pivot: {x: 0.42006502, y: 0.49659616}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_7
+      rect:
+        serializedVersion: 2
+        x: 7411
+        y: 7041
+        width: 828
+        height: 773
+      alignment: 9
+      pivot: {x: 0.37173182, y: 0.5134041}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_10
+      rect:
+        serializedVersion: 2
+        x: 9599
+        y: 7035
+        width: 831
+        height: 773
+      alignment: 9
+      pivot: {x: 0.6402748, y: 0.51005304}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_11
+      rect:
+        serializedVersion: 2
+        x: 10708
+        y: 7066
+        width: 1034
+        height: 761
+      alignment: 9
+      pivot: {x: 0.57515657, y: 0.4965955}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_12
+      rect:
+        serializedVersion: 2
+        x: 12000
+        y: 7048
+        width: 781
+        height: 773
+      alignment: 9
+      pivot: {x: 0.6094538, y: 0.50335103}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -156,12 +261,12 @@ TextureImporter:
       name: MC_Rough_21
       rect:
         serializedVersion: 2
-        x: 1672
-        y: 4600
-        width: 900
-        height: 875
+        x: 3954
+        y: 6061
+        width: 848
+        height: 761
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -169,12 +274,12 @@ TextureImporter:
       name: MC_Rough_22
       rect:
         serializedVersion: 2
-        x: 2606
-        y: 4600
-        width: 1000
-        height: 875
+        x: 5052
+        y: 6080
+        width: 630
+        height: 773
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -182,12 +287,12 @@ TextureImporter:
       name: MC_Rough_23
       rect:
         serializedVersion: 2
-        x: 3671
-        y: 4600
-        width: 1200
-        height: 875
+        x: 6101
+        y: 6080
+        width: 848
+        height: 761
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -195,12 +300,38 @@ TextureImporter:
       name: MC_Rough_24
       rect:
         serializedVersion: 2
-        x: 4898
-        y: 4600
-        width: 1100
-        height: 875
+        x: 7411
+        y: 6062
+        width: 630
+        height: 773
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_25
+      rect:
+        serializedVersion: 2
+        x: 8497
+        y: 6074
+        width: 848
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_26
+      rect:
+        serializedVersion: 2
+        x: 9802
+        y: 6055
+        width: 629
+        height: 774
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -208,12 +339,12 @@ TextureImporter:
       name: MC_Rough_27
       rect:
         serializedVersion: 2
-        x: 7321
-        y: 4600
-        width: 1100
-        height: 875
+        x: 10893
+        y: 6086
+        width: 849
+        height: 761
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -221,23 +352,49 @@ TextureImporter:
       name: MC_Rough_28
       rect:
         serializedVersion: 2
-        x: 8450
-        y: 4600
-        width: 1200
-        height: 875
+        x: 12160
+        y: 6074
+        width: 621
+        height: 767
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_Rough_29
+      name: MC_Rough_30
       rect:
         serializedVersion: 2
-        x: 9713
-        y: 4600
-        width: 1000
-        height: 875
+        x: 4285
+        y: 5363
+        width: 161
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_31
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 5363
+        width: 218
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough_32
+      rect:
+        serializedVersion: 2
+        x: 5901
+        y: 5169
+        width: 458
+        height: 617
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour {
     PlayerState currentState;
     PlayerState nextState;
 
-    public Vector3 movement { get; set; }
+    public Vector3 movementInput { get; set; }
     public Rigidbody rb;
     public bool stateEnded { get; set; }
     public float maxSpeed;
@@ -15,8 +15,12 @@ public class PlayerController : MonoBehaviour {
     public float dashSpeed;
     public Direction facingDirection = Direction.NW;
     public Direction movingDirection = Direction.NW;
+	//	Attack1 prefab
+	public GameObject ap1;
     public Animator anim;
-    public Camera playerCamera;
+	public Camera playerCamera;
+
+
     public Vector3 playerToMouse { get; set; }
     void Awake ()
     {
@@ -50,7 +54,7 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
         //register all the inputs that need to be dynamically tracked
         //movement key inputs
-        movement = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
         //mouse position
         Ray camRay = playerCamera.ScreenPointToRay(Input.mousePosition);
@@ -79,7 +83,8 @@ public class PlayerController : MonoBehaviour {
 
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
-        currentState.FixedUpdate();
+		rb.velocity = Vector3.zero;
+		currentState.FixedUpdate();
         if (nextState != null)
         {
             stateEnded = false;

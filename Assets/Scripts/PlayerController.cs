@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        
-        rb.freezeRotation = true;
+//		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
 
         currentState = new PlayerMovement.Idle(this);
 	}

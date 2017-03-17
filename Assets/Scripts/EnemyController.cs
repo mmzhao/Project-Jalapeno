@@ -47,7 +47,8 @@ public class EnemyController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rb.freezeRotation = true;
+		//		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+		rb.constraints = RigidbodyConstraints.FreezeRotation;
 		currentState = new EnemyMovement.Targeting(this);
 
 		latchRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
@@ -84,6 +85,17 @@ public class EnemyController : MonoBehaviour {
 			currentState = nextState;
 			nextState = null;
 			currentState.Enter();
+		}
+	}
+
+	void OnTriggerEnter (Collider other)
+	{
+//		Debug.Log ("e");
+		//		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
+		if(other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
+		{
+//			Debug.Log ("hit " + other.gameObject.name);
+			GameObject.FindGameObjectWithTag ("Enemy").GetComponent<Health> ().TakeDamage (1);
 		}
 	}
 }

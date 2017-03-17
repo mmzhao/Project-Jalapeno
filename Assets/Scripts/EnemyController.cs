@@ -54,11 +54,13 @@ public class EnemyController : MonoBehaviour {
 		Renderer ren = latchRadius.GetComponents<Renderer> () [0];
 		ren.material.color = Color.green;
 		latchRadius.transform.localScale = new Vector3 (2*targetRange, .1f, 2*targetRange);
+		Destroy(latchRadius.GetComponent<SphereCollider> ());
 
 		attackRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
 		Renderer ren2 = attackRadius.GetComponents<Renderer> () [0];
 		ren2.material.color = Color.red;
 		attackRadius.transform.localScale = new Vector3 (2*attackRange, .1f, 2*attackRange);
+		Destroy(attackRadius.GetComponent<SphereCollider> ());
 	}
 
 	// Update is called once per frame

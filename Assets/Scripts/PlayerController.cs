@@ -82,7 +82,8 @@ public class PlayerController : MonoBehaviour {
 
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
-        currentState.FixedUpdate();
+		rb.velocity = Vector3.zero;
+		currentState.FixedUpdate();
         if (nextState != null)
         {
             stateEnded = false;

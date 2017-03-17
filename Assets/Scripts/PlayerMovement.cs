@@ -30,8 +30,8 @@ public class PlayerMovement : MonoBehaviour
             float horizontal = Input.GetAxisRaw("Horizontal");
             if (horizontal != 0 || vertical != 0)
             {
-                // Change the direction we're facing
-                pc.facing = DirectionUtil.FloatToDir(pc.movement.z, pc.movement.x);
+                // Change the direction we're facingDirection
+                pc.facingDirection = DirectionUtil.FloatToDir(pc.movement.z, pc.movement.x);
                 // End State
                 pc.stateEnded = true;
                 return;
@@ -80,7 +80,6 @@ public class PlayerMovement : MonoBehaviour
     {
         new protected static readonly int playerState = (int)PlayerStateIndex.RUN;
 
-        public Vector3 movement;
         public float curSpeed;
         public float moveX;
         public float moveZ;
@@ -88,7 +87,6 @@ public class PlayerMovement : MonoBehaviour
         public Running(PlayerController playerController) : base(playerController)
         {
             this.pc.anim.SetInteger(animState, playerState);
-            this.movement = playerController.movement;
             this.curSpeed = playerController.curSpeed;
         }
 
@@ -107,16 +105,16 @@ public class PlayerMovement : MonoBehaviour
         public override void FixedUpdate()
         {
 //          GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
+            
             if (moveX != 0 || moveZ != 0)
             {
-                pc.facing = DirectionUtil.FloatToDir(moveZ, moveX);
+                pc.movingDirection = DirectionUtil.FloatToDir(moveZ, moveX);
                 pc.curSpeed += .1f * pc.maxSpeed;
                 if (pc.curSpeed > pc.maxSpeed)
                 {
                     pc.curSpeed = pc.maxSpeed;
                 }
-				pc.movement = new Vector3(moveX, 0, moveZ);
-                pc.rb.velocity = pc.movement.normalized * pc.curSpeed;
+                
             }
             else
             {
@@ -126,6 +124,7 @@ public class PlayerMovement : MonoBehaviour
                     pc.curSpeed = 0;
                 }
             }
+            pc.rb.velocity = pc.movement.normalized * pc.curSpeed;
 
             if (pc.curSpeed == 0 || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
             {

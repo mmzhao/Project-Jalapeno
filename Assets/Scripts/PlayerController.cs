@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour {
     public float maxSpeed;
     public float curSpeed { get; set; }
     public float dashSpeed;
-    public Direction facing = Direction.NW;
+    public Direction facingDirection = Direction.NW;
+    public Direction movingDirection = Direction.NW;
     public Animator anim;
     public Camera playerCamera;
     public Vector3 playerToMouse { get; set; }

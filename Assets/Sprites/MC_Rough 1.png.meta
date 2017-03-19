@@ -1,0 +1,594 @@
+fileFormatVersion: 2
+guid: ad7d8b4507f6642818caf316be3029e5
+timeCreated: 1489712233
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MC_Rough 1_0
+    21300002: MC_Rough 1_1
+    21300004: MC_Rough 1_2
+    21300006: MC_Rough 1_3
+    21300008: MC_Rough 1_4
+    21300010: MC_Rough 1_5
+    21300012: MC_Rough 1_6
+    21300014: MC_Rough 1_7
+    21300016: MC_Rough 1_8
+    21300018: MC_Rough 1_9
+    21300020: MC_Rough 1_10
+    21300022: MC_Rough 1_11
+    21300024: MC_Rough 1_12
+    21300026: MC_Rough 1_13
+    21300028: MC_Rough 1_14
+    21300030: MC_Rough 1_15
+    21300032: MC_Rough 1_16
+    21300034: MC_Rough 1_17
+    21300036: MC_Rough 1_18
+    21300038: MC_Rough 1_19
+    21300040: MC_Rough 1_20
+    21300042: MC_Rough 1_21
+    21300044: MC_Rough 1_22
+    21300046: MC_Rough 1_23
+    21300048: MC_Rough 1_24
+    21300050: MC_Rough 1_25
+    21300052: MC_Rough 1_26
+    21300054: MC_Rough 1_27
+    21300056: MC_Rough 1_28
+    21300058: MC_Rough 1_29
+    21300060: MC_Rough 1_30
+    21300062: MC_Rough 1_31
+    21300064: MC_Rough 1_32
+    21300066: MC_Rough 1_33
+    21300068: MC_Rough 1_34
+    21300070: MC_Rough 1_35
+    21300072: MC_Rough 1_36
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: 1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 5910, y: 5160, z: 6418, w: 2127}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MC_Rough 1_0
+      rect:
+        serializedVersion: 2
+        x: 2381
+        y: 7698
+        width: 242
+        height: 207
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_1
+      rect:
+        serializedVersion: 2
+        x: 2993
+        y: 7859
+        width: 11
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_2
+      rect:
+        serializedVersion: 2
+        x: 8497
+        y: 7054
+        width: 848
+        height: 829
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_3
+      rect:
+        serializedVersion: 2
+        x: 2674
+        y: 7503
+        width: 106
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_4
+      rect:
+        serializedVersion: 2
+        x: 3954
+        y: 6997
+        width: 848
+        height: 805
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_5
+      rect:
+        serializedVersion: 2
+        x: 5052
+        y: 7060
+        width: 630
+        height: 767
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_6
+      rect:
+        serializedVersion: 2
+        x: 6101
+        y: 7060
+        width: 848
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_7
+      rect:
+        serializedVersion: 2
+        x: 7411
+        y: 7041
+        width: 630
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_8
+      rect:
+        serializedVersion: 2
+        x: 8023
+        y: 7615
+        width: 222
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_9
+      rect:
+        serializedVersion: 2
+        x: 9601
+        y: 7609
+        width: 219
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_10
+      rect:
+        serializedVersion: 2
+        x: 9802
+        y: 7035
+        width: 629
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_11
+      rect:
+        serializedVersion: 2
+        x: 10893
+        y: 7066
+        width: 849
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_12
+      rect:
+        serializedVersion: 2
+        x: 12160
+        y: 7048
+        width: 621
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_13
+      rect:
+        serializedVersion: 2
+        x: 6980
+        y: 7353
+        width: 162
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_14
+      rect:
+        serializedVersion: 2
+        x: 10706
+        y: 7359
+        width: 156
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_15
+      rect:
+        serializedVersion: 2
+        x: 5626
+        y: 7135
+        width: 224
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_16
+      rect:
+        serializedVersion: 2
+        x: 11995
+        y: 7128
+        width: 221
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_17
+      rect:
+        serializedVersion: 2
+        x: 715
+        y: 5681
+        width: 761
+        height: 624
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_18
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 5375
+        width: 562
+        height: 786
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_19
+      rect:
+        serializedVersion: 2
+        x: 2107
+        y: 5363
+        width: 567
+        height: 786
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_20
+      rect:
+        serializedVersion: 2
+        x: 2362
+        y: 5668
+        width: 755
+        height: 630
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_21
+      rect:
+        serializedVersion: 2
+        x: 3954
+        y: 6061
+        width: 848
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_22
+      rect:
+        serializedVersion: 2
+        x: 5052
+        y: 6080
+        width: 630
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_23
+      rect:
+        serializedVersion: 2
+        x: 6101
+        y: 6080
+        width: 848
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_24
+      rect:
+        serializedVersion: 2
+        x: 7411
+        y: 6062
+        width: 630
+        height: 773
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_25
+      rect:
+        serializedVersion: 2
+        x: 8497
+        y: 6074
+        width: 848
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_26
+      rect:
+        serializedVersion: 2
+        x: 9802
+        y: 6055
+        width: 629
+        height: 774
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_27
+      rect:
+        serializedVersion: 2
+        x: 10893
+        y: 6086
+        width: 849
+        height: 761
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_28
+      rect:
+        serializedVersion: 2
+        x: 12160
+        y: 6074
+        width: 621
+        height: 767
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_29
+      rect:
+        serializedVersion: 2
+        x: 1838
+        y: 5051
+        width: 156
+        height: 1029
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_30
+      rect:
+        serializedVersion: 2
+        x: 4285
+        y: 5363
+        width: 161
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_31
+      rect:
+        serializedVersion: 2
+        x: 5252
+        y: 5363
+        width: 218
+        height: 199
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_32
+      rect:
+        serializedVersion: 2
+        x: 5901
+        y: 5169
+        width: 458
+        height: 617
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_33
+      rect:
+        serializedVersion: 2
+        x: 2253
+        y: 2911
+        width: 159
+        height: 767
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_34
+      rect:
+        serializedVersion: 2
+        x: 4659
+        y: 1519
+        width: 461
+        height: 618
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_35
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 459
+        height: 521
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_Rough 1_36
+      rect:
+        serializedVersion: 2
+        x: 1613
+        y: 393
+        width: 156
+        height: 202
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

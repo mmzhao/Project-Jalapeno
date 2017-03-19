@@ -5,7 +5,7 @@
 public class PlayerController : MonoBehaviour {
 
     PlayerState currentState;
-    PlayerState nextState;
+    public PlayerState nextState;
 
     public Vector3 movementInput { get; set; }
     public Rigidbody rb;
@@ -79,8 +79,7 @@ public class PlayerController : MonoBehaviour {
 
     void FixedUpdate()
     {
-
-
+//		Debug.Log (currentState);
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
 		rb.velocity = Vector3.zero;
@@ -99,7 +98,9 @@ public class PlayerController : MonoBehaviour {
 	{
 //		Debug.Log ("e");
 //		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
-		if(other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
+//		Debug.Log(other.gameObject.transform.parent.name.Length);
+		if(other.gameObject.transform.parent.name.Length >= 10 &&
+			other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
 			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);

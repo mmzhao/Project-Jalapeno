@@ -191,8 +191,10 @@ public class PlayerMovement : MonoBehaviour
             
             Move(dir);
             curMoves++;
+			Debug.Log (curMoves + " " + numMoves);
             if (curMoves == numMoves)
             {
+				pc.nextState = new Running (pc);
                 pc.stateEnded = true;
             }
             
@@ -217,6 +219,10 @@ public class PlayerMovement : MonoBehaviour
 			if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
 			{
 				return new Running(pc);
+			}
+			if (pc.stateEnded) 
+			{
+				return new Idle (pc);
 			}
 			return null;
 		}

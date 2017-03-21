@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void Enter()
         {
-            pc.curSpeed = 0;
+            pc.rb.velocity = Vector3.zero;
         }
 
         public override void Exit()
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         public float moveZ;
         public Vector3 movementVector;
         public float driftingTime = 0;
-        public static float DRIFT_TIME = 0.1f; //amount of time to drift after not getting inputs
+        public static float DRIFT_TIME = 0.08f; //amount of time to drift after not getting inputs
 
         public Running(PlayerController playerController) : base(playerController)
         {
@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override PlayerState HandleInput()
         {
+
             if (pc.stateEnded && Input.GetButton("Attack1"))
             {
                 return new Attack1(pc);
@@ -140,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 return new Dash(pc);
             }
-            if (pc.stateEnded && (!Input.GetButton("Vertical") && !Input.GetButton("Vertical")))
+            if (pc.stateEnded && pc.movementInput == Vector3.zero)
             {
                 return new Idle(pc);
             }
@@ -167,31 +168,30 @@ public class PlayerMovement : MonoBehaviour
         new protected static readonly int playerState = (int)PlayerStateIndex.DASH;
 
         public Vector3 dir;
-        int numMoves = 4;
-        int curMoves;
+        static float DASH_TIME = 0.25f;
+        float dashElapsedTime;
 
         public Dash(PlayerController playerController) : base(playerController)
         {
-            curMoves = 0;
+            dashElapsedTime = 0;
         }
 
         public override void Enter()
         {
-            dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            
         }
 
         public override void Exit()
         {
-
         }
 
         public override void FixedUpdate()
         {
-//          GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
-            
-            Move(dir);
-            curMoves++;
-            if (curMoves == numMoves)
+            //          GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
+            pc.rb.velocity = dir * pc.dashSpeed;
+            dashElapsedTime += Time.deltaTime;
+            if (dashElapsedTime > DASH_TIME)
             {
                 pc.stateEnded = true;
             }
@@ -210,14 +210,21 @@ public class PlayerMovement : MonoBehaviour
 			{
 				return new Attack2(pc);
 			}
-			if (pc.stateEnded && Input.GetButton("Dash"))
-			{
-				return new Dash(pc);
-			}
-			if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
-			{
-				return new Running(pc);
-			}
+            if (pc.stateEnded)
+            {
+                if (pc.movementInput == Vector3.zero)
+                {
+                    return new Idle(pc);
+                }
+                else if (Input.GetButton("Dash"))
+                {
+                    return new Dash(pc);
+                }
+                else if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
+                {
+                    return new Running(pc);
+                }
+            }
 			return null;
 		}
 
@@ -226,12 +233,12 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        public void Move (Vector3 dir)
+        public override void Animate()
         {
-            Vector3 dif = dir.normalized * pc.dashSpeed * Time.deltaTime;
-            pc.rb.MovePosition (pc.transform.position + dif);
+            pc.anim.SetFloat("velocityX", dir.x); //player-to-mouse-X
+            pc.anim.SetFloat("velocityZ", dir.z); //player-to-mouse-Z
         }
 
-       
+
     }
 }

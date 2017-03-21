@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour {
     void Awake ()
     {
 		maxSpeed = 50.0f;
-		dashSpeed = 200.0f;
+		dashSpeed = 100.0f;
 
         if (rb == null)
         {

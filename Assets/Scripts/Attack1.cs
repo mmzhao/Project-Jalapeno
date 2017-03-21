@@ -23,6 +23,7 @@ public class Attack1 : PlayerAttack {
         counter = 0;
         donecount = 10;
 		facing = pc.playerToMouse;
+		pc.attack1Charges -= 1;
     }
 
     // Create hitboxes, start animation
@@ -80,30 +81,30 @@ public class Attack1 : PlayerAttack {
         return;
     }
 
-	public override PlayerState HandleInput()
-	{
-		if (pc.stateEnded && Input.GetButton("Attack1"))
-		{
-			return new Attack1(pc);
-		}
-		if (pc.stateEnded && Input.GetButton("Attack2"))
-		{
-			return new Attack2(pc);
-		}
-		if (pc.stateEnded && Input.GetButton("Dash"))
-		{
-			return new PlayerMovement.Dash(pc);
-		}
-		if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Vertical")))
-		{
-			return new PlayerMovement.Running(pc);
-		}
-		if (pc.stateEnded)
-		{
-			return new PlayerMovement.Idle(pc);
-		}
-		return null;
-	}
+//	public override PlayerState HandleInput()
+//	{
+//		if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
+//		{
+//			if (Input.GetButton("Attack1") && pc.canAttack1())
+//			{
+//				return new Attack1(pc);
+//			}
+//			if (Input.GetButton("Attack2") && pc.canAttack2())
+//			{
+//				return new Attack2(pc);
+//			}
+//		}
+//		if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+//		{
+//			if (Input.GetButton("Dash") && pc.canDash())
+//			{
+//				Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+//				return new PlayerMovement.Dash(pc, dir);
+//			}
+//			return new PlayerMovement.Running(pc);
+//		}
+//		return new PlayerMovement.Idle(pc);
+//	}
 
     // Destroy hitboxes
     public override void Exit()

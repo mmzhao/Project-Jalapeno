@@ -15,9 +15,14 @@ public class PlayerController : MonoBehaviour {
     public float dashSpeed;
     public Direction facingDirection = Direction.NW;
     public Direction movingDirection = Direction.NW;
-	//	Attack1 prefab
+	//	Attack prefabs
 	public GameObject ap1;
-    public Animator anim;
+	public GameObject ap2;
+	public int attack1Charges;
+	public int attack2Charges;
+	public int dashCharges;
+
+	public Animator anim;
 	public Camera playerCamera;
 
 
@@ -26,6 +31,10 @@ public class PlayerController : MonoBehaviour {
     {
 		maxSpeed = 50.0f;
 		dashSpeed = 200.0f;
+
+		attack1Charges = 100;
+		attack2Charges = 100;
+		dashCharges = 100;
 
         if (rb == null)
         {
@@ -74,6 +83,7 @@ public class PlayerController : MonoBehaviour {
         if (stateEnded)
         {
             this.nextState = currentState.HandleInput();
+			stateEnded = false;
         }
     }
 
@@ -105,6 +115,21 @@ public class PlayerController : MonoBehaviour {
 //			Debug.Log ("hit " + other.gameObject.name);
 			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
 		}
+	}
+
+	public bool canAttack1()
+	{
+		return attack1Charges > 0;
+	}
+
+	public bool canAttack2()
+	{
+		return attack2Charges > 0;
+	}
+
+	public bool canDash()
+	{
+		return dashCharges > 0;
 	}
 
 }

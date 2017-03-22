@@ -6,11 +6,11 @@ public class PlayerMovement : MonoBehaviour
 	
     public class Idle : PlayerState
     {
-        new protected static readonly int playerState = (int) PlayerStateIndex.IDLE;
+        new public readonly PlayerStateIndex playerState = PlayerStateIndex.IDLE;
 
         public Idle(PlayerController pc) : base(pc)
         {
-            this.pc.anim.SetInteger(animState, playerState);
+            this.pc.anim.SetInteger(animState, (int) playerState);
         }
 
         public override void Enter()
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
     public class Running : PlayerState
     {
-        new protected static readonly int playerState = (int)PlayerStateIndex.RUN;
+        new public readonly PlayerStateIndex playerState = PlayerStateIndex.RUN;
 
         public float curSpeed;
         public float moveX;
@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         public Running(PlayerController playerController) : base(playerController)
         {
-            this.pc.anim.SetInteger(animState, playerState);
+            this.pc.anim.SetInteger(animState, (int) playerState);
             this.curSpeed = playerController.curSpeed;
         }
 
@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour
 
     public class Dash : PlayerState
     {
-        new protected static readonly int playerState = (int)PlayerStateIndex.DASH;
+        new public readonly PlayerStateIndex playerState = PlayerStateIndex.DASH;
 
         public Vector3 dir;
         static float DASH_TIME = 0.25f;
@@ -193,6 +193,7 @@ public class PlayerMovement : MonoBehaviour
             dashElapsedTime += Time.deltaTime;
             if (dashElapsedTime > DASH_TIME)
             {
+				pc.nextState = new Running (pc);
                 pc.stateEnded = true;
             }
             
@@ -212,17 +213,17 @@ public class PlayerMovement : MonoBehaviour
 			}
             if (pc.stateEnded)
             {
-                if (pc.movementInput == Vector3.zero)
-                {
-                    return new Idle(pc);
-                }
-                else if (Input.GetButton("Dash"))
+                if (Input.GetButton("Dash"))
                 {
                     return new Dash(pc);
                 }
                 else if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
                 {
                     return new Running(pc);
+                }
+                else
+                {
+                    return new Idle(pc);
                 }
             }
 			return null;

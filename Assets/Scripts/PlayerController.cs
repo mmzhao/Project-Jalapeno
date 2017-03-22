@@ -4,7 +4,7 @@
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour {
 
-    PlayerState currentState;
+    public PlayerState currentState;
     public PlayerState nextState;
 
     public Vector3 movementInput { get; set; }
@@ -82,7 +82,8 @@ public class PlayerController : MonoBehaviour {
         currentState.Update();
         if (stateEnded)
         {
-            this.nextState = currentState.HandleInput();
+			if (nextState == null)
+	            this.nextState = currentState.HandleInput();
 			stateEnded = false;
         }
     }

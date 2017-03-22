@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour {
 		if(other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
-			GameObject.FindGameObjectWithTag ("Enemy").GetComponent<Health> ().TakeDamage (1);
+		  this.transform.root.gameObject.GetComponent<Health> ().TakeDamage (1);
 		}
 	}
 }

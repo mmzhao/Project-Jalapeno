@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour {
 
 	public Animator anim;
 	public Camera playerCamera;
-    public Collider playerShield;
+//    public Collider playerShield;
 
     public Vector3 playerToMouse { get; set; }
     void Awake ()
@@ -48,10 +48,10 @@ public class PlayerController : MonoBehaviour {
         {
             playerCamera = Camera.main;
         }
-        if (playerShield == null)
-        {
-            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
-        }
+//        if (playerShield == null)
+//        {
+//            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
+//        }
 
     }
 

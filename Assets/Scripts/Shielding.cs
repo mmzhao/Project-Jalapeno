@@ -12,7 +12,7 @@ public class Shielding : PlayerState
 
     public Shielding (PlayerController pc) : base(pc)
     {
-        this.playerShield = pc.playerShield;
+//        this.playerShield = pc.playerShield;
     }
 
     public override void Enter()

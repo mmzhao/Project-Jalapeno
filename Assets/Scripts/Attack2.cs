@@ -21,7 +21,7 @@ public class Attack2 : PlayerAttack {
 	{
 		pc = controller;
 		counter = 0;
-		donecount = 10;
+		donecount = 20;
 		facing = pc.playerToMouse;
 		pc.attack2Charges -= 1;
 	}
@@ -69,7 +69,7 @@ public class Attack2 : PlayerAttack {
 		}
 
 		counter += 1;
-		if (counter == donecount)
+		if (counter >= donecount)
 		{
 			//			pc.nextState = new PlayerMovement.Idle (pc);
 			pc.stateEnded = true;
@@ -78,6 +78,20 @@ public class Attack2 : PlayerAttack {
 
 	public override void Update()
 	{
+		if (counter < donecount / 2)
+			return;
+		if (Input.GetButton ("Attack1") && pc.canAttack1 ()) 
+		{
+			pc.stateEnded = true;
+		}
+		if (Input.GetButton ("Attack2") && pc.canAttack2 ()) 
+		{
+			pc.stateEnded = true;
+		}
+		if (Input.GetButton ("Dash") && pc.canDash ()) 
+		{
+			pc.stateEnded = true;
+		}
 		return;
 	}
 

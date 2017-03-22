@@ -4,7 +4,7 @@ using UnityEngine;
 public abstract class PlayerState
 {
     protected PlayerController pc;
-    protected static readonly int playerState;
+    public readonly PlayerStateIndex playerState;
     protected static readonly string animState = "State";
 
     public PlayerState(PlayerController pc)
@@ -49,5 +49,5 @@ public abstract class PlayerState
 
 public enum PlayerStateIndex
 {
-    IDLE, RUN, DASH, JUMP, IDLE_ATTACK
+    IDLE, RUN, DASH, JUMP, IDLE_ATTACK, SHIELD
 }

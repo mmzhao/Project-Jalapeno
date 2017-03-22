@@ -4,7 +4,7 @@
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour {
 
-    PlayerState currentState;
+    public PlayerState currentState;
     public PlayerState nextState;
 
     public Vector3 movementInput { get; set; }
@@ -24,13 +24,13 @@ public class PlayerController : MonoBehaviour {
 
 	public Animator anim;
 	public Camera playerCamera;
-
+//    public Collider playerShield;
 
     public Vector3 playerToMouse { get; set; }
     void Awake ()
     {
 		maxSpeed = 50.0f;
-		dashSpeed = 200.0f;
+		dashSpeed = 100.0f;
 
 		attack1Charges = 100;
 		attack2Charges = 100;
@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour {
         {
             playerCamera = Camera.main;
         }
+//        if (playerShield == null)
+//        {
+//            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
+//        }
 
     }
 
@@ -82,7 +86,8 @@ public class PlayerController : MonoBehaviour {
         currentState.Update();
         if (stateEnded)
         {
-            this.nextState = currentState.HandleInput();
+			if (nextState == null)
+	            this.nextState = currentState.HandleInput();
 			stateEnded = false;
         }
     }
@@ -109,13 +114,17 @@ public class PlayerController : MonoBehaviour {
 //		Debug.Log ("e");
 //		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
 //		Debug.Log(other.gameObject.transform.parent.name.Length);
-		if(other.gameObject.transform.parent.name.Length >= 10 &&
-			other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
-		{
-//			Debug.Log ("hit " + other.gameObject.name);
-			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
-		}
-	}
+        if (currentState.playerState != PlayerStateIndex.SHIELD)
+        {
+            if (other.gameObject.transform.parent.name.Length >= 10 &&
+                other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
+            {
+                //			Debug.Log ("hit " + other.gameObject.name);
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+            }
+
+        }
+    }
 
 	public bool canAttack1()
 	{

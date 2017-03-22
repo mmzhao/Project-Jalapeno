@@ -21,7 +21,7 @@ public class Attack1 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 10;
+        donecount = 20;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
     }
@@ -52,6 +52,7 @@ public class Attack1 : PlayerAttack {
 
     public override void FixedUpdate()
     {
+//		Debug.Log (Time.deltaTime);
 //		Debug.Log (donecount + " " + counter);
 		int hitboxIndex = 0;
 		foreach (Transform hitbox in attack.transform) 
@@ -69,7 +70,7 @@ public class Attack1 : PlayerAttack {
 		}
 
         counter += 1;
-        if (counter == donecount)
+        if (counter >= donecount)
         {
 //			pc.nextState = new PlayerMovement.Idle (pc);
             pc.stateEnded = true;
@@ -77,7 +78,24 @@ public class Attack1 : PlayerAttack {
     }
 
     public override void Update()
-    {
+	{	
+		if (counter < donecount / 2)
+			return;
+//		if (Input.GetButton ("Attack1") && pc.canAttack1 ()) 
+//		{
+//			pc.stateEnded = true;
+//		}
+		if (Input.GetButton ("Attack2") && pc.canAttack2 ()) 
+		{
+			pc.stateEnded = true;
+			pc.nextState = new Attack2(pc);
+		}
+		if (Input.GetButton ("Dash") && pc.canDash () && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) 
+		{
+			pc.stateEnded = true;
+			Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+			pc.nextState = new PlayerMovement.Dash(pc, dir);
+		}
         return;
     }
 

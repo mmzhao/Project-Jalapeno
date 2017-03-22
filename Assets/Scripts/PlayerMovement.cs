@@ -44,29 +44,30 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        public override PlayerState HandleInput()
-        {
-            if (pc.stateEnded && (Input.GetButton("Attack1") || Input.GetButton("Attack2")))
-            {
-                if (Input.GetButton("Attack1"))
-                {
-                    return new Attack1(pc);
-                }
-                if (Input.GetButton("Attack2"))
-                {
-                    return new Attack2(pc);
-                }
-            }
-            if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
-            {
-                if (Input.GetButton("Dash"))
-                {
-                    return new Dash(pc);
-                }
-                return new Running(pc);
-            }
-            return null;
-        }
+//        public override PlayerState HandleInput()
+//        {
+//			if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
+//            {
+//				if (Input.GetButton("Attack1") && pc.canAttack1())
+//                {
+//                    return new Attack1(pc);
+//                }
+//				if (Input.GetButton("Attack2") && pc.canAttack2())
+//                {
+//                    return new Attack2(pc);
+//                }
+//            }
+//            if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+//            {
+//		  		  if (Input.GetButton("Dash") && pc.canDash())
+//                {
+//					Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+//					return new Dash(pc, dir);
+//                }
+//                return new Running(pc);
+//            }
+//            return null;
+//        }
 
         public override void Update()
         {
@@ -125,28 +126,30 @@ public class PlayerMovement : MonoBehaviour
             // if (pc.rb.velocity.magnitude < .5)
         }
 
-
-        public override PlayerState HandleInput()
-        {
-
-            if (pc.stateEnded && Input.GetButton("Attack1"))
-            {
-                return new Attack1(pc);
-            }
-            if (pc.stateEnded && Input.GetButton("Attack2"))
-            {
-                return new Attack2(pc);
-            }
-            if (pc.stateEnded && Input.GetButton("Dash"))
-            {
-                return new Dash(pc);
-            }
-            if (pc.stateEnded && pc.movementInput == Vector3.zero)
-            {
-                return new Idle(pc);
-            }
-            return null;
-        }
+//        public override PlayerState HandleInput()
+//        {
+//			if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
+//			{
+//				if (Input.GetButton("Attack1") && pc.canAttack1())
+//				{
+//					return new Attack1(pc);
+//				}
+//				if (Input.GetButton("Attack2") && pc.canAttack2())
+//				{
+//					return new Attack2(pc);
+//				}
+//			}
+//			if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+//			{
+//				if (Input.GetButton("Dash") && pc.canDash())
+//				{
+//					Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+//					return new Dash(pc, dir);
+//				}
+//				return new Running(pc);
+//			}
+//			return new PlayerMovement.Idle(pc);
+//        }
 
         public override void Update()
         {
@@ -171,15 +174,17 @@ public class PlayerMovement : MonoBehaviour
         static float DASH_TIME = 0.25f;
         float dashElapsedTime;
 
-        public Dash(PlayerController playerController) : base(playerController)
+		public Dash(PlayerController playerController, Vector3 dir) : base(playerController)
         {
             dashElapsedTime = 0;
+			playerController.dashCharges -= 1;
+			this.dir = dir.normalized;
+
         }
 
         public override void Enter()
         {
-            dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
-            
+
         }
 
         public override void Exit()
@@ -200,34 +205,30 @@ public class PlayerMovement : MonoBehaviour
             // if (pc.rb.velocity.magnitude < .5)
         }
 
-
-		public override PlayerState HandleInput()
-		{
-			if (pc.stateEnded && Input.GetButton("Attack1"))
-			{
-				return new Attack1(pc);
-			}
-			if (pc.stateEnded && Input.GetButton("Attack2"))
-			{
-				return new Attack2(pc);
-			}
-            if (pc.stateEnded)
-            {
-                if (Input.GetButton("Dash"))
-                {
-                    return new Dash(pc);
-                }
-                else if (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))
-                {
-                    return new Running(pc);
-                }
-                else
-                {
-                    return new Idle(pc);
-                }
-            }
-			return null;
-		}
+//		public override PlayerState HandleInput()
+//		{
+//			if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
+//			{
+//				if (Input.GetButton("Attack1") && pc.canAttack1())
+//				{
+//					return new Attack1(pc);
+//				}
+//				if (Input.GetButton("Attack2") && pc.canAttack2())
+//				{
+//					return new Attack2(pc);
+//				}
+//			}
+//			if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+//			{
+//				if (Input.GetButton("Dash") && pc.canDash())
+//				{
+//					Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+//					return new Dash(pc, dir);
+//				}
+//				return new Running(pc);
+//			}
+//			return new PlayerMovement.Idle(pc);
+//		}
 
         public override void Update()
         {

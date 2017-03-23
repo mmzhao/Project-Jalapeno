@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
 
         public Idle(PlayerController pc) : base(pc)
         {
-            this.pc.anim.SetInteger(animState, (int) playerState);
+            
         }
 
         public override void Enter()
         {
+            this.pc.anim.SetInteger(animState, (int)playerState);
             pc.rb.velocity = Vector3.zero;
         }
 
@@ -87,13 +88,13 @@ public class PlayerMovement : MonoBehaviour
 
         public Running(PlayerController playerController) : base(playerController)
         {
-            this.pc.anim.SetInteger(animState, (int) playerState);
             this.curSpeed = playerController.curSpeed;
         }
 
         public override void Enter()
         {
             movementVector = Vector3.zero;
+            this.pc.anim.SetInteger(animState, (int)playerState);
         }
 
         public override void Exit()
@@ -184,7 +185,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void Enter()
         {
-
+            this.pc.anim.SetInteger(animState, (int)playerState);
         }
 
         public override void Exit()

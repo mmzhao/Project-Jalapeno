@@ -9,13 +9,15 @@ public class Attack1 : PlayerAttack {
      * int counter;
      * int donecount;
      */
-    new protected static readonly int playerState = 3;
+    new public readonly PlayerStateIndex playerState = PlayerStateIndex.IDLE_ATTACK;
+
     BoxCollider hitbox;
 	Vector3 facing;
+    
 
     // make a cube to show hitbox
-//	GameObject myCube;
-	GameObject attack;
+    //	GameObject myCube;
+    GameObject attack;
 
     public Attack1(PlayerController controller) : base(controller)
     {
@@ -24,13 +26,19 @@ public class Attack1 : PlayerAttack {
         donecount = 20;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
+
     }
 
     // Create hitboxes, start animation
     public override void Enter()
     {
+        this.pc.anim.SetInteger(animState, (int)playerState);
+        pc.anim.SetFloat("p2mX", pc.playerToMouse.x);
+        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
+        pc.anim.SetFloat("velocityX", pc.playerToMouse.x);
+        pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
 
-		attack = (GameObject) GameObject.Instantiate(pc.ap1);
+        attack = (GameObject) GameObject.Instantiate(pc.ap1);
 		attack.transform.position = pc.transform.position + new Vector3(0, 2, 0);
 		attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
 		foreach (Transform hitbox in attack.transform) 
@@ -132,5 +140,10 @@ public class Attack1 : PlayerAttack {
 		// Destry the sphere
 		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
+    }
+
+    public override void Animate()
+    {
+        
     }
 }

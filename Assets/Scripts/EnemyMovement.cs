@@ -48,7 +48,7 @@ public class EnemyMovement : MonoBehaviour {
         int walllayer = 0; // fill in with the layer # of anything that obstructs enemy vision
         if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
         {
-          vecToPlayer = targetRange + 1;
+          vecToPlayer = new Vector3(targetRange + 1,0,0);
         }
 				if (vecToPlayer.magnitude <= targetRange) 
 

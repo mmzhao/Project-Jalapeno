@@ -18,11 +18,26 @@ public class PlayerController : MonoBehaviour {
 	//	Attack prefabs
 	public GameObject ap1;
 	public GameObject ap2;
-	public int attack1Charges;
-	public int attack2Charges;
-	public int dashCharges;
 
-	public Animator anim;
+	public float attack1Charges { get; set; }
+    public float attack2Charges { get; set; }
+    public float dashCharges { get; set; }
+    public float shieldTime { get; set; }
+
+    public float maxAttack1Charges;
+    public float maxAttack2Charges;
+    public float maxDashCharges;
+    public float maxShieldTime;
+
+    public int attack1ChargeRate; // amount of charges to recover in 1 second
+    public int attack2ChargeRate;
+    public int dashChargeRate;
+    public float shieldChargeRate; // multiplier for shield charge rate. Normal rate is 1 unit per second.
+
+
+
+
+    public Animator anim;
 	public Camera playerCamera;
 //    public Collider playerShield;
 
@@ -32,9 +47,20 @@ public class PlayerController : MonoBehaviour {
 		maxSpeed = 50.0f;
 		dashSpeed = 100.0f;
 
-		attack1Charges = 100;
-		attack2Charges = 100;
-		dashCharges = 100;
+        maxAttack1Charges = 5;
+        maxAttack2Charges = 2;
+        maxDashCharges = 5;
+        maxShieldTime = 5; // in seconds
+
+        attack1Charges = maxAttack1Charges;
+		attack2Charges = maxAttack2Charges;
+		dashCharges = maxDashCharges;
+        shieldTime = maxShieldTime;
+
+        attack1ChargeRate = 1;
+        attack2ChargeRate = 1;
+        dashChargeRate = 1;
+        shieldChargeRate = 1;
 
         if (rb == null)
         {
@@ -48,6 +74,7 @@ public class PlayerController : MonoBehaviour {
         {
             playerCamera = Camera.main;
         }
+
 //        if (playerShield == null)
 //        {
 //            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
@@ -107,6 +134,8 @@ public class PlayerController : MonoBehaviour {
             nextState = null;
             currentState.Enter();
         }
+
+        rechargeMoves();
     }
 
 	void OnTriggerEnter (Collider other)
@@ -140,5 +169,32 @@ public class PlayerController : MonoBehaviour {
 	{
 		return dashCharges > 0;
 	}
+
+    private void rechargeMoves ()
+    {
+        if (currentState.playerState != PlayerStateIndex.SHIELD)
+        {
+            if (shieldTime > maxShieldTime)
+            {
+                shieldTime = maxShieldTime;
+            }
+            else
+            {
+                shieldTime += Time.deltaTime * shieldChargeRate;
+            }
+        }
+        if (attack1Charges < maxAttack1Charges)
+        {
+            attack1Charges += Time.deltaTime * attack1ChargeRate;
+        }
+        if (attack2Charges < maxAttack2Charges)
+        {
+            attack2Charges += Time.deltaTime * attack2ChargeRate;
+        }
+        if (dashCharges < maxDashCharges)
+        {
+            dashCharges += Time.deltaTime * dashChargeRate;
+        }
+    }
 
 }

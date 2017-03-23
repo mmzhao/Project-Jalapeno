@@ -4,7 +4,7 @@
 [RequireComponent(typeof(PlayerMovement))]
 public class PlayerController : MonoBehaviour {
 
-    PlayerState currentState;
+    public PlayerState currentState;
     public PlayerState nextState;
 
     public Vector3 movementInput { get; set; }
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour {
 
     public Animator anim;
 	public Camera playerCamera;
-    public Collider playerShield;
+//    public Collider playerShield;
 
     public Vector3 playerToMouse { get; set; }
     void Awake ()
@@ -74,10 +74,11 @@ public class PlayerController : MonoBehaviour {
         {
             playerCamera = Camera.main;
         }
-        if (playerShield == null)
-        {
-            //playerShield = transform.FindChild("Shield").GetComponent<Collider>();
-        }
+
+//        if (playerShield == null)
+//        {
+//            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
+//        }
 
     }
 
@@ -112,7 +113,8 @@ public class PlayerController : MonoBehaviour {
         currentState.Update();
         if (stateEnded)
         {
-            this.nextState = currentState.HandleInput();
+			if (nextState == null)
+	            this.nextState = currentState.HandleInput();
 			stateEnded = false;
         }
     }

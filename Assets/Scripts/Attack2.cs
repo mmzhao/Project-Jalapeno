@@ -83,14 +83,17 @@ public class Attack2 : PlayerAttack {
 		if (Input.GetButton ("Attack1") && pc.canAttack1 ()) 
 		{
 			pc.stateEnded = true;
+			pc.nextState = new Attack1(pc);
 		}
-		if (Input.GetButton ("Attack2") && pc.canAttack2 ()) 
+//		if (Input.GetButton ("Attack2") && pc.canAttack2 ()) 
+//		{
+//			pc.stateEnded = true;
+//		}
+		if (Input.GetButton ("Dash") && pc.canDash () && (Input.GetButton("Vertical") || Input.GetButton("Horizontal"))) 
 		{
 			pc.stateEnded = true;
-		}
-		if (Input.GetButton ("Dash") && pc.canDash ()) 
-		{
-			pc.stateEnded = true;
+			Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+			pc.nextState = new PlayerMovement.Dash(pc, dir);
 		}
 		return;
 	}

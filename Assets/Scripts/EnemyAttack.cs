@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,8 +10,8 @@ public class EnemyAttack : MonoBehaviour {
 		EnemyController ec;
 		Vector3 attackDir;
 		public float attackRange;
-		int numMoves = 20;
-		int curMoves;
+		int donecount = 20; 
+		int counter;
 		GameObject attack;
 
 		public Attack(EnemyController enemyController, Vector3 dir)
@@ -19,7 +19,7 @@ public class EnemyAttack : MonoBehaviour {
 			this.ec = enemyController;
 			attackDir = dir;
 			attackRange = enemyController.attackRange;
-			curMoves = 0;
+			counter = 0;
 		}
 
 		public override void Enter()
@@ -44,7 +44,7 @@ public class EnemyAttack : MonoBehaviour {
 			foreach (Transform hitbox in attack.transform) 
 			{
 //				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
-				if (curMoves / (numMoves / 5) == hitboxIndex) {
+				if (counter / (donecount / 5) == hitboxIndex) {
 //					Debug.Log (hitboxIndex + " True");
 					hitbox.gameObject.SetActive (true);
 				} else {
@@ -54,11 +54,11 @@ public class EnemyAttack : MonoBehaviour {
 				hitboxIndex++;
 			}
 
-			curMoves++;
+			counter++;
 			//			Debug.Log ("attack " + curMoves);
 //			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
 
-			if (curMoves >= numMoves) 
+			if (counter >= donecount) 
 			{
 				ec.nextState = new EnemyMovement.Targeting (ec);
 			}

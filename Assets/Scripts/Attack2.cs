@@ -21,7 +21,7 @@ public class Attack2 : PlayerAttack {
 	{
 		pc = controller;
 		counter = 0;
-		donecount = 20;
+		donecount = 24;
 		facing = pc.playerToMouse;
 		pc.attack2Charges -= 1;
 	}
@@ -57,7 +57,7 @@ public class Attack2 : PlayerAttack {
 		foreach (Transform hitbox in attack.transform) 
 		{
 			//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
-			if (counter / (donecount / 5) == hitboxIndex) {
+			if (counter / (donecount / 8) == hitboxIndex) {
 				//					Debug.Log (hitboxIndex + " True");
 				hitbox.gameObject.SetActive (true);
 				break;

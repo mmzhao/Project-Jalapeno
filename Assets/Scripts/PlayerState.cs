@@ -42,12 +42,12 @@ public abstract class PlayerState
 	}
     public virtual void Animate()
     {
-        pc.anim.SetFloat("p2mX", pc.playerToMouse.x); //player-to-mouse-X
-        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z); //player-to-mouse-Z
+        //pc.anim.SetFloat("p2mX", pc.playerToMouse.x); //player-to-mouse-X
+        //pc.anim.SetFloat("p2mZ", pc.playerToMouse.z); //player-to-mouse-Z
     }
 }
 
 public enum PlayerStateIndex
 {
-    IDLE, RUN, DASH, JUMP, IDLE_ATTACK, SHIELD
+    IDLE, RUN, DASH, JUMP, IDLE_ATTACK, SHIELD, IDLE_ATTACK_2
 }

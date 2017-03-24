@@ -142,8 +142,4 @@ public class Attack1 : PlayerAttack {
 		GameObject.Destroy(attack);
     }
 
-    public override void Animate()
-    {
-        
-    }
 }

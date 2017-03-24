@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Attack2 : PlayerAttack {
 
-	/** Fields from PlayerAttack:
+    /** Fields from PlayerAttack:
      * PlayerController pc;
      * int counter;
      * int donecount;
      */
-	new protected static readonly int playerState = 3;
-	BoxCollider hitbox;
+    new public readonly PlayerStateIndex playerState = PlayerStateIndex.IDLE_ATTACK_2;
+    BoxCollider hitbox;
 	Vector3 facing;
 
 	// make a cube to show hitbox
@@ -29,8 +29,13 @@ public class Attack2 : PlayerAttack {
 	// Create hitboxes, start animation
 	public override void Enter()
 	{
+        this.pc.anim.SetInteger(animState, (int)playerState);
+        pc.anim.SetFloat("p2mX", pc.playerToMouse.x);
+        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
+        pc.anim.SetFloat("velocityX", pc.playerToMouse.x);
+        pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
 
-		attack = (GameObject) GameObject.Instantiate(pc.ap2);
+        attack = (GameObject) GameObject.Instantiate(pc.ap2);
 		attack.transform.position = pc.transform.position + new Vector3(0, 2, 0);
 		attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
 		foreach (Transform hitbox in attack.transform) 
@@ -132,4 +137,5 @@ public class Attack2 : PlayerAttack {
 		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
 	}
+
 }

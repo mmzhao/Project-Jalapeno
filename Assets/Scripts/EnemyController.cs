@@ -92,7 +92,8 @@ public class EnemyController : MonoBehaviour {
 	{
 //		Debug.Log ("e");
 		//		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
-		if(other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
+		if (other.gameObject.transform.parent.name.Length >= 9 &&
+		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
 		  this.transform.root.gameObject.GetComponent<Health> ().TakeDamage (1);

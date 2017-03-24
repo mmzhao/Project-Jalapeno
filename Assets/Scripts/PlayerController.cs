@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerMovement))]
@@ -34,7 +36,7 @@ public class PlayerController : MonoBehaviour {
     public int dashChargeRate;
     public float shieldChargeRate; // multiplier for shield charge rate. Normal rate is 1 unit per second.
 
-
+	public Text text;
 
 
     public Animator anim;
@@ -48,7 +50,7 @@ public class PlayerController : MonoBehaviour {
 		dashSpeed = 100.0f;
 
         maxAttack1Charges = 5;
-        maxAttack2Charges = 2;
+        maxAttack2Charges = 5;
         maxDashCharges = 5;
         maxShieldTime = 5; // in seconds
 
@@ -92,6 +94,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+//		Debug.Log (text.text);
+
         //register all the inputs that need to be dynamically tracked
         //movement key inputs
         movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
@@ -157,17 +162,17 @@ public class PlayerController : MonoBehaviour {
 
 	public bool canAttack1()
 	{
-		return attack1Charges > 0;
+		return attack1Charges >= 1;
 	}
 
 	public bool canAttack2()
 	{
-		return attack2Charges > 0;
+		return attack2Charges >= 1;
 	}
 
 	public bool canDash()
 	{
-		return dashCharges > 0;
+		return dashCharges >= 1;
 	}
 
     private void rechargeMoves ()
@@ -186,14 +191,20 @@ public class PlayerController : MonoBehaviour {
         if (attack1Charges < maxAttack1Charges)
         {
             attack1Charges += Time.deltaTime * attack1ChargeRate;
+			if (attack1Charges > maxAttack1Charges)
+				attack1Charges = maxAttack1Charges;
         }
         if (attack2Charges < maxAttack2Charges)
         {
             attack2Charges += Time.deltaTime * attack2ChargeRate;
+			if (attack2Charges > maxAttack2Charges)
+				attack2Charges = maxAttack2Charges;
         }
         if (dashCharges < maxDashCharges)
         {
             dashCharges += Time.deltaTime * dashChargeRate;
+			if (dashCharges > maxDashCharges)
+				dashCharges = maxDashCharges;
         }
     }
 

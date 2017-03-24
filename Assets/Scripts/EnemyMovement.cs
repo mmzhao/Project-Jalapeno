@@ -45,13 +45,12 @@ public class EnemyMovement : MonoBehaviour {
 				//				Debug.Log (player.transform.position);
 				//				Debug.Log (ec.rb.position);
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
-        int walllayer = 0; // fill in with the layer # of anything that obstructs enemy vision
-        if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
-        {
-          vecToPlayer = new Vector3(targetRange + 1,0,0);
-        }
+//		        int walllayer = 0; // fill in with the layer # of anything that obstructs enemy vision
+//		        if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
+//		        {
+//		          vecToPlayer = new Vector3(targetRange + 1,0,0);
+//		        }
 				if (vecToPlayer.magnitude <= targetRange) 
-
 				{
 
 					Move (vecToPlayer);

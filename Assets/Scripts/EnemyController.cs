@@ -23,12 +23,15 @@ public class EnemyController : MonoBehaviour {
 	// render latch circle
 	GameObject latchRadius;
 	GameObject attackRadius;
+	public Vector3 lastPlayerPos;
+	public bool hasLastPlayerPos;
 
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
 		targetRange = 50.0f;
 		attackRange = 20.0f;
+		hasLastPlayerPos = false;
 		//variable initializations
 		GameObject rootParent = this.transform.root.gameObject;
 		if (rb == null)

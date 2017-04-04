@@ -52,9 +52,13 @@ public class EnemyMovement : MonoBehaviour {
     	        }
 				if (vecToPlayer.magnitude <= targetRange) 
 				{
-
-					Move (vecToPlayer);
-                    Vector3 normalized = vecToPlayer;
+					ec.lastPlayerPos = player.transform.position;
+					ec.hasLastPlayerPos = true;
+				}
+				if (ec.hasLastPlayerPos)
+				{
+					MoveTo (ec.lastPlayerPos);
+					Vector3 normalized = ec.lastPlayerPos - ec.transform.position;
                     ec.anim.SetFloat("moveX", normalized.x);
                     ec.anim.SetFloat("moveZ", normalized.z);
                     //                    navAgent.SetDestination(player.transform.position);
@@ -85,6 +89,12 @@ public class EnemyMovement : MonoBehaviour {
 		public void Move (Vector3 dir)
 		{
 			Vector3 dif = dir.normalized * ec.maxSpeed * Time.deltaTime;
+			ec.rb.MovePosition (ec.transform.position + dif);
+		}
+
+		public void MoveTo (Vector3 dest)
+		{
+			Vector3 dif = (dest - ec.transform.position).normalized * ec.maxSpeed * Time.deltaTime;
 			ec.rb.MovePosition (ec.transform.position + dif);
 		}
 

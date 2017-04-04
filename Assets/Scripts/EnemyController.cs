@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour {
 		attackRange = 20.0f;
 		hasLastPlayerPos = false;
 		//variable initializations
-		GameObject rootParent = this.transform.root.gameObject;
+		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
 		{
 			rb = rootParent.GetComponent<Rigidbody>();
@@ -99,7 +99,7 @@ public class EnemyController : MonoBehaviour {
 		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
-		  this.transform.root.gameObject.GetComponent<Health> ().TakeDamage (1);
+		  this.transform.gameObject.GetComponent<Health> ().TakeDamage (1);
 		}
 	}
 }

@@ -61,6 +61,10 @@ public class EnemyMovement : MonoBehaviour {
 					Vector3 normalized = ec.lastPlayerPos - ec.transform.position;
                     ec.anim.SetFloat("moveX", normalized.x);
                     ec.anim.SetFloat("moveZ", normalized.z);
+					if ((ec.lastPlayerPos - ec.transform.position).magnitude < ec.maxSpeed) 
+					{
+						ec.hasLastPlayerPos = false;
+					}
                     //                    navAgent.SetDestination(player.transform.position);
                 }
                 else

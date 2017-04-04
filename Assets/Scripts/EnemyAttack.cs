@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour {
 		EnemyController ec;
 		Vector3 attackDir;
 		public float attackRange;
-		int donecount = 20; 
+		int donecount = 40;
 		int counter;
 		GameObject attack;
 

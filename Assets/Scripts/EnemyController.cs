@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour {
 	void Awake ()
 	{
 		maxSpeed = 20.0f;
-		targetRange = 30.0f;
+		targetRange = 50.0f;
 		attackRange = 20.0f;
 		//variable initializations
 		GameObject rootParent = this.transform.root.gameObject;

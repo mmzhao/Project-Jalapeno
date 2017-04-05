@@ -36,6 +36,7 @@ public class Health : MonoBehaviour
 			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
 			sr.color = Color.red;
 			curFlashes++;
+            currentHealth -= 20;
 			// ... set the colour of the damageImage to the flash colour.
 //			damageImage.color = flashColour;
 		}
@@ -47,6 +48,11 @@ public class Health : MonoBehaviour
 			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
 			sr.color = Color.white;
 		}
+
+        if (currentHealth <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
 		// Reset the damaged flag.
 		if (curFlashes >= numFlashes) {

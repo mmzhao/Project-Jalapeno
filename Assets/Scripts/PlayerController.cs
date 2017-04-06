@@ -124,12 +124,15 @@ public class PlayerController : MonoBehaviour {
 
         //carry out state-specific orders
         currentState.Update();
+
+
         if (stateEnded)
         {
 			if (nextState == null)
 	            this.nextState = currentState.HandleInput();
 			stateEnded = false;
         }
+
     }
 
     void FixedUpdate()
@@ -138,7 +141,7 @@ public class PlayerController : MonoBehaviour {
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
 		//rb.velocity = Vector3.zero;
-		currentState.FixedUpdate();
+	
         if (nextState != null)
         {
             stateEnded = false;
@@ -148,6 +151,8 @@ public class PlayerController : MonoBehaviour {
             currentState.Enter();
         }
 
+
+        currentState.FixedUpdate();
         rechargeMoves();
     }
     /*
@@ -203,9 +208,14 @@ public class PlayerController : MonoBehaviour {
 		return dashCharges >= 1;
 	}
 
+    public bool canShield()
+    {
+        return shieldTime >= 1;
+    }
+
     private void rechargeMoves ()
     {
-        if (currentState.playerState != PlayerStateIndex.SHIELD)
+        if (currentState.getPlayerStateIndex() != PlayerStateIndex.SHIELD)
         {
             if (shieldTime > maxShieldTime)
             {

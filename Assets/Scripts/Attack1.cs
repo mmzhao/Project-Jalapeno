@@ -29,6 +29,11 @@ public class Attack1 : PlayerAttack {
 
     }
 
+    public override PlayerStateIndex getPlayerStateIndex()
+    {
+        return this.playerState;
+    }
+
     // Create hitboxes, start animation
     public override void Enter()
     {

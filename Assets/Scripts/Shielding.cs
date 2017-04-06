@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Shielding : PlayerState
@@ -57,5 +55,10 @@ public class Shielding : PlayerState
     {
         pc.anim.SetFloat("p2mX", pc.playerToMouse.x);
         pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
+    }
+
+    public override PlayerStateIndex getPlayerStateIndex()
+    {
+        return this.playerState;
     }
 }

@@ -6,6 +6,7 @@ public abstract class PlayerState
     protected PlayerController pc;
     public readonly PlayerStateIndex playerState;
     protected static readonly string animState = "State";
+    protected bool interruptable; // whether or not the current state is interruptable at the current moment
 
     //movement parameters
     float DECELERATION_CONSTANT = 20.0f;
@@ -14,7 +15,10 @@ public abstract class PlayerState
     public PlayerState(PlayerController pc)
     {
         this.pc = pc;
+        interruptable = true;
     }
+
+    public abstract PlayerStateIndex getPlayerStateIndex();
 
     public abstract void Enter();
     public virtual void FixedUpdate()
@@ -23,20 +27,27 @@ public abstract class PlayerState
     }
     public abstract void Update();
     public abstract void Exit();
+    /*
+     * a return value of null implies that we do not want the state to change.
+     */
     public PlayerState HandleInput()
 	{
 		if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
 		{
 			if (Input.GetButton("Attack1") && pc.canAttack1())
-			{
-				return new Attack1(pc);
+            {
+                return new Attack1(pc);	
 			}
 			if (Input.GetButton("Attack2") && pc.canAttack2())
 			{
-				return new Attack2(pc);
-			}
+                return new Attack2(pc);
+            }
 		}
-		else if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+        else if (pc.stateEnded && Input.GetButton("Shield") && pc.canShield())
+        {
+            return new Shielding(pc);
+        }
+        else if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
 		{
 			if (Input.GetButton("Dash") && pc.canDash())
 			{
@@ -45,12 +56,12 @@ public abstract class PlayerState
 			}
 			return new PlayerMovement.Running(pc);
 		}
-        else if (pc.stateEnded && Input.GetButton("Shield") && pc.shieldTime >= 1)
+        if (pc.movementInput == Vector3.zero)
         {
-            return new Shielding(pc);
+            return new PlayerMovement.Idle(pc);
         }
-		return new PlayerMovement.Idle(pc);
-	}
+        return null;
+    }
     public virtual void Animate()
     {
         //pc.anim.SetFloat("p2mX", pc.playerToMouse.x); //player-to-mouse-X
@@ -68,6 +79,7 @@ public abstract class PlayerState
             pc.rb.velocity = Vector3.zero;
         }
     }
+
 }
 
 public enum PlayerStateIndex

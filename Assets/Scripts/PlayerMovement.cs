@@ -13,6 +13,11 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
+        public override PlayerStateIndex getPlayerStateIndex()
+        {
+            return this.playerState;
+        }
+
         public override void Enter()
         {
             this.pc.anim.SetInteger(animState, (int)playerState);
@@ -26,20 +31,7 @@ public class PlayerMovement : MonoBehaviour
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            if (pc.movementInput != Vector3.zero)
-            {
-                // Change the direction we're facingDirection
-                pc.facingDirection = DirectionUtil.FloatToDir(pc.movementInput.z, pc.movementInput.x);
-                // End State
-                pc.stateEnded = true;
-                return;
-            }
-            
-            if (Input.anyKey)
-            {
-                pc.stateEnded = true;
-                return;
-            }
+
         }
 
 //        public override PlayerState HandleInput()
@@ -69,6 +61,20 @@ public class PlayerMovement : MonoBehaviour
 
         public override void Update()
         {
+            if (pc.movementInput != Vector3.zero)
+            {
+                // Change the direction we're facingDirection
+                pc.facingDirection = DirectionUtil.FloatToDir(pc.movementInput.z, pc.movementInput.x);
+                // End State
+                pc.stateEnded = true;
+                return;
+            }
+
+            if (Input.anyKey)
+            {
+                pc.stateEnded = true;
+                return;
+            }
         }
     }
 
@@ -86,6 +92,11 @@ public class PlayerMovement : MonoBehaviour
         public Running(PlayerController playerController) : base(playerController)
         {
             this.curSpeed = playerController.curSpeed;
+        }
+
+        public override PlayerStateIndex getPlayerStateIndex()
+        {
+            return this.playerState;
         }
 
         public override void Enter()
@@ -116,17 +127,9 @@ public class PlayerMovement : MonoBehaviour
             ////}
             //pc.rb.velocity = movementVector;
 
-            if (pc.movementInput == Vector3.zero || Input.GetAxisRaw("Shield") != 0 || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
-            {
-                pc.stateEnded = true;
-            }
-            else
-            {
-                Direction newDirection = DirectionUtil.FloatToDir(moveZ, moveX);
-                movementVector = Vector3.Lerp(movementVector, pc.movementInput * pc.maxSpeed, 20 * Time.deltaTime);
-                pc.movingDirection = DirectionUtil.FloatToDir(moveZ, moveX);
-                pc.rb.velocity = movementVector;
-            }
+
+            movementVector = Vector3.Lerp(movementVector, pc.movementInput * pc.maxSpeed, 20 * Time.deltaTime);
+            pc.rb.velocity = movementVector;
             // if (pc.rb.velocity.magnitude < .5)
         }
 
@@ -159,6 +162,21 @@ public class PlayerMovement : MonoBehaviour
         {
             this.moveX = Input.GetAxisRaw("Horizontal");
             this.moveZ = Input.GetAxisRaw("Vertical");
+
+            if (pc.movementInput == Vector3.zero || (Input.GetAxisRaw("Shield") != 0) || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
+            {
+                pc.nextState = HandleInput();
+                if (pc.nextState != null)
+                {
+                    pc.stateEnded = true;
+                }
+
+            }
+            else
+            {
+                Direction newDirection = DirectionUtil.FloatToDir(moveZ, moveX);
+                pc.movingDirection = DirectionUtil.FloatToDir(moveZ, moveX);
+            }
         }
 
         public override void Animate()
@@ -184,6 +202,11 @@ public class PlayerMovement : MonoBehaviour
 			playerController.dashCharges -= 1;
 			this.dir = dir.normalized;
 
+        }
+
+        public override PlayerStateIndex getPlayerStateIndex()
+        {
+            return this.playerState;
         }
 
         public override void Enter()

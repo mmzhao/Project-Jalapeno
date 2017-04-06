@@ -26,8 +26,13 @@ public class Attack2 : PlayerAttack {
 		pc.attack2Charges -= 1;
 	}
 
-	// Create hitboxes, start animation
-	public override void Enter()
+    public override PlayerStateIndex getPlayerStateIndex()
+    {
+        return this.playerState;
+    }
+
+    // Create hitboxes, start animation
+    public override void Enter()
 	{
         this.pc.anim.SetInteger(animState, (int)playerState);
         pc.anim.SetFloat("p2mX", pc.playerToMouse.x);

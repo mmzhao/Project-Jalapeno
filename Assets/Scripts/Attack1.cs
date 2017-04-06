@@ -39,6 +39,7 @@ public class Attack1 : PlayerAttack {
         pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
 
         attack = (GameObject) GameObject.Instantiate(pc.ap1);
+        attack.transform.parent = pc.transform;
 		attack.transform.position = pc.transform.position + new Vector3(0, 2, 0);
 		attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
 		foreach (Transform hitbox in attack.transform) 
@@ -60,9 +61,10 @@ public class Attack1 : PlayerAttack {
 
     public override void FixedUpdate()
     {
-//		Debug.Log (Time.deltaTime);
-//		Debug.Log (donecount + " " + counter);
-		int hitboxIndex = 0;
+        //		Debug.Log (Time.deltaTime);
+        //		Debug.Log (donecount + " " + counter);
+        base.FixedUpdate();
+        int hitboxIndex = 0;
 		foreach (Transform hitbox in attack.transform) 
 		{
 			//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
@@ -142,8 +144,4 @@ public class Attack1 : PlayerAttack {
 		GameObject.Destroy(attack);
     }
 
-    public override void Animate()
-    {
-        
-    }
 }

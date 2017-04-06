@@ -6,48 +6,56 @@ using UnityEngine;
 public class Shielding : PlayerState
 {
     new public readonly PlayerStateIndex playerState = PlayerStateIndex.SHIELD;
-    float DECELERATION_CONSTANT = 40.0f;
-    float STOP_THRESHOLD = 0.5f;
-    public Collider playerShield;
+    public GameObject playerShield;
+    public GameObject defaultHurtBox;
 
     public Shielding (PlayerController pc) : base(pc)
     {
-//        this.playerShield = pc.playerShield;
+        this.playerShield = pc.hurtBoxes.transform.Find("Shield").gameObject;
+        this.defaultHurtBox = pc.hurtBoxes.transform.Find("Default").gameObject;
     }
 
     public override void Enter()
     {
+        // handle all animations
         pc.anim.SetInteger(animState, (int) playerState);
-        pc.GetComponent<Collider>().enabled = false;
-        playerShield.enabled = true;
+        pc.anim.SetFloat("p2mX", pc.playerToMouse.x);
+        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
+        pc.anim.SetFloat("velocityX", pc.playerToMouse.x);
+        pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
+
+        playerShield.SetActive(true);
+        defaultHurtBox.SetActive(false);
     }
 
     public override void Exit()
     {
-        pc.GetComponent<Collider>().enabled = true;
-        playerShield.enabled = false;
+        playerShield.SetActive(false);
+        defaultHurtBox.SetActive(true);
     }
 
     public override void FixedUpdate()
     {
-        if (pc.rb.velocity.magnitude > STOP_THRESHOLD)
+        if (!Input.GetButton("Shield") || pc.shieldTime <= 0)
         {
-            pc.rb.velocity = Vector3.Lerp(pc.rb.velocity, Vector3.zero, DECELERATION_CONSTANT * Time.deltaTime);
-        }
-        else if (pc.rb.velocity.magnitude > 0)
-        {
-            pc.rb.velocity = Vector3.zero;
+            pc.stateEnded = true;
+            return;
         }
 
-
-
-
-
+        base.FixedUpdate();
+        pc.shieldTime -= Time.deltaTime;
+     
 
     }
 
     public override void Update()
     {
         
+    }
+
+    public override void Animate()
+    {
+        pc.anim.SetFloat("p2mX", pc.playerToMouse.x);
+        pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
     }
 }

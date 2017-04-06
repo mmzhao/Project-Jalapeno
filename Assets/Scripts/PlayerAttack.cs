@@ -12,12 +12,6 @@ public abstract class PlayerAttack : PlayerState {
 
     }
 
-    // Create hitboxes, start animation
-    public override abstract void Enter();
-
-    public override abstract void FixedUpdate();
- 
-    public override abstract void Update();
 
     // Destroy hitboxes
     public override abstract void Exit();

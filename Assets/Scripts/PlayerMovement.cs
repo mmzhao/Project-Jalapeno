@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
         public override void Enter()
         {
             this.pc.anim.SetInteger(animState, (int)playerState);
-            pc.rb.velocity = Vector3.zero;
         }
 
         public override void Exit()
@@ -26,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
         public override void FixedUpdate()
         {
+            base.FixedUpdate();
             if (pc.movementInput != Vector3.zero)
             {
                 // Change the direction we're facingDirection
@@ -34,11 +34,8 @@ public class PlayerMovement : MonoBehaviour
                 pc.stateEnded = true;
                 return;
             }
-
-            // Check for attack inputs
-            float attack1 = Input.GetAxisRaw("Attack1");
-            float attack2 = Input.GetAxisRaw("Attack2");
-            if (attack1 != 0 || attack2 != 0)
+            
+            if (Input.anyKey)
             {
                 pc.stateEnded = true;
                 return;
@@ -83,8 +80,8 @@ public class PlayerMovement : MonoBehaviour
         public float moveX;
         public float moveZ;
         public Vector3 movementVector;
-        public float driftingTime = 0;
-        public static float DRIFT_TIME = 0.08f; //amount of time to drift after not getting inputs
+        //public float driftingTime = 0;
+        //public static float DRIFT_TIME = 0.08f; //amount of time to drift after not getting inputs
 
         public Running(PlayerController playerController) : base(playerController)
         {
@@ -105,25 +102,31 @@ public class PlayerMovement : MonoBehaviour
         {
 //          GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().TakeDamage(1);
             
-            if (pc.movementInput != Vector3.zero)
+            //if (pc.movementInput != Vector3.zero)
+            //{
+            //    Direction newDirection = DirectionUtil.FloatToDir(moveZ, moveX);
+            //    movementVector = Vector3.Lerp(movementVector, pc.movementInput * pc.maxSpeed, 20 * Time.deltaTime);
+            //    pc.movingDirection = DirectionUtil.FloatToDir(moveZ, moveX);
+            // //   driftingTime = 0;               
+            //}
+            ////else
+            ////{
+            ////    movementVector = Vector3.Lerp(movementVector, Vector3.zero, 20 * Time.deltaTime);
+            ////    driftingTime += Time.deltaTime;
+            ////}
+            //pc.rb.velocity = movementVector;
+
+            if (pc.movementInput == Vector3.zero || Input.GetAxisRaw("Shield") != 0 || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
+            {
+                pc.stateEnded = true;
+            }
+            else
             {
                 Direction newDirection = DirectionUtil.FloatToDir(moveZ, moveX);
                 movementVector = Vector3.Lerp(movementVector, pc.movementInput * pc.maxSpeed, 20 * Time.deltaTime);
                 pc.movingDirection = DirectionUtil.FloatToDir(moveZ, moveX);
-                driftingTime = 0;               
+                pc.rb.velocity = movementVector;
             }
-            else
-            {
-                movementVector = Vector3.Lerp(movementVector, Vector3.zero, 20 * Time.deltaTime);
-                driftingTime += Time.deltaTime;
-            }
-            pc.rb.velocity = movementVector;
-
-            if (driftingTime > DRIFT_TIME || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
-            {
-                pc.stateEnded = true;
-            }
-            
             // if (pc.rb.velocity.magnitude < .5)
         }
 

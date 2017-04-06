@@ -45,18 +45,26 @@ public class EnemyMovement : MonoBehaviour {
 				//				Debug.Log (player.transform.position);
 				//				Debug.Log (ec.rb.position);
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
-//		        int walllayer = 0; // fill in with the layer # of anything that obstructs enemy vision
-//		        if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
-//		        {
-//		          vecToPlayer = new Vector3(targetRange + 1,0,0);
-//		        }
+      	        int walllayer = 9; // fill in with the layer # of anything that obstructs enemy vision
+    	        if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
+    	        {
+    	          vecToPlayer = new Vector3(targetRange + 1,0,0);
+    	        }
 				if (vecToPlayer.magnitude <= targetRange) 
 				{
-
-					Move (vecToPlayer);
-                    Vector3 normalized = vecToPlayer;
+					ec.lastPlayerPos = player.transform.position;
+					ec.hasLastPlayerPos = true;
+				}
+				if (ec.hasLastPlayerPos)
+				{
+					MoveTo (ec.lastPlayerPos);
+					Vector3 normalized = ec.lastPlayerPos - ec.transform.position;
                     ec.anim.SetFloat("moveX", normalized.x);
                     ec.anim.SetFloat("moveZ", normalized.z);
+					if ((ec.lastPlayerPos - ec.transform.position).magnitude < ec.maxSpeed) 
+					{
+						ec.hasLastPlayerPos = false;
+					}
                     //                    navAgent.SetDestination(player.transform.position);
                 }
                 else
@@ -85,6 +93,12 @@ public class EnemyMovement : MonoBehaviour {
 		public void Move (Vector3 dir)
 		{
 			Vector3 dif = dir.normalized * ec.maxSpeed * Time.deltaTime;
+			ec.rb.MovePosition (ec.transform.position + dif);
+		}
+
+		public void MoveTo (Vector3 dest)
+		{
+			Vector3 dif = (dest - ec.transform.position).normalized * ec.maxSpeed * Time.deltaTime;
 			ec.rb.MovePosition (ec.transform.position + dif);
 		}
 

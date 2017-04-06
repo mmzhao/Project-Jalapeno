@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour {
 		EnemyController ec;
 		Vector3 attackDir;
 		public float attackRange;
-		int donecount = 20; 
+		int donecount = 40;
 		int counter;
 		GameObject attack;
 
@@ -30,6 +30,7 @@ public class EnemyAttack : MonoBehaviour {
 			foreach (Transform hitbox in attack.transform) 
 			{
 				hitbox.gameObject.SetActive (false);
+                hitbox.GetComponent<Collider>().isTrigger = false;
 			}
 		}
 

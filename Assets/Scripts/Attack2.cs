@@ -57,8 +57,9 @@ public class Attack2 : PlayerAttack {
 
 	public override void FixedUpdate()
 	{
-		//		Debug.Log (donecount + " " + counter);
-		int hitboxIndex = 0;
+        base.FixedUpdate();
+        //		Debug.Log (donecount + " " + counter);
+        int hitboxIndex = 0;
 		foreach (Transform hitbox in attack.transform) 
 		{
 			//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));

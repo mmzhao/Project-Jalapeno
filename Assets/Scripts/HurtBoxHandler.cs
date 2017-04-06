@@ -6,26 +6,29 @@ using UnityEngine;
  * Handles triggers for hurtboxes and passes them to PlayerController
  * Handles Hurtbox initialization for further idiotproofing
  */
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Collider))]
 public class HurtBoxHandler : MonoBehaviour {
     public PlayerController pc;
 
     void Awake ()
     {
         pc = transform.root.GetComponent<PlayerController>();
-    }
+        Collider col = gameObject.GetComponent<Collider>();
+        col.isTrigger = true;
+        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
+        rb.isKinematic = true;
+        rb.useGravity = false;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        if (gameObject.tag == "Shield")
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     void OnTriggerEnter(Collider other)
     {
+        print("lol");
         pc.getHit(gameObject, other);
     }
 }

@@ -30,6 +30,7 @@ public class EnemyAttack : MonoBehaviour {
 			foreach (Transform hitbox in attack.transform) 
 			{
 				hitbox.gameObject.SetActive (false);
+                hitbox.GetComponent<Collider>().isTrigger = false;
 			}
 		}
 

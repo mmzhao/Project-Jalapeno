@@ -17,11 +17,15 @@ public class PlayerController : MonoBehaviour {
     public float dashSpeed;
     public Direction facingDirection = Direction.NW;
     public Direction movingDirection = Direction.NW;
+
+    public GameObject hurtBoxes;
+
 	//	Attack prefabs
 	public GameObject ap1;
-	public GameObject ap2;
+    public GameObject ap2;
 
-	public float attack1Charges { get; set; }
+    //attack parameters
+    public float attack1Charges { get; set; }
     public float attack2Charges { get; set; }
     public float dashCharges { get; set; }
     public float shieldTime { get; set; }
@@ -41,7 +45,6 @@ public class PlayerController : MonoBehaviour {
 
     public Animator anim;
 	public Camera playerCamera;
-//    public Collider playerShield;
 
     public Vector3 playerToMouse { get; set; }
     void Awake ()
@@ -77,11 +80,16 @@ public class PlayerController : MonoBehaviour {
             playerCamera = Camera.main;
         }
 
-//        if (playerShield == null)
-//        {
-//            playerShield = transform.FindChild("Shield").GetComponent<Collider>();
-//        }
-
+        if (hurtBoxes == null)
+        {
+            Transform hurtTransform = transform.Find("HurtBoxes");
+            foreach (Collider coll in hurtTransform.GetComponentsInChildren<Collider>())
+            {
+                coll.isTrigger = true;
+            }
+            hurtBoxes = hurtTransform.gameObject;
+        }
+        
     }
 
 	// Use this for initialization
@@ -94,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+//		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
 //		Debug.Log (text.text);
 
         //register all the inputs that need to be dynamically tracked
@@ -129,7 +137,7 @@ public class PlayerController : MonoBehaviour {
 //		Debug.Log (currentState);
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
-		rb.velocity = Vector3.zero;
+		//rb.velocity = Vector3.zero;
 		currentState.FixedUpdate();
         if (nextState != null)
         {
@@ -142,7 +150,7 @@ public class PlayerController : MonoBehaviour {
 
         rechargeMoves();
     }
-
+    /*
 	void OnTriggerEnter (Collider other)
 	{
 //		Debug.Log ("e");
@@ -150,6 +158,7 @@ public class PlayerController : MonoBehaviour {
 //		Debug.Log(other.gameObject.transform.parent.name.Length);
         if (currentState.playerState != PlayerStateIndex.SHIELD)
         {
+            Debug.Log("hit " + other.gameObject.name);
             if (other.gameObject.transform.parent.name.Length >= 10 &&
                 other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
             {
@@ -157,6 +166,25 @@ public class PlayerController : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
             }
 
+        }
+    }
+    */
+    public void getHit (GameObject go, Collider other)
+    {
+        if (go.tag == "Shield")
+        {
+            print("battleship sunk");
+            shieldTime -= 1;
+        }
+        else
+        {
+            Debug.Log("hit " + other.gameObject.name);
+            if (other.gameObject.transform.parent.name.Length >= 10 &&
+                other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
+            {
+                //			Debug.Log ("hit " + other.gameObject.name);
+                GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+            }
         }
     }
 

@@ -1,0 +1,160 @@
+fileFormatVersion: 2
+guid: 46f60b84010a646f990656e9ccd5d3a1
+timeCreated: 1491524284
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: MC_AttackSwipe_Final_0
+    21300002: MC_AttackSwipe_Final_1
+    21300004: MC_AttackSwipe_Final_2
+    21300006: MC_AttackSwipe_Final_3
+    21300008: MC_AttackSwipe_Final_5
+    21300010: MC_AttackSwipe_Final_6
+  serializedVersion: 4
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: -1
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 158
+        width: 865
+        height: 798
+      alignment: 9
+      pivot: {x: 0.11615532, y: 0.19194666}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_1
+      rect:
+        serializedVersion: 2
+        x: 1154
+        y: 184
+        width: 973
+        height: 674
+      alignment: 9
+      pivot: {x: 0.102981426, y: 0.27263722}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_2
+      rect:
+        serializedVersion: 2
+        x: 2484
+        y: 216
+        width: 1058
+        height: 873
+      alignment: 9
+      pivot: {x: 0.08056226, y: 0.29155153}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_3
+      rect:
+        serializedVersion: 2
+        x: 3866
+        y: 177
+        width: 1070
+        height: 878
+      alignment: 9
+      pivot: {x: 0.085266456, y: 0.39455134}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_5
+      rect:
+        serializedVersion: 2
+        x: 5380
+        y: 130
+        width: 2134
+        height: 1212
+      alignment: 9
+      pivot: {x: 0.1663824, y: 0.7871193}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_6
+      rect:
+        serializedVersion: 2
+        x: 7733
+        y: 0
+        width: 605
+        height: 992
+      alignment: 9
+      pivot: {x: 0.71107876, y: 0.89906937}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

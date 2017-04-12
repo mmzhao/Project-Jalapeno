@@ -133,6 +133,12 @@ public class PlayerController : MonoBehaviour {
 			stateEnded = false;
         }
 
+        if (this.GetComponent<Health>().currentHealth <= 0)
+        {
+            this.currentState.Exit();
+            Destroy(this.gameObject);
+        }
+
     }
 
     void FixedUpdate()
@@ -188,7 +194,10 @@ public class PlayerController : MonoBehaviour {
                 other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
             {
                 //			Debug.Log ("hit " + other.gameObject.name);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+                if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged)
+                {
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+                }
             }
         }
     }

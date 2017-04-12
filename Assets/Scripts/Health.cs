@@ -13,9 +13,10 @@ public class Health : MonoBehaviour
 //	PlayerMovement playerMovement;                              // Reference to the player's movement.
 //	PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
 //	bool isDead;                                                // Whether the player is dead.
-	bool damaged;                                               // True when the player gets damaged.
-	int numFlashes = 3;
+	public bool damaged;                                               // True when the player gets damaged.
+	int numFlashes = 5;
 	int curFlashes;
+    public int damageScaling = 30;
 
 	void Awake ()
 	{
@@ -35,30 +36,21 @@ public class Health : MonoBehaviour
 		{
 			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
 			sr.color = Color.red;
-			curFlashes++;
-            currentHealth -= 20;
 			// ... set the colour of the damageImage to the flash colour.
 //			damageImage.color = flashColour;
 		}
-		// Otherwise...
-		else
-		{
+        // Otherwise...
+        if (curFlashes >= numFlashes)
+        {
 			// ... transition the colour back to clear.
 //			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
 			sr.color = Color.white;
+            damaged = false;
 		}
 
-        if (currentHealth <= 0)
-        {
-            Destroy(this.gameObject);
-        }
-
-		// Reset the damaged flag.
-		if (curFlashes >= numFlashes) {
-			damaged = false;
-		}
-	}
+        curFlashes++;
+    }
 
 
 	public void TakeDamage (int amount)
@@ -69,7 +61,7 @@ public class Health : MonoBehaviour
 		damaged = true;
 
 		// Reduce the current health by the damage amount.
-		currentHealth -= amount;
+		currentHealth -= amount*damageScaling;
 
 		// If the player has lost all it's health and the death flag hasn't been set yet...
 //		if(currentHealth <= 0 && !isDead)

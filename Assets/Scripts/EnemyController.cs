@@ -89,6 +89,12 @@ public class EnemyController : MonoBehaviour {
 			nextState = null;
 			currentState.Enter();
 		}
+
+        if (this.gameObject.GetComponent<Health>().currentHealth <= 0)
+        {
+            currentState.Exit();
+            Destroy(this.gameObject);
+        }
 	}
 
 	void OnTriggerEnter (Collider other)

@@ -54,17 +54,17 @@ public class EnemyController : MonoBehaviour {
 		rb.constraints = RigidbodyConstraints.FreezeRotation;
 		currentState = new EnemyMovement.Targeting(this);
 
-		latchRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		Renderer ren = latchRadius.GetComponents<Renderer> () [0];
-		ren.material.color = Color.green;
-		latchRadius.transform.localScale = new Vector3 (2*targetRange, .1f, 2*targetRange);
-		Destroy(latchRadius.GetComponent<SphereCollider> ());
+		//latchRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		//Renderer ren = latchRadius.GetComponents<Renderer> () [0];
+		//ren.material.color = Color.green;
+		//latchRadius.transform.localScale = new Vector3 (2*targetRange, .1f, 2*targetRange);
+		//Destroy(latchRadius.GetComponent<SphereCollider> ());
 
-		attackRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-		Renderer ren2 = attackRadius.GetComponents<Renderer> () [0];
-		ren2.material.color = Color.red;
-		attackRadius.transform.localScale = new Vector3 (2*attackRange, .1f, 2*attackRange);
-		Destroy(attackRadius.GetComponent<SphereCollider> ());
+		//attackRadius = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+		//Renderer ren2 = attackRadius.GetComponents<Renderer> () [0];
+		//ren2.material.color = Color.red;
+		//attackRadius.transform.localScale = new Vector3 (2*attackRange, .1f, 2*attackRange);
+		//Destroy(attackRadius.GetComponent<SphereCollider> ());
 	}
 
 	// Update is called once per frame
@@ -74,9 +74,9 @@ public class EnemyController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-		latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
+		//latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
-		attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
+		//attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
 
 		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
 		//		Debug.Log(currentState);

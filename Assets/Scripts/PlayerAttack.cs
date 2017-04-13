@@ -4,20 +4,40 @@ using UnityEngine;
 
 public abstract class PlayerAttack : PlayerState {
 
+    protected float attackTimer;
+    protected float attackDuration;
     protected int counter;
     protected int donecount;
-     
+    protected static string HITBOX_CONTAINER_TAG = "HitboxContainer";
+
+    
     public PlayerAttack(PlayerController pc) : base(pc)
     {
-
+        attackTimer = 0;
     }
 
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackDuration)
+        {
+            pc.stateEnded = true;
+        }
+    }
 
     // Destroy hitboxes
     public override abstract void Exit();
 
-//    public override PlayerState HandleInput()
-//    {
-//        return new PlayerMovement.Idle(pc);
-//    }
+    protected Transform findHitboxesByTag(Transform attackPrefab)
+    {
+        foreach (Transform child in attackPrefab)
+        {
+            if (child.tag == HITBOX_CONTAINER_TAG)
+            {
+                return child;
+            }
+        }
+        return null;
+    }
 }

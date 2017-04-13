@@ -49,23 +49,23 @@ public class PlayerController : MonoBehaviour {
     public Vector3 playerToMouse { get; set; }
     void Awake ()
     {
-		maxSpeed = 50.0f;
-		dashSpeed = 100.0f;
+		//maxSpeed = 50.0f;
+		//dashSpeed = 100.0f;
 
-        maxAttack1Charges = 5;
-        maxAttack2Charges = 5;
-        maxDashCharges = 5;
-        maxShieldTime = 5; // in seconds
+  //      maxAttack1Charges = 5;
+  //      maxAttack2Charges = 5;
+  //      maxDashCharges = 5;
+  //      maxShieldTime = 5; // in seconds
 
         attack1Charges = maxAttack1Charges;
 		attack2Charges = maxAttack2Charges;
 		dashCharges = maxDashCharges;
         shieldTime = maxShieldTime;
 
-        attack1ChargeRate = 1;
-        attack2ChargeRate = 1;
-        dashChargeRate = 1;
-        shieldChargeRate = 1;
+        //attack1ChargeRate = 1;
+        //attack2ChargeRate = 1;
+        //dashChargeRate = 1;
+        //shieldChargeRate = 1;
 
         if (rb == null)
         {

@@ -36,6 +36,9 @@ public class Shielding : PlayerState
     {
         if (!Input.GetButton("Shield") || pc.shieldTime <= 0)
         {
+			if (pc.shieldTime <= 0) {
+				pc.shieldBroken = true;
+			}
             pc.stateEnded = true;
             return;
         }

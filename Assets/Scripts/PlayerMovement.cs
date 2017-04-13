@@ -164,11 +164,17 @@ public class PlayerMovement : MonoBehaviour
             this.moveZ = Input.GetAxisRaw("Vertical");
 
             if (pc.movementInput == Vector3.zero || (Input.GetAxisRaw("Shield") != 0) || Input.GetAxisRaw("Dash") != 0 || Input.GetAxisRaw("Attack1") != 0 || Input.GetAxisRaw("Attack2") != 0)
-            {
+			{
+				pc.stateEnded = true;
+//				Debug.Log ("Shield " + Input.GetAxisRaw("Shield"));
+//				Debug.Log ("Dash " + Input.GetAxisRaw("Dash"));
+//				Debug.Log ("Attack1 " + Input.GetAxisRaw("Attack1"));
+//				Debug.Log ("Attack2 " + Input.GetAxisRaw("Attack2"));
                 pc.nextState = HandleInput();
+//				Debug.Log (pc.nextState);
                 if (pc.nextState != null)
                 {
-                    pc.stateEnded = true;
+                    pc.stateEnded = false;
                 }
 
             }

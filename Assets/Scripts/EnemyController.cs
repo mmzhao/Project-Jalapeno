@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour {
 
 	void Awake ()
 	{
-		maxSpeed = 20.0f;
+		maxSpeed = 80.0f;
 		targetRange = 50.0f;
 		attackRange = 20.0f;
 		hasLastPlayerPos = false;
@@ -74,6 +74,8 @@ public class EnemyController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+//		Debug.Log (currentState);
+
 		latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
 		attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
@@ -105,7 +107,7 @@ public class EnemyController : MonoBehaviour {
 		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
-		  this.transform.gameObject.GetComponent<Health> ().TakeDamage (1);
+		  this.transform.gameObject.GetComponent<Health> ().TakeDamage (other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
 		}
 	}
 }

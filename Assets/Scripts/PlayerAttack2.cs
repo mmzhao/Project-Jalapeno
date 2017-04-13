@@ -12,6 +12,7 @@ public class Attack2 : PlayerAttack {
     new public readonly PlayerStateIndex playerState = PlayerStateIndex.IDLE_ATTACK_2;
     BoxCollider hitbox;
 	Vector3 facing;
+    int damage;
 
 	// make a cube to show hitbox
 	//	GameObject myCube;
@@ -24,6 +25,7 @@ public class Attack2 : PlayerAttack {
 		donecount = 24;
 		facing = pc.playerToMouse;
 		pc.attack2Charges -= 1;
+        damage = 30;
 	}
 
     public override PlayerStateIndex getPlayerStateIndex()
@@ -143,5 +145,4 @@ public class Attack2 : PlayerAttack {
 		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
 	}
-
 }

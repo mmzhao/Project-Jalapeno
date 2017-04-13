@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour {
     public float attack2Charges { get; set; }
     public float dashCharges { get; set; }
     public float shieldTime { get; set; }
+	public bool shieldBroken { get; set; }
 
     public float maxAttack1Charges;
     public float maxAttack2Charges;
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour {
 		attack2Charges = maxAttack2Charges;
 		dashCharges = maxDashCharges;
         shieldTime = maxShieldTime;
+		shieldBroken = false;
 
         attack1ChargeRate = 1;
         attack2ChargeRate = 1;
@@ -219,16 +221,17 @@ public class PlayerController : MonoBehaviour {
 
     public bool canShield()
     {
-        return shieldTime >= 1;
+		return shieldTime >= 1 && !shieldBroken;
     }
 
     private void rechargeMoves ()
     {
         if (currentState.getPlayerStateIndex() != PlayerStateIndex.SHIELD)
         {
-            if (shieldTime > maxShieldTime)
+            if (shieldTime >= maxShieldTime)
             {
                 shieldTime = maxShieldTime;
+				shieldBroken = false;
             }
             else
             {

@@ -74,6 +74,8 @@ public class EnemyController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
+//		Debug.Log (currentState);
+
 		latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
 		attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);

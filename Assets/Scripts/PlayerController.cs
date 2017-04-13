@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour {
                 //			Debug.Log ("hit " + other.gameObject.name);
                 if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged)
                 {
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
                 }
             }
         }

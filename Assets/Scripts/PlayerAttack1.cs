@@ -13,6 +13,7 @@ public class Attack1 : PlayerAttack {
 
     BoxCollider hitbox;
 	Vector3 facing;
+    int damage;
     
 
     // make a cube to show hitbox
@@ -26,6 +27,7 @@ public class Attack1 : PlayerAttack {
         donecount = 10;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
+        damage = 30;
 
     }
 
@@ -148,5 +150,5 @@ public class Attack1 : PlayerAttack {
 		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
     }
-
+   
 }

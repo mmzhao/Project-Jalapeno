@@ -105,7 +105,7 @@ public class EnemyController : MonoBehaviour {
 		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
 //			Debug.Log ("hit " + other.gameObject.name);
-		  this.transform.gameObject.GetComponent<Health> ().TakeDamage (1);
+		  this.transform.gameObject.GetComponent<Health> ().TakeDamage (other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
 		}
 	}
 }

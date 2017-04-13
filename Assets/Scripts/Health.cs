@@ -14,7 +14,7 @@ public class Health : MonoBehaviour
 //	PlayerShooting playerShooting;                              // Reference to the PlayerShooting script.
 //	bool isDead;                                                // Whether the player is dead.
 	public bool damaged;                                               // True when the player gets damaged.
-	int numFlashes = 5;
+	int numFlashes = 20;
 	int curFlashes;
 
 	void Awake ()

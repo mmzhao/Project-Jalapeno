@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
 //		Debug.Log (text.text);
 
         //register all the inputs that need to be dynamically tracked
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour {
                 //			Debug.Log ("hit " + other.gameObject.name);
                 if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged)
                 {
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
+                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
                 }
             }
         }

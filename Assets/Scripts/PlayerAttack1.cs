@@ -17,6 +17,8 @@ public class Attack1 : PlayerAttack {
 	Vector3 facing;
     int numHitboxes;
     int currentHitboxIndex = 0;
+    int damage;
+    
 
     // make a cube to show hitbox
     //	GameObject myCube;
@@ -26,12 +28,13 @@ public class Attack1 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 20;
+        donecount = 10;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
         attackDuration = 1.0f;
         numHitboxes = hitboxTransitionMarkers.Length;
         hitboxes = new GameObject[numHitboxes];
+        damage = 30;
     }
 
     public override PlayerStateIndex getPlayerStateIndex()
@@ -154,5 +157,5 @@ public class Attack1 : PlayerAttack {
 		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
     }
-
+   
 }

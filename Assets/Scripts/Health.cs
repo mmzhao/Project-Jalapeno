@@ -16,7 +16,6 @@ public class Health : MonoBehaviour
 	public bool damaged;                                               // True when the player gets damaged.
 	int numFlashes = 5;
 	int curFlashes;
-    public int damageScaling = 30;
 
 	void Awake ()
 	{
@@ -61,7 +60,7 @@ public class Health : MonoBehaviour
 		damaged = true;
 
 		// Reduce the current health by the damage amount.
-		currentHealth -= amount*damageScaling;
+		currentHealth -= amount;
 
 		// If the player has lost all it's health and the death flag hasn't been set yet...
 //		if(currentHealth <= 0 && !isDead)

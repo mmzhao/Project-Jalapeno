@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 46f60b84010a646f990656e9ccd5d3a1
-timeCreated: 1491952326
+timeCreated: 1492124102
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -82,8 +82,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 2649
-        height: 2766
+        width: 2140
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -93,10 +93,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_1
       rect:
         serializedVersion: 2
-        x: 2649
+        x: 2140
         y: 0
-        width: 2649
-        height: 2766
+        width: 2140
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,10 +106,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_2
       rect:
         serializedVersion: 2
-        x: 5298
+        x: 4280
         y: 0
-        width: 2649
-        height: 2766
+        width: 2140
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +119,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_3
       rect:
         serializedVersion: 2
-        x: 7947
+        x: 6420
         y: 0
-        width: 2649
-        height: 2766
+        width: 2140
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,10 +132,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_4
       rect:
         serializedVersion: 2
-        x: 10596
+        x: 8600
         y: 0
-        width: 2649
-        height: 2766
+        width: 2100
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,10 +145,23 @@ TextureImporter:
       name: MC_AttackSwipe_Final_5
       rect:
         serializedVersion: 2
-        x: 13404
+        x: 10734
         y: 0
-        width: 2514
-        height: 2766
+        width: 2206
+        height: 2236
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: MC_AttackSwipe_Final_6
+      rect:
+        serializedVersion: 2
+        x: 12964
+        y: 0
+        width: 2055
+        height: 2236
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

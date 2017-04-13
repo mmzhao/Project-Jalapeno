@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-//		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
 //		Debug.Log (text.text);
 
         //register all the inputs that need to be dynamically tracked

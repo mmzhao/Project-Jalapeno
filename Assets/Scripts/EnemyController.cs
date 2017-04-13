@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour {
 
 	void Awake ()
 	{
-		maxSpeed = 20.0f;
+		maxSpeed = 80.0f;
 		targetRange = 50.0f;
 		attackRange = 20.0f;
 		hasLastPlayerPos = false;

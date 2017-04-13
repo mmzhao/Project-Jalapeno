@@ -23,7 +23,7 @@ public class Attack1 : PlayerAttack {
     {
         pc = controller;
         counter = 0;
-        donecount = 20;
+        donecount = 10;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
 

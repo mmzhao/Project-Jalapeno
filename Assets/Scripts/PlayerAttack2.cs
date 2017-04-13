@@ -21,7 +21,7 @@ public class Attack2 : PlayerAttack {
 	{
 		pc = controller;
 		counter = 0;
-		donecount = 24;
+		donecount = 16;
 		facing = pc.playerToMouse;
 		pc.attack2Charges -= 1;
 	}

@@ -196,8 +196,9 @@ public class PlayerController : MonoBehaviour {
                 other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
             {
                 //			Debug.Log ("hit " + other.gameObject.name);
-                if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged)
+                if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.GetComponent<AttackVariables>().Hit())
                 {
+                    other.gameObject.transform.parent.GetComponent<AttackVariables>().ToggleHit();
                     GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
                 }
             }

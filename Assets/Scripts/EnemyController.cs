@@ -106,9 +106,12 @@ public class EnemyController : MonoBehaviour {
 		if (other.gameObject.transform.parent.name.Length >= 9 &&
 		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
 		{
-//			Debug.Log ("hit " + other.gameObject.name);
-		    this.transform.gameObject.GetComponent<Health> ().TakeDamage (other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
-
+            //			Debug.Log ("hit " + other.gameObject.name);
+            if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.GetComponent<AttackVariables>().Hit())
+            {
+                other.gameObject.transform.parent.GetComponent<AttackVariables>().ToggleHit();
+                this.transform.gameObject.GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
+            }
         }
 	}
 }

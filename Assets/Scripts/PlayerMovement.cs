@@ -130,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
 
             movementVector = Vector3.Lerp(movementVector, pc.movementInput * pc.maxSpeed, 20 * Time.deltaTime);
             pc.rb.velocity = movementVector;
-            // if (pc.rb.velocity.magnitude < .5)
         }
 
 //        public override PlayerState HandleInput()

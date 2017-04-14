@@ -13,10 +13,12 @@ public class Attack1 : PlayerAttack {
 
     BoxCollider hitbox;
     GameObject[] hitboxes;
-    float[] hitboxTransitionMarkers = { 0f, .15f, .23f, .35f, .45f };
+    float[] activateHitboxMoments = { 0f, .15f, .23f, .23f, .50f }; // these mark the timestamp to move to the next hitbox
+    float[] deactivateHitboxMoments = { .15f, .23f, .5f, .5f, .65f };
 	Vector3 facing;
     int numHitboxes;
-    int currentHitboxIndex = 0;
+    int activateHitboxIndex = 0;
+    int deactivateHitboxIndex = 0;
     int damage;
     
 
@@ -32,9 +34,10 @@ public class Attack1 : PlayerAttack {
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
         attackDuration = 0.65f;
-        numHitboxes = hitboxTransitionMarkers.Length;
+        numHitboxes = activateHitboxMoments.Length;
         hitboxes = new GameObject[numHitboxes];
         damage = 30;
+        cancellableHitboxTime = .3f;
     }
 
     public override PlayerStateIndex getPlayerStateIndex()
@@ -58,54 +61,29 @@ public class Attack1 : PlayerAttack {
         Transform hitboxContainer = findHitboxesByTag(attack.transform);
         for (int i = 0; i < numHitboxes; i++)
         {
-            Debug.Log(i);
             hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-            
             hitboxes[i].SetActive(false);
         }
     }
 
     public override void FixedUpdate()
     {
-        //		Debug.Log (Time.deltaTime);
-        //		Debug.Log (donecount + " " + counter);
         base.FixedUpdate();
-        if (currentHitboxIndex < numHitboxes && attackTimer >= hitboxTransitionMarkers[currentHitboxIndex])
+        while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
         {
-            if (currentHitboxIndex > 0)
-            {
-                hitboxes[currentHitboxIndex - 1].SetActive(false);
-            }
-            hitboxes[currentHitboxIndex].SetActive(true);
-            currentHitboxIndex++;
+            hitboxes[activateHitboxIndex].SetActive(true);
+            activateHitboxIndex++;
         }
-//        int hitboxIndex = 0;
-//		foreach (Transform hitbox in attack.transform) 
-//		{
-//			//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
-//			if (counter / (donecount / 5) == hitboxIndex) {
-//				//					Debug.Log (hitboxIndex + " True");
-//				hitbox.gameObject.SetActive (true);
-//				break;
-//			} else {
-//				//					Debug.Log (hitboxIndex + " False");
-//				hitbox.gameObject.SetActive (false);
-//			}
-//			hitboxIndex++;
-//		}
-
-//        counter += 1;
-//        if (counter >= donecount)
-//        {
-////			pc.nextState = new PlayerMovement.Idle (pc);
-//            pc.stateEnded = true;
-//        }
-        
+        while (deactivateHitboxIndex < numHitboxes && attackTimer >= deactivateHitboxMoments[deactivateHitboxIndex])
+        {
+            hitboxes[deactivateHitboxIndex].SetActive(false);
+            deactivateHitboxIndex++;
+        }        
     }
 
     public override void Update()
 	{	
-		if (currentHitboxIndex < numHitboxes / 2)
+		if (attackTimer < cancellableHitboxTime)
 			return;
 //		if (Input.GetButton ("Attack1") && pc.canAttack1 ()) 
 //		{

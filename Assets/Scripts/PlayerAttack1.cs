@@ -13,7 +13,7 @@ public class Attack1 : PlayerAttack {
 
     BoxCollider hitbox;
     GameObject[] hitboxes;
-    float[] hitboxTransitionMarkers = { 0f, .2f, .4f, .6f, .8f };
+    float[] hitboxTransitionMarkers = { 0f, .15f, .23f, .35f, .45f };
 	Vector3 facing;
     int numHitboxes;
     int currentHitboxIndex = 0;
@@ -31,7 +31,7 @@ public class Attack1 : PlayerAttack {
         donecount = 10;
 		facing = pc.playerToMouse;
 		pc.attack1Charges -= 1;
-        attackDuration = 1.0f;
+        attackDuration = 0.65f;
         numHitboxes = hitboxTransitionMarkers.Length;
         hitboxes = new GameObject[numHitboxes];
         damage = 30;
@@ -58,7 +58,9 @@ public class Attack1 : PlayerAttack {
         Transform hitboxContainer = findHitboxesByTag(attack.transform);
         for (int i = 0; i < numHitboxes; i++)
         {
+            Debug.Log(i);
             hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
+            
             hitboxes[i].SetActive(false);
         }
     }

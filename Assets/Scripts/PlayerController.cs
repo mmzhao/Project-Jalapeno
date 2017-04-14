@@ -50,13 +50,12 @@ public class PlayerController : MonoBehaviour {
     public Vector3 playerToMouse { get; set; }
     void Awake ()
     {
-		//maxSpeed = 50.0f;
-		//dashSpeed = 100.0f;
-
-  //      maxAttack1Charges = 5;
-  //      maxAttack2Charges = 5;
-  //      maxDashCharges = 5;
-  //      maxShieldTime = 5; // in seconds
+		if (maxSpeed == 0) maxSpeed = 50.0f;
+        if (dashSpeed == 0) dashSpeed = 100.0f;
+        if (maxAttack1Charges == 0) maxAttack1Charges = 5;
+        if (maxAttack2Charges == 0) maxAttack2Charges = 5;
+        if (maxDashCharges == 0) maxDashCharges = 5;
+        if (maxShieldTime == 0) maxShieldTime = 5; // in seconds  
 
         attack1Charges = maxAttack1Charges;
 		attack2Charges = maxAttack2Charges;
@@ -64,10 +63,10 @@ public class PlayerController : MonoBehaviour {
         shieldTime = maxShieldTime;
 		shieldBroken = false;
 
-        //attack1ChargeRate = 1;
-        //attack2ChargeRate = 1;
-        //dashChargeRate = 1;
-        //shieldChargeRate = 1;
+        if (attack1ChargeRate == 0) attack1ChargeRate = 1;
+        if (attack2ChargeRate == 0) attack2ChargeRate = 1;
+        if (dashChargeRate == 0) dashChargeRate = 1;
+        if (shieldChargeRate == 0) shieldChargeRate = 1;
 
         if (rb == null)
         {
@@ -104,13 +103,12 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+		//text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
 //		Debug.Log (text.text);
 
         //register all the inputs that need to be dynamically tracked
         //movement key inputs
         movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
         //mouse position
         Ray camRay = playerCamera.ScreenPointToRay(Input.mousePosition);
         RaycastHit floorHit;

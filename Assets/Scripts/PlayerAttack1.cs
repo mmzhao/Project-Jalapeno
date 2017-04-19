@@ -13,10 +13,12 @@ public class Attack1 : PlayerAttack {
 
     BoxCollider hitbox;
     GameObject[] hitboxes;
-    float[] hitboxTransitionMarkers = { 0f, .15f, .23f, .35f, .45f };
+    float[] activateHitboxMoments = { 0f, .15f, .23f, .23f, .50f }; // these mark the timestamp to move to the next hitbox
+    float[] deactivateHitboxMoments = { .15f, .23f, .5f, .5f, .65f };
 	Vector3 facing;
     int numHitboxes;
-    int currentHitboxIndex = 0;
+    int activateHitboxIndex = 0;
+    int deactivateHitboxIndex = 0;
     int damage;
     int thrust = 2000;
     bool alt = false;
@@ -33,9 +35,10 @@ public class Attack1 : PlayerAttack {
 		facing = pc.playerToMouse.normalized;
 		pc.attack1Charges -= 1;
         attackDuration = 0.65f;
-        numHitboxes = hitboxTransitionMarkers.Length;
+        numHitboxes = activateHitboxMoments.Length;
         hitboxes = new GameObject[numHitboxes];
-        damage = 0;
+        damage = 30;
+        cancellableHitboxTime = .3f;
     }
 
     public Attack1(PlayerController controller, bool alt) : this(controller)
@@ -66,13 +69,11 @@ public class Attack1 : PlayerAttack {
         for (int i = 0; i < numHitboxes; i++)
         {
             hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-            
             hitboxes[i].SetActive(false);
         }
 
         // make CrystalGuy thrust forward
         pc.rb.velocity = Vector3.zero;
-        Debug.Log(facing);
         pc.rb.AddForce(facing * thrust);
 
         // flip our hitboxes if attack is in alt mode
@@ -82,23 +83,24 @@ public class Attack1 : PlayerAttack {
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-        if (currentHitboxIndex < numHitboxes && attackTimer >= hitboxTransitionMarkers[currentHitboxIndex])
+        while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
         {
-            if (currentHitboxIndex > 0)
-            {
-                hitboxes[currentHitboxIndex - 1].SetActive(false);
-            }
-            hitboxes[currentHitboxIndex].SetActive(true);
-            currentHitboxIndex++;
+            hitboxes[activateHitboxIndex].SetActive(true);
+            activateHitboxIndex++;
         }
-        
+
+        while (deactivateHitboxIndex < numHitboxes && attackTimer >= deactivateHitboxMoments[deactivateHitboxIndex])
+        {
+            hitboxes[deactivateHitboxIndex].SetActive(false);
+            deactivateHitboxIndex++;
+        }        
     }
 
     public override void Update()
 	{	
-		if (currentHitboxIndex < numHitboxes / 2)
+		if (attackTimer < cancellableHitboxTime)
 			return;
-        if (currentHitboxIndex == numHitboxes - 1 && Input.GetButton("Attack1") && pc.canAttack1())
+        if (activateHitboxIndex == numHitboxes - 1 && Input.GetButton("Attack1") && pc.canAttack1())
         {
             pc.stateEnded = true;
             pc.nextState = new Attack1(pc, !alt);

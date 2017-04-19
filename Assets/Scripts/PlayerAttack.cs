@@ -8,6 +8,8 @@ public abstract class PlayerAttack : PlayerState {
     protected float attackDuration;
     protected int counter;
     protected int donecount;
+    protected float cancellableHitboxTime;
+
     protected static string HITBOX_CONTAINER_TAG = "HitboxContainer";
 
     

@@ -1,6 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
-using System.Collections;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Health : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public class Health : MonoBehaviour
 	public bool damaged;                                               // True when the player gets damaged.
 	int numFlashes = 20;
 	int curFlashes;
+    HashSet<Transform> hitBy;
 
 	void Awake ()
 	{
@@ -24,6 +24,7 @@ public class Health : MonoBehaviour
 
 		// Set the initial health of the player.
 		currentHealth = startingHealth;
+        hitBy = new HashSet<Transform>();
 	}
 
 
@@ -51,6 +52,14 @@ public class Health : MonoBehaviour
         curFlashes++;
     }
 
+    public void TakeDamage (int amount, Transform attack)
+    {
+        if (!hitBy.Contains(attack))
+        {
+            TakeDamage(amount);
+            hitBy.Add(attack);
+        }
+    }
 
 	public void TakeDamage (int amount)
 	{

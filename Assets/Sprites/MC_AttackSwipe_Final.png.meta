@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 46f60b84010a646f990656e9ccd5d3a1
-timeCreated: 1492124102
+timeCreated: 1492640081
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -80,10 +80,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 2140
-        height: 2236
+        x: 61
+        y: 73
+        width: 2022
+        height: 2074
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -93,10 +93,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_1
       rect:
         serializedVersion: 2
-        x: 2140
-        y: 0
-        width: 2140
-        height: 2236
+        x: 2202
+        y: 90
+        width: 2022
+        height: 2074
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -106,10 +106,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_2
       rect:
         serializedVersion: 2
-        x: 4280
-        y: 0
-        width: 2140
-        height: 2236
+        x: 4352
+        y: 82
+        width: 2022
+        height: 2074
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,10 +119,10 @@ TextureImporter:
       name: MC_AttackSwipe_Final_3
       rect:
         serializedVersion: 2
-        x: 6420
-        y: 0
-        width: 2140
-        height: 2236
+        x: 6494
+        y: 81
+        width: 2029
+        height: 2074
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,12 +132,12 @@ TextureImporter:
       name: MC_AttackSwipe_Final_4
       rect:
         serializedVersion: 2
-        x: 8600
-        y: 0
-        width: 2100
-        height: 2236
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 8642
+        y: 88
+        width: 2037
+        height: 2074
+      alignment: 9
+      pivot: {x: 0.49612683, y: 0.501268}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -145,12 +145,12 @@ TextureImporter:
       name: MC_AttackSwipe_Final_5
       rect:
         serializedVersion: 2
-        x: 10734
-        y: 0
-        width: 2206
-        height: 2236
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 10779
+        y: 89
+        width: 2022
+        height: 2074
+      alignment: 9
+      pivot: {x: 0.540339, y: 0.48462903}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -158,12 +158,12 @@ TextureImporter:
       name: MC_AttackSwipe_Final_6
       rect:
         serializedVersion: 2
-        x: 12964
-        y: 0
-        width: 2055
-        height: 2236
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 12945
+        y: 90
+        width: 2022
+        height: 2074
+      alignment: 9
+      pivot: {x: 0.5450156, y: 0.48876694}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

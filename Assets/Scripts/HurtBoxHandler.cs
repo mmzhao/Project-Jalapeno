@@ -9,11 +9,20 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Collider))]
 public class HurtBoxHandler : MonoBehaviour {
-    public PlayerController pc;
+    private PlayerController pc;
+    private EnemyController ec;
+    public bool forEnemy;
 
     void Awake ()
     {
-        pc = transform.root.GetComponent<PlayerController>();
+        if (forEnemy)
+        {
+            ec = transform.root.GetComponent<EnemyController>();
+        }
+        else
+        {
+            pc = transform.root.GetComponent<PlayerController>();
+        }
         Collider col = gameObject.GetComponent<Collider>();
         col.isTrigger = true;
         Rigidbody rb = gameObject.GetComponent<Rigidbody>();
@@ -28,7 +37,13 @@ public class HurtBoxHandler : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        print("lol");
-        pc.getHit(gameObject, other);
+        if (!forEnemy)
+        {
+            pc.getHit(gameObject, other);
+        }
+        else
+        {
+            ec.getHit(gameObject, other);
+        }
     }
 }

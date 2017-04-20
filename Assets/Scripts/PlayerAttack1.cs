@@ -13,12 +13,15 @@ public class Attack1 : PlayerAttack {
 
     BoxCollider hitbox;
     GameObject[] hitboxes;
-    float[] hitboxTransitionMarkers = { 0f, .15f, .23f, .35f, .45f };
+    float[] activateHitboxMoments = { 0f, .15f, .23f, .23f, .50f }; // these mark the timestamp to move to the next hitbox
+    float[] deactivateHitboxMoments = { .15f, .23f, .5f, .5f, .65f };
 	Vector3 facing;
     int numHitboxes;
-    int currentHitboxIndex = 0;
+    int activateHitboxIndex = 0;
+    int deactivateHitboxIndex = 0;
     int damage;
-    
+    int thrust = 2000;
+    bool alt = false;
 
     // make a cube to show hitbox
     //	GameObject myCube;
@@ -29,12 +32,18 @@ public class Attack1 : PlayerAttack {
         pc = controller;
         counter = 0;
         donecount = 10;
-		facing = pc.playerToMouse;
+		facing = pc.playerToMouse.normalized;
 		pc.attack1Charges -= 1;
         attackDuration = 0.65f;
-        numHitboxes = hitboxTransitionMarkers.Length;
+        numHitboxes = activateHitboxMoments.Length;
         hitboxes = new GameObject[numHitboxes];
         damage = 30;
+        cancellableHitboxTime = .3f;
+    }
+
+    public Attack1(PlayerController controller, bool alt) : this(controller)
+    {
+        this.alt = alt;
     }
 
     public override PlayerStateIndex getPlayerStateIndex()
@@ -52,65 +61,50 @@ public class Attack1 : PlayerAttack {
         pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
 
         attack = (GameObject) GameObject.Instantiate(pc.ap1);
+        damage = attack.GetComponent<AttackVariables>().Damage();
         attack.transform.parent = pc.transform;
 		attack.transform.position = pc.transform.position + new Vector3(0, 2, 0);
 		attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
         Transform hitboxContainer = findHitboxesByTag(attack.transform);
         for (int i = 0; i < numHitboxes; i++)
         {
-            Debug.Log(i);
             hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-            
             hitboxes[i].SetActive(false);
         }
+
+        // make CrystalGuy thrust forward
+        pc.rb.velocity = Vector3.zero;
+        pc.rb.AddForce(facing * thrust);
+
+        // flip our hitboxes if attack is in alt mode
+        if (alt) attack.transform.Rotate(new Vector3(180, 0, 0));
     }
 
     public override void FixedUpdate()
     {
-        //		Debug.Log (Time.deltaTime);
-        //		Debug.Log (donecount + " " + counter);
         base.FixedUpdate();
-        if (currentHitboxIndex < numHitboxes && attackTimer >= hitboxTransitionMarkers[currentHitboxIndex])
+        while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
         {
-            if (currentHitboxIndex > 0)
-            {
-                hitboxes[currentHitboxIndex - 1].SetActive(false);
-            }
-            hitboxes[currentHitboxIndex].SetActive(true);
-            currentHitboxIndex++;
+            hitboxes[activateHitboxIndex].SetActive(true);
+            activateHitboxIndex++;
         }
-//        int hitboxIndex = 0;
-//		foreach (Transform hitbox in attack.transform) 
-//		{
-//			//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
-//			if (counter / (donecount / 5) == hitboxIndex) {
-//				//					Debug.Log (hitboxIndex + " True");
-//				hitbox.gameObject.SetActive (true);
-//				break;
-//			} else {
-//				//					Debug.Log (hitboxIndex + " False");
-//				hitbox.gameObject.SetActive (false);
-//			}
-//			hitboxIndex++;
-//		}
 
-//        counter += 1;
-//        if (counter >= donecount)
-//        {
-////			pc.nextState = new PlayerMovement.Idle (pc);
-//            pc.stateEnded = true;
-//        }
-        
+        while (deactivateHitboxIndex < numHitboxes && attackTimer >= deactivateHitboxMoments[deactivateHitboxIndex])
+        {
+            hitboxes[deactivateHitboxIndex].SetActive(false);
+            deactivateHitboxIndex++;
+        }        
     }
 
     public override void Update()
 	{	
-		if (currentHitboxIndex < numHitboxes / 2)
+		if (attackTimer < cancellableHitboxTime)
 			return;
-//		if (Input.GetButton ("Attack1") && pc.canAttack1 ()) 
-//		{
-//			pc.stateEnded = true;
-//		}
+        if (activateHitboxIndex == numHitboxes - 1 && Input.GetButton("Attack1") && pc.canAttack1())
+        {
+            pc.stateEnded = true;
+            pc.nextState = new Attack1(pc, !alt);
+        }
 		if (Input.GetButton ("Attack2") && pc.canAttack2 ()) 
 		{
 			pc.stateEnded = true;
@@ -125,38 +119,9 @@ public class Attack1 : PlayerAttack {
         return;
     }
 
-//	public override PlayerState HandleInput()
-//	{
-//		if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2")  && pc.canAttack2())))
-//		{
-//			if (Input.GetButton("Attack1") && pc.canAttack1())
-//			{
-//				return new Attack1(pc);
-//			}
-//			if (Input.GetButton("Attack2") && pc.canAttack2())
-//			{
-//				return new Attack2(pc);
-//			}
-//		}
-//		if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
-//		{
-//			if (Input.GetButton("Dash") && pc.canDash())
-//			{
-//				Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-//				return new PlayerMovement.Dash(pc, dir);
-//			}
-//			return new PlayerMovement.Running(pc);
-//		}
-//		return new PlayerMovement.Idle(pc);
-//	}
-
     // Destroy hitboxes
     public override void Exit()
     {
-//        GameObject.Destroy(hitbox);
-
-		// Destry the sphere
-		// GameObject.Destroy(myCube);
 		GameObject.Destroy(attack);
     }
    

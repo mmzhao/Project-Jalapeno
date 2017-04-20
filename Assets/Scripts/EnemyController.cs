@@ -98,19 +98,17 @@ public class EnemyController : MonoBehaviour {
         }
 	}
 
-	void OnTriggerEnter (Collider other)
-	{
-//		Debug.Log ("e");
-		//		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
-		if (other.gameObject.transform.parent.name.Length >= 9 &&
-		    other.gameObject.transform.parent.name.Substring(0, 8) == "MCAttack")
-		{
-            //			Debug.Log ("hit " + other.gameObject.name);
-            if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.GetComponent<AttackVariables>().Hit())
-            {
-                other.gameObject.transform.parent.GetComponent<AttackVariables>().ToggleHit();
-                this.transform.gameObject.GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
-            }
+
+    public void getHit(GameObject go, Collider other)
+    {
+        if (other.gameObject.transform.root.tag == "Player")
+        {
+            Health h = GetComponent<Health>();
+            Transform t = other.transform;
+            while (t.parent != t.root) t = t.parent;
+
+            int dmg = t.GetComponent<AttackVariables>().Damage();
+            h.TakeDamage(dmg, t);
         }
-	}
+    }
 }

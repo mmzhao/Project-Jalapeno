@@ -161,35 +161,15 @@ public class PlayerController : MonoBehaviour {
         currentState.FixedUpdate();
         rechargeMoves();
     }
-    /*
-	void OnTriggerEnter (Collider other)
-	{
-//		Debug.Log ("e");
-//		Debug.Log (other.gameObject.transform.parent.name.Substring(0, 11));
-//		Debug.Log(other.gameObject.transform.parent.name.Length);
-        if (currentState.playerState != PlayerStateIndex.SHIELD)
-        {
-            Debug.Log("hit " + other.gameObject.name);
-            if (other.gameObject.transform.parent.name.Length >= 10 &&
-                other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
-            {
-                //			Debug.Log ("hit " + other.gameObject.name);
-                GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(1);
-            }
 
-        }
-    }
-    */
     public void getHit (GameObject go, Collider other)
     {
         if (go.tag == "Shield")
         {
-            print("battleship sunk");
             shieldTime -= 1;
         }
         else
         {
-            Debug.Log("hit " + other.gameObject.name);
             if (other.gameObject.transform.parent.name.Length >= 10 &&
                 other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
             {

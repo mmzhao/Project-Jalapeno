@@ -1,16 +1,17 @@
 fileFormatVersion: 2
-guid: 46f60b84010a646f990656e9ccd5d3a1
-timeCreated: 1492640081
+guid: d6d7af3a93afc4d20acd22cf16abc296
+timeCreated: 1492643149
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: MC_AttackSwipe_Final_0
-    21300002: MC_AttackSwipe_Final_1
-    21300004: MC_AttackSwipe_Final_2
-    21300006: MC_AttackSwipe_Final_3
-    21300008: MC_AttackSwipe_Final_5
-    21300010: MC_AttackSwipe_Final_6
-    21300012: MC_AttackSwipe_Final_4
+    21300000: Enemy_Projectile_Final_0
+    21300002: Enemy_Projectile_Final_1
+    21300004: Enemy_Projectile_Final_2
+    21300006: Enemy_Projectile_Final_3
+    21300008: Enemy_Projectile_Final_4
+    21300010: Enemy_Projectile_Final_5
+    21300012: Enemy_Projectile_Final_6
+    21300014: Enemy_Projectile_Final_7
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -77,93 +78,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_0
+      name: Enemy_Projectile_Final_0
       rect:
         serializedVersion: 2
-        x: 61
-        y: 73
-        width: 2022
-        height: 2074
+        x: 25
+        y: 0
+        width: 294
+        height: 543
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_1
+      name: Enemy_Projectile_Final_1
       rect:
         serializedVersion: 2
-        x: 2202
-        y: 90
-        width: 2022
-        height: 2074
+        x: 322
+        y: 0
+        width: 325
+        height: 543
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_2
+      name: Enemy_Projectile_Final_2
       rect:
         serializedVersion: 2
-        x: 4352
-        y: 82
-        width: 2022
-        height: 2074
+        x: 661
+        y: 0
+        width: 325
+        height: 543
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_3
+      name: Enemy_Projectile_Final_3
       rect:
         serializedVersion: 2
-        x: 6494
-        y: 81
-        width: 2029
-        height: 2074
+        x: 1007
+        y: 0
+        width: 325
+        height: 543
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_4
+      name: Enemy_Projectile_Final_4
       rect:
         serializedVersion: 2
-        x: 8642
-        y: 88
-        width: 2037
-        height: 2074
-      alignment: 9
-      pivot: {x: 0.49612683, y: 0.501268}
+        x: 1356
+        y: 0
+        width: 325
+        height: 543
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_5
+      name: Enemy_Projectile_Final_5
       rect:
         serializedVersion: 2
-        x: 10779
-        y: 89
-        width: 2022
-        height: 2074
-      alignment: 9
-      pivot: {x: 0.540339, y: 0.48462903}
+        x: 1711
+        y: 0
+        width: 325
+        height: 543
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: MC_AttackSwipe_Final_6
+      name: Enemy_Projectile_Final_6
       rect:
         serializedVersion: 2
-        x: 12945
-        y: 90
-        width: 2022
-        height: 2074
-      alignment: 9
-      pivot: {x: 0.5450156, y: 0.48876694}
+        x: 2073
+        y: 0
+        width: 325
+        height: 543
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemy_Projectile_Final_7
+      rect:
+        serializedVersion: 2
+        x: 2455
+        y: 0
+        width: 325
+        height: 543
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour {
 
 	void Awake ()
 	{
-		maxSpeed = 80.0f;
+		maxSpeed = 50.0f;
 		targetRange = 50.0f;
 		attackRange = 20.0f;
 		hasLastPlayerPos = false;
@@ -97,6 +97,7 @@ public class EnemyController : MonoBehaviour {
             Destroy(this.gameObject);
         }
 	}
+
 
     public void getHit(GameObject go, Collider other)
     {

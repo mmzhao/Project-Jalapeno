@@ -5,9 +5,11 @@ using UnityEngine;
 public class AttackVariables : MonoBehaviour {
 
     public int damage;
+    bool hit;
 
 	// Use this for initialization
 	void Start () {
+        hit = false;
 	}
 	
 	// Update is called once per frame
@@ -19,4 +21,15 @@ public class AttackVariables : MonoBehaviour {
     {
         return damage;
     }
+
+    public bool Hit()
+    {
+        return hit;
+    }
+
+    public void ToggleHit()
+    {
+        hit = true;
+    }
+
 }

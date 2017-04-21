@@ -34,9 +34,11 @@ public class Shielding : PlayerState
 
     public override void FixedUpdate()
     {
+        Debug.Log(pc.shieldTime);
         if (!Input.GetButton("Shield") || pc.shieldTime <= 0)
         {
 			if (pc.shieldTime <= 0) {
+                Debug.Log("shield broken!");
 				pc.shieldBroken = true;
 			}
             pc.stateEnded = true;
@@ -45,7 +47,6 @@ public class Shielding : PlayerState
 
         base.FixedUpdate();
         pc.shieldTime -= Time.deltaTime;
-     
 
     }
 

@@ -1,13 +1,22 @@
 fileFormatVersion: 2
 guid: fba10b854472a2b47b4aa8c323f2d654
-timeCreated: 1492913353
+timeCreated: 1493158305
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Boss_SearchMode_0
+    21300002: Boss_SearchMode_1
+    21300004: Boss_SearchMode_2
+    21300006: Boss_SearchMode_3
+    21300008: Boss_SearchMode_4
+    21300010: Boss_SearchMode_5
+    21300012: Boss_SearchMode_6
+    21300014: Boss_SearchMode_7
+    21300016: Boss_SearchMode_8
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -30,11 +39,11 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapMode: -1
-  nPOTScale: 1
+    wrapMode: 1
+  nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 0
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -42,9 +51,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaUsage: 1
-  alphaIsTransparency: 0
+  alphaIsTransparency: 1
   spriteTessellationDetail: -1
-  textureType: 0
+  textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -58,9 +67,134 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Boss_SearchMode_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2325
+        width: 1536
+        height: 1961
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_1
+      rect:
+        serializedVersion: 2
+        x: 1807
+        y: 2325
+        width: 1536
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.50463945, y: 0.00000012449803}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_2
+      rect:
+        serializedVersion: 2
+        x: 3621
+        y: 2339
+        width: 1536
+        height: 1947
+      alignment: 9
+      pivot: {x: 0.5046393, y: 0.00000012539323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_3
+      rect:
+        serializedVersion: 2
+        x: 5442
+        y: 2325
+        width: 1536
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.5046396, y: 0.0036340973}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_4
+      rect:
+        serializedVersion: 2
+        x: 7258
+        y: 2325
+        width: 1522
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.50936395, y: 0.00000012449803}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1536
+        height: 1961
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_6
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 1536
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.5046393, y: 0.000000032422395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_7
+      rect:
+        serializedVersion: 2
+        x: 3628
+        y: 0
+        width: 1536
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.5046393, y: 0.000000032422395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Boss_SearchMode_8
+      rect:
+        serializedVersion: 2
+        x: 5435
+        y: 0
+        width: 1536
+        height: 1961
+      alignment: 9
+      pivot: {x: 0.5046396, y: 0.000000032422395}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

@@ -65,8 +65,9 @@ public class Attack2 : PlayerAttack {
 
 	public override void FixedUpdate()
 	{
-//        base.FixedUpdate();
+        //      base.FixedUpdate();
         //		Debug.Log (donecount + " " + counter);
+        
         int hitboxIndex = 0;
 		foreach (Transform hitbox in attack.transform) 
 		{

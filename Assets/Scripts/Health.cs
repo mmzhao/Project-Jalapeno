@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public int maxHealth = 100;
 	public int startingHealth = 100;
 	public int currentHealth;
 //	public Image damageImage;

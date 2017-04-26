@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour {
 	public float attackRange;
 	public NavMeshAgent navAgent { get; set; }
 	public GameObject ap;
+	public GameObject projectile;
     public Animator anim;
 
 	// render latch circle
@@ -26,12 +27,17 @@ public class EnemyController : MonoBehaviour {
 	public Vector3 lastPlayerPos;
 	public bool hasLastPlayerPos;
 
+	public float lastAttackTime;
+	public float attackRechargeTime;
+
 	void Awake ()
 	{
 		maxSpeed = 50.0f;
 		targetRange = 50.0f;
 		attackRange = 20.0f;
 		hasLastPlayerPos = false;
+		lastAttackTime = 0.0f;
+		attackRechargeTime = 1.0f;
 		//variable initializations
 		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
@@ -74,7 +80,10 @@ public class EnemyController : MonoBehaviour {
 
 	void FixedUpdate()
 	{
-
+		if (lastAttackTime > 0.0f) 
+		{
+			lastAttackTime -= Time.deltaTime;
+		}
 		//latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
 		//attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);

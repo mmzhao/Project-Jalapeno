@@ -78,7 +78,7 @@ public class EnemyMovement : MonoBehaviour {
 			if (player != null)
 			{
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
-				if (vecToPlayer.magnitude <= attackRange) 
+				if (vecToPlayer.magnitude <= attackRange && ec.lastAttackTime <= 0.0f) 
 				{
 					ec.nextState = new EnemyAttack.Attack(ec, vecToPlayer.normalized);
                 }

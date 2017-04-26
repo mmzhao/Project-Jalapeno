@@ -156,8 +156,7 @@ public class PlayerController : MonoBehaviour {
             nextState = null;
             currentState.Enter();
         }
-
-
+        
         currentState.FixedUpdate();
         rechargeMoves();
     }

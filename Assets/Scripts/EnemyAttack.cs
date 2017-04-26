@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour {
 		EnemyController ec;
 		Vector3 attackDir;
 		public float attackRange;
-		int donecount = 40;
+		int donecount = 5;
 		int counter;
 		GameObject attack;
 
@@ -20,41 +20,43 @@ public class EnemyAttack : MonoBehaviour {
 			attackDir = dir;
 			attackRange = enemyController.attackRange;
 			counter = 0;
+			ec.lastAttackTime = ec.attackRechargeTime;
 		}
 
 		public override void Enter()
 		{
-			attack = (GameObject) Instantiate(ec.ap);
-			attack.transform.position = ec.transform.position;
-			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (attackDir.z, attackDir.x) * 180f / Mathf.PI, 0);
-			foreach (Transform hitbox in attack.transform) 
-			{
-				hitbox.gameObject.SetActive (false);
-                hitbox.GetComponent<Collider>().isTrigger = false;
-			}
+			attack = (GameObject)Instantiate (ec.projectile);
+			attack.transform.position = ec.transform.position + attackDir.normalized*8;
+//			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (attackDir.z, attackDir.x) * 180f / Mathf.PI, 0);
+			attack.GetComponent<ProjectileController>().dir = attackDir;
+//			foreach (Transform hitbox in attack.transform) 
+//			{
+//				hitbox.gameObject.SetActive (false);
+//                hitbox.GetComponent<Collider>().isTrigger = false;
+//			}
 		}
 
 		public override void Exit()
 		{
-			Destroy(attack);
+//			Destroy(attack);
 		}
 
 		public override void FixedUpdate()
 		{
-			int hitboxIndex = 0;
-			foreach (Transform hitbox in attack.transform) 
-			{
-//				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
-				if (counter / (donecount / 5) == hitboxIndex) {
-//					Debug.Log (hitboxIndex + " True");
-					hitbox.gameObject.SetActive (true);
-				} else {
-//					Debug.Log (hitboxIndex + " False");
-					hitbox.gameObject.SetActive (false);
-				}
-				hitboxIndex++;
-			}
-
+//			int hitboxIndex = 0;
+//			foreach (Transform hitbox in attack.transform) 
+//			{
+////				Debug.Log (curMoves + " " + numMoves + " " + curMoves / (numMoves / 5));
+//				if (counter / (donecount / 5) == hitboxIndex) {
+////					Debug.Log (hitboxIndex + " True");
+//					hitbox.gameObject.SetActive (true);
+//				} else {
+////					Debug.Log (hitboxIndex + " False");
+//					hitbox.gameObject.SetActive (false);
+//				}
+//				hitboxIndex++;
+//			}
+//
 			counter++;
 			//			Debug.Log ("attack " + curMoves);
 //			GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);

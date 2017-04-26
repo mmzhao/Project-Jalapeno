@@ -20,6 +20,7 @@ public class Attack2 : PlayerAttack {
 	int activateHitboxIndex = 0;
 	int deactivateHitboxIndex = 0;
 	int damage;
+    int thrust;
 
 	// make a cube to show hitbox
 	//	GameObject myCube;
@@ -37,6 +38,7 @@ public class Attack2 : PlayerAttack {
 		hitboxes = new GameObject[numHitboxes];
 		damage = 30;
 		cancellableHitboxTime = .2f;
+        thrust = -2000;
 	}
 
 	public override PlayerStateIndex getPlayerStateIndex()
@@ -65,12 +67,16 @@ public class Attack2 : PlayerAttack {
 			hitboxes[i].SetActive(false);
 		}
 
-	}
+        // make CrystalGuy thrust backward
+        pc.rb.velocity = Vector3.zero;
+        pc.rb.AddForce(facing * thrust);
+
+    }
 
 	public override void FixedUpdate()
 	{
 		base.FixedUpdate();
-		while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
+        while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex]) 
 		{
 			hitboxes[activateHitboxIndex].SetActive(true);
 			activateHitboxIndex++;

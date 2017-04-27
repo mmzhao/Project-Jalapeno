@@ -13,7 +13,7 @@ public class ProjectileController : MonoBehaviour {
 	void Awake ()
 	{
 		speed = 3f;
-		donecount = 100;
+		donecount = 200;
 		counter = 0;
 	}
 

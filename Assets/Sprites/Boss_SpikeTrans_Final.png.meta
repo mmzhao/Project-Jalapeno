@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d2385fcecfa9e4d14bbabe84a9b56dba
-timeCreated: 1493164964
+timeCreated: 1493330537
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,12 +88,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_0
       rect:
         serializedVersion: 2
-        x: 63
+        x: 80
         y: 7335
-        width: 1976
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -101,12 +101,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_1
       rect:
         serializedVersion: 2
-        x: 2384
+        x: 2404
         y: 7335
-        width: 1976
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -114,12 +114,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_2
       rect:
         serializedVersion: 2
-        x: 4704
+        x: 4717
         y: 7335
-        width: 1976
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -127,12 +127,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_3
       rect:
         serializedVersion: 2
-        x: 7034
+        x: 7030
         y: 7335
-        width: 1952
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -140,12 +140,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_4
       rect:
         serializedVersion: 2
-        x: 68
-        y: 4908
-        width: 1976
+        x: 80
+        y: 4906
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -153,12 +153,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_5
       rect:
         serializedVersion: 2
-        x: 2390
-        y: 4904
-        width: 1976
+        x: 2400
+        y: 4902
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -166,12 +166,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_6
       rect:
         serializedVersion: 2
-        x: 4705
-        y: 4903
-        width: 1976
+        x: 4719
+        y: 4905
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -179,12 +179,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_7
       rect:
         serializedVersion: 2
-        x: 7003
-        y: 4883
-        width: 1976
+        x: 7016
+        y: 4881
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -192,12 +192,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_8
       rect:
         serializedVersion: 2
-        x: 68
-        y: 2507
-        width: 1976
+        x: 78
+        y: 2503
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -205,12 +205,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_9
       rect:
         serializedVersion: 2
-        x: 2385
+        x: 2399
         y: 2508
-        width: 1976
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -218,12 +218,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_10
       rect:
         serializedVersion: 2
-        x: 4705
-        y: 2504
-        width: 1976
+        x: 4721
+        y: 2503
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -231,12 +231,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_11
       rect:
         serializedVersion: 2
-        x: 7052
+        x: 7054
         y: 2503
-        width: 1934
+        width: 1932
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -244,12 +244,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_12
       rect:
         serializedVersion: 2
-        x: 96
-        y: 81
-        width: 1907
+        x: 76
+        y: 85
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -257,12 +257,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_13
       rect:
         serializedVersion: 2
-        x: 2379
-        y: 85
-        width: 1976
+        x: 2394
+        y: 86
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -270,12 +270,12 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_14
       rect:
         serializedVersion: 2
-        x: 4705
-        y: 93
-        width: 1976
+        x: 4717
+        y: 87
+        width: 1951
         height: 1941
-      alignment: 9
-      pivot: {x: 0.502, y: 0.498}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

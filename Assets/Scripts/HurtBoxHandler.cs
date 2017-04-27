@@ -17,7 +17,8 @@ public class HurtBoxHandler : MonoBehaviour {
     {
         if (forEnemy)
         {
-            ec = transform.root.GetComponent<EnemyController>();
+			ec = transform.parent.parent.GetComponent<EnemyController>();
+//			Debug.Log (transform.parent.parent);
         }
         else
         {
@@ -43,6 +44,7 @@ public class HurtBoxHandler : MonoBehaviour {
         }
         else
         {
+//			Debug.Log (ec);
             ec.getHit(gameObject, other);
         }
     }

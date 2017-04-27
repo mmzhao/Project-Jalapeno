@@ -81,6 +81,7 @@ public class EnemyController : MonoBehaviour {
 	void FixedUpdate()
 	{
 //		Debug.Log (currentState);
+		rb.velocity = Vector3.zero;
 		if (lastAttackTime > 0.0f) 
 		{
 			lastAttackTime -= Time.deltaTime;

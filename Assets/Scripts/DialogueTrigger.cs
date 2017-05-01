@@ -13,9 +13,14 @@ public class DialogueTrigger : MonoBehaviour {
     {
         if (!triggered)
         {
-            cd.gameObject.SetActive(true);
-            cd.UpdateDialogue();
-            triggered = true;
+            if (other.tag == "Player") activateDialogue();
         }
+    }
+
+    void activateDialogue()
+    {
+        cd.gameObject.SetActive(true);
+        cd.UpdateDialogue();
+        triggered = true;
     }
 }

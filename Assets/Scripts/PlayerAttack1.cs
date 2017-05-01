@@ -20,7 +20,8 @@ public class Attack1 : PlayerAttack {
     int activateHitboxIndex = 0;
     int deactivateHitboxIndex = 0;
     int damage;
-    int thrust = 2000;
+    int initialThrust = 2000;
+    int directionalInputThrust = 4000;
     bool alt = false;
 
     // make a cube to show hitbox
@@ -74,7 +75,7 @@ public class Attack1 : PlayerAttack {
 
         // make CrystalGuy thrust forward
         pc.rb.velocity = Vector3.zero;
-        pc.rb.AddForce(facing * thrust);
+        pc.rb.AddForce(facing * initialThrust + pc.movementInput.normalized * directionalInputThrust);
 
         // flip our hitboxes if attack is in alt mode
         if (alt) attack.transform.Rotate(new Vector3(180, 0, 0));

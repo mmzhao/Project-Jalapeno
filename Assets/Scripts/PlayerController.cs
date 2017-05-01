@@ -169,14 +169,16 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            if (other.gameObject.transform.parent.name.Length >= 10 &&
-                other.gameObject.transform.parent.name.Substring(0, 11) == "EnemyAttack")
+//			Debug.Log (other.gameObject.transform.root.name);
+//			Debug.Log (other.gameObject.transform.parent.name);
+//			Debug.Log (other.gameObject.transform.parent.parent.parent.name);
+			if (other.gameObject.transform.parent.parent.parent.name.Length >= 4 &&
+				other.gameObject.transform.parent.parent.parent.name.Substring(0, 5) == "Enemy")
             {
-                //			Debug.Log ("hit " + other.gameObject.name);
-                if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.GetComponent<AttackVariables>().Hit())
+				if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Hit())
                 {
-                    other.gameObject.transform.parent.GetComponent<AttackVariables>().ToggleHit();
-                    GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.GetComponent<AttackVariables>().Damage());
+					other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().ToggleHit();
+					GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Damage());
                 }
             }
         }

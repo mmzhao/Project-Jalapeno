@@ -50,7 +50,8 @@ public class EnemyAttack : MonoBehaviour {
 			for (int i = 0; i < numHitboxes; i++)
 			{
 				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-				hitboxes[i].SetActive(false);
+				Debug.Log (hitboxes [i]);
+//				hitboxes[i].SetActive(false);
 			}
 		}
 
@@ -76,17 +77,17 @@ public class EnemyAttack : MonoBehaviour {
 		{
 			//			base.FixedUpdate();
 			attackTimer += Time.deltaTime;
-			while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
-			{
-				hitboxes[activateHitboxIndex].SetActive(true);
-				activateHitboxIndex++;
-			}
-
-			while (deactivateHitboxIndex < numHitboxes && attackTimer >= deactivateHitboxMoments[deactivateHitboxIndex])
-			{
-				hitboxes[deactivateHitboxIndex].SetActive(false);
-				deactivateHitboxIndex++;
-			}     
+//			while (activateHitboxIndex < numHitboxes && attackTimer >= activateHitboxMoments[activateHitboxIndex])
+//			{
+//				hitboxes[activateHitboxIndex].SetActive(true);
+//				activateHitboxIndex++;
+//			}
+//
+//			while (deactivateHitboxIndex < numHitboxes && attackTimer >= deactivateHitboxMoments[deactivateHitboxIndex])
+//			{
+//				hitboxes[deactivateHitboxIndex].SetActive(false);
+//				deactivateHitboxIndex++;
+//			}     
 			if (attackTimer > attackDuration) 
 			{
 				attack.GetComponent<ProjectileController>().dir = facing;

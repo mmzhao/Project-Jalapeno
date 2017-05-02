@@ -30,9 +30,10 @@ public class Targeting : BossStates
         curSpeed = bc.maxSpeedMotion;
         playerOldPos = player.transform.position;
         playerCurrPos = player.transform.position;
+        bc.detectTime = 0;
         bc.facingTime = 0;
     }
-    public override void Enter() {; }
+    public override void Enter() {Debug.Log("Entering targeting for mode " + bc.mode); }
     public override void FixedUpdate()
     {
         // Find current position of player (this becomes the old position of the player at the end of FixedUpdate() as well).
@@ -41,12 +42,12 @@ public class Targeting : BossStates
         // Motion-Sensing Mode
         if (bc.mode == 0)
         {
+            bc.detected = SearchForTarget(0);
             if (bc.detectTime >= bc.detectLimit)
             {
                 bc.stateEnded = true;
                 bc.nextState = new Transitioning(bc);
             }
-            bc.detected = SearchForTarget(0);
             if (bc.detected)
             {
                 Vector3 vecToPlayer = playerCurrPos - bc.rb.position;
@@ -72,6 +73,7 @@ public class Targeting : BossStates
         // Searchlight Mode
         if (bc.mode == 1)
         {
+            Debug.Log("Searching for target (1)");
             bc.detected = SearchForTarget(1);
             if (bc.detected)
             {
@@ -81,6 +83,7 @@ public class Targeting : BossStates
             bc.facingTime += Time.deltaTime;
             if (bc.facingTime >= bc.facingLimit)
             {
+                Debug.Log("Calling RightAdjacent");
                 bc.facing = DirectionUtil.RightAdjacent(bc.facing);
                 bc.facingTime = 0;
             }
@@ -129,26 +132,37 @@ public class Targeting : BossStates
 
     public void Move(Vector3 d)
     {
-        Vector3 dif = (d - bc.transform.position).normalized * curSpeed * Time.deltaTime;
+        Vector3 dif = (d - bc.transform.position).normalized * curSpeed;
         bc.rb.MovePosition(bc.transform.position + dif);
     } 
 }
 
 public class Attacking : BossStates
 {
-    // Tells us how long the attack is supposed to last.
-    float attackDuration;
-    // Tells us how long the attack has lasted for.
-    float attackTimer;
-    // This is the attack's actual object.
-    GameObject spikeAttack;
+	GameObject[] hitboxes;
+	float[] activateHitboxMoments = { 0f }; // these mark the timestamp to move to the next hitbox
+	float[] deactivateHitboxMoments = { .5f};
+	Vector3 facing;
+	int numHitboxes;
+	int activateHitboxIndex = 0;
+	int deactivateHitboxIndex = 0;
+	int damage;
+	protected float attackDuration;
+	protected float attackTimer;
 
-    public Attacking(BossController mybc)
+	GameObject attack;
+
+	public Attacking(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
-        attackDuration = 0;
-        attackTimer = 0;
+		facing = (player.transform.position - bc.gameObject.transform.position).normalized;
+		facing.y = 0;
+		attackDuration = 0.5f;
+		attackTimer = 0;
+		numHitboxes = activateHitboxMoments.Length;
+		hitboxes = new GameObject[numHitboxes];
+		damage = 30;
     }
     public override void Enter()
     {
@@ -168,7 +182,7 @@ public class Attacking : BossStates
 
     public void Attack(int mode)
     {
-        if (mode ==0)
+        if (mode == 0)
         {
             // Motion-Sensing Mode currently has no attack.
         }
@@ -180,13 +194,26 @@ public class Attacking : BossStates
             // Instantiate spike attacks 2 at a time
             for (int i = 0; i < 10; i += 1)
             {
-                Debug.Log("attack!");
+//                Debug.Log("attack!");
                 //spikeAttack = (GameObject)GameObject.Instantiate(bc.attackObject);
                 //spikeAttack.transform.parent = bc.transform;
                 //// The constant factor we multiply the facing direction by should make the attack show up right in front of the boss.
                 //spikeAttack.transform.position = bc.transform.position + DirectionUtil.DirToVector(bc.facing).normalized * 2;
                 //spikeAttack.transform.localEulerAngles = new Vector3(0, -Mathf.Atan2(DirectionUtil.DirToVector(bc.facing).z, DirectionUtil.DirToVector(bc.facing).x) * 180f / Mathf.PI, 0);
             }
+			attack = (GameObject) GameObject.Instantiate(bc.projectile);
+			damage = attack.GetComponent<AttackVariables>().Damage();
+			attack.transform.parent = bc.transform;
+			attack.transform.position = bc.transform.position + new Vector3(0, 2, 0) + facing.normalized*8;
+			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
+//			Transform hitboxContainer = findHitboxesByTag(attack.transform);
+//			for (int i = 0; i < numHitboxes; i++)
+//			{
+//				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
+//				//				Debug.Log (hitboxes [i]);
+//				//				hitboxes[i].SetActive(false);
+//			}
+			attack.GetComponent<ProjectileController>().dir = facing;
         }
     }
 }
@@ -213,7 +240,8 @@ public class Transitioning : BossStates
         transitionSpawn = 0;
         hasSpawned = false;
     }
-    public override void Enter() {; } // Start transition animation here? 
+    public override void Enter() {
+        Debug.Log("Transitioning from " + bc.mode + " to " + (1-bc.mode)); } // Start transition animation here? 
 
     public override void FixedUpdate()
     {

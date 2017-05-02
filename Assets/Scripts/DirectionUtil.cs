@@ -13,7 +13,26 @@ public class DirectionUtil {
 
     public static Direction RightAdjacent(Direction d)
     {
-        return (Direction)(((int)d + 1) % 8);
+        switch (d)
+        {
+            case Direction.N:
+                return Direction.NE;
+            case Direction.NE:
+                return Direction.E;
+            case Direction.E:
+                return Direction.SE;
+            case Direction.SE:
+                return Direction.S;
+            case Direction.S:
+                return Direction.SW;
+            case Direction.SW:
+                return Direction.W;
+            case Direction.W:
+                return Direction.NW;
+            case Direction.NW:
+                return Direction.N;
+        }
+        return Direction.N;
     }
 
     // Calculates (vertical + 3 * horizontal); outputs the corresponding direction. Assumes not 0 (returns NW by default).

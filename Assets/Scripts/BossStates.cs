@@ -92,7 +92,7 @@ public class Targeting : BossStates
             facingTime += Time.deltaTime;
             if (facingTime >= facingLimit)
             {
-                facing = 
+                facing = DirectionUtil.RightAdjacent(facing);
             }
         }
 
@@ -119,7 +119,7 @@ public class Targeting : BossStates
         }
         else
         {
-            fa
+            return false;
         }
     }
 

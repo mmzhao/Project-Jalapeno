@@ -56,7 +56,7 @@ public class BossController : MonoBehaviour {
         facing = Direction.S;
         facingLimit = 2;
         facingTime = 0;
-        fieldOfView = 11.25f;
+        fieldOfView = 0.196f;
 
 
         GameObject rootParent = this.transform.gameObject;
@@ -85,7 +85,7 @@ public class BossController : MonoBehaviour {
     void Update() {; }
     void FixedUpdate()
     {
-		Debug.Log (currentState);
+//		Debug.Log (currentState);
         rb.velocity = Vector3.zero;
         currentState.FixedUpdate();
         if (nextState != null)
@@ -115,10 +115,11 @@ public class BossController : MonoBehaviour {
                 while (t.parent != t.root) t = t.parent;
 
                 int dmg = t.GetComponent<AttackVariables>().Damage();
-                h.TakeDamage(dmg, t);
+				h.TakeDamage(dmg, t);
+				Debug.Log("Get Hit");
+				stateEnded = true;
+				nextState = new Transitioning(this);
             }
-            stateEnded = true;
-            nextState = new Transitioning(this);
         }
     }
 

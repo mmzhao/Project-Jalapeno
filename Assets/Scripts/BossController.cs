@@ -14,7 +14,8 @@ public class BossController : MonoBehaviour {
     public Animator anim;
     
     // These variables manage movement.
-    public float maxSpeed; // Lets us set the maximum speed.
+    public float maxSpeedMotion; // Sets the maximum speed for Motion-Sensing mode.
+    public float maxSpeedSearch; // Sets the maximum speed for Searchlight mode.
 
     // These variables manage resets between modes.
     public int mode; // 0 = Motion-sensing; 1 = Searchlight. Keeps track of mode.
@@ -24,13 +25,17 @@ public class BossController : MonoBehaviour {
     public int speedScaling; // Sets how much faster the boss can move upon each reset.
 
     // These variables manage detection.
-    public float detectlimit; // Sets how long the player must be undetected for boss to switch to searchlight mode.
+    public float detectLimit; // Sets how long the player must be undetected for boss to switch to searchlight mode.
     public bool detected; // Indicates whether or not player has been detected.
     public float detectTime; // Keeps track of how long it has been since player was last detected (requires detected to be false).
 
+    // These variables manage searchlight.
+    public float facingLimit; // Length of time we face in any one direction.
+
     void Awake()
     {
-        maxSpeed = 35;
+        maxSpeedMotion = 35;
+        maxSpeedSearch = 35;
         mode = 0;
         numResets = 0;
         initialSpawn = 4;
@@ -56,7 +61,7 @@ public class BossController : MonoBehaviour {
     {
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionY;
-        currentState = new Moving(this);
+        currentState = new Targeting(this);
     }
 
     void Update() {; }

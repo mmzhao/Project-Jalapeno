@@ -18,6 +18,7 @@ public class BossController : MonoBehaviour {
     public float maxSpeedSearch; // Sets the maximum speed for Searchlight mode.
 
     // These variables manage resets between modes.
+    public GameObject enemyPrefab; // Enemy Prefab.
     public int mode; // 0 = Motion-sensing; 1 = Searchlight. Keeps track of mode.
     public int numResets; // Keeps track of the number of times the boss has reset to motion-sensing mode.
     public int initialSpawn; // Sets how many minons spawn the very first time. 
@@ -36,27 +37,31 @@ public class BossController : MonoBehaviour {
     public float fieldOfView; // Field of view in degrees from faced direction (ex. if you want to see a quarter of the map while facing NE, field of view = 45).
 	public GameObject attackObject; // The object with which we attack.
 	public GameObject projectile;
+    int hits;
+    public int transitionLimit;
 
     void Awake()
     {
         // Initialize movement variables.
-        maxSpeedMotion = 35;
-        maxSpeedSearch = 35;
+        maxSpeedMotion = 15;
+        maxSpeedSearch = 20;
         // Initialize reset variables.
         mode = 0;
         numResets = 0;
         initialSpawn = 4;
         minionScaling = 2;
-        speedScaling = 5;
+        speedScaling = 10;
         // Initialize detection variables.
         detectLimit = 3;
         detected = false;
         detectTime = 0;
         // Initialize searchlight variables.
         facing = Direction.S;
-        facingLimit = 2;
+        facingLimit = 0.5f;
         facingTime = 0;
-        fieldOfView = 0.196f;
+        fieldOfView = 0.79f;
+        hits = 0;
+        transitionLimit = 20;
 
 
         GameObject rootParent = this.transform.gameObject;
@@ -117,12 +122,26 @@ public class BossController : MonoBehaviour {
                 int dmg = t.GetComponent<AttackVariables>().Damage();
 				h.TakeDamage(dmg, t);
 				Debug.Log("Get Hit");
-				stateEnded = true;
-				nextState = new Transitioning(this);
+                hits += 1;
+                if (hits == transitionLimit)
+                {
+                    hits = 0;
+                    stateEnded = true;
+                    nextState = new Transitioning(this);
+                }
             }
         }
     }
 
     // Spawns numSpawn number of enemies near the boss.
-    public void SpawnEnemies(int numSpawn) {; }
+    public void SpawnEnemies(int numSpawn)
+    {
+        for (int i = 0 ; i < numSpawn / 2; i++)
+        {
+            GameObject enemy = (GameObject)GameObject.Instantiate(enemyPrefab);
+            enemy.transform.position = rb.transform.position + new Vector3(20*i, 0, 0);
+            GameObject enemy2 = (GameObject)GameObject.Instantiate(enemyPrefab);
+            enemy2.transform.position = rb.transform.position + new Vector3(-20 * i, 0, 0);
+        }
+    }
 }

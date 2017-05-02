@@ -132,7 +132,7 @@ public class Targeting : BossStates
 
     public void Move(Vector3 d)
     {
-        Vector3 dif = (d - bc.transform.position).normalized * curSpeed;
+        Vector3 dif = (d - bc.transform.position).normalized * curSpeed * Time.deltaTime;
         bc.rb.MovePosition(bc.transform.position + dif);
     } 
 }

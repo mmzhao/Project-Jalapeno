@@ -87,7 +87,7 @@ public class EnemyController : MonoBehaviour {
 	void FixedUpdate()
 	{
 //		Debug.Log (currentState);
-		if (hitstun > 0) {
+		if (hitstun > 0 && !dead) {
 			hitstun -= 1;
 			if (hitstun < maxHitstun-1)
 				rb.velocity = Vector3.zero;

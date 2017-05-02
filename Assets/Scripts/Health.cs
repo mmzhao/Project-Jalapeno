@@ -46,7 +46,7 @@ public class Health : MonoBehaviour
 			// ... transition the colour back to clear.
 //			damageImage.color = Color.Lerp (damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
 			SpriteRenderer sr = gameObject.GetComponentsInChildren<SpriteRenderer> ()[0];
-			sr.color = Color.white;
+			sr.color = new Color (1f, 1f, 1f, sr.color.a);
             damaged = false;
 		}
 

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: d2385fcecfa9e4d14bbabe84a9b56dba
-timeCreated: 1493330537
+timeCreated: 1493675633
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,6 +19,7 @@ TextureImporter:
     21300024: Boss_SpikeTrans_Final_12
     21300026: Boss_SpikeTrans_Final_13
     21300028: Boss_SpikeTrans_Final_14
+    21300030: Boss_SpikeTrans_Final_15
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -88,9 +89,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_0
       rect:
         serializedVersion: 2
-        x: 80
-        y: 7335
-        width: 1951
+        x: 0
+        y: 5827
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -101,9 +102,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_1
       rect:
         serializedVersion: 2
-        x: 2404
-        y: 7335
-        width: 1951
+        x: 1948
+        y: 5827
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -114,9 +115,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_2
       rect:
         serializedVersion: 2
-        x: 4717
-        y: 7335
-        width: 1951
+        x: 3896
+        y: 5827
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -127,9 +128,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_3
       rect:
         serializedVersion: 2
-        x: 7030
-        y: 7335
-        width: 1951
+        x: 5844
+        y: 5827
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -140,9 +141,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_4
       rect:
         serializedVersion: 2
-        x: 80
-        y: 4906
-        width: 1951
+        x: 0
+        y: 3886
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -153,9 +154,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_5
       rect:
         serializedVersion: 2
-        x: 2400
-        y: 4902
-        width: 1951
+        x: 1948
+        y: 3886
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -166,9 +167,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_6
       rect:
         serializedVersion: 2
-        x: 4719
-        y: 4905
-        width: 1951
+        x: 3896
+        y: 3886
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -179,9 +180,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_7
       rect:
         serializedVersion: 2
-        x: 7016
-        y: 4881
-        width: 1951
+        x: 5844
+        y: 3886
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -192,9 +193,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_8
       rect:
         serializedVersion: 2
-        x: 78
-        y: 2503
-        width: 1951
+        x: 0
+        y: 1945
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -205,9 +206,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_9
       rect:
         serializedVersion: 2
-        x: 2399
-        y: 2508
-        width: 1951
+        x: 1948
+        y: 1945
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -218,9 +219,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_10
       rect:
         serializedVersion: 2
-        x: 4721
-        y: 2503
-        width: 1951
+        x: 3896
+        y: 1945
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -231,9 +232,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_11
       rect:
         serializedVersion: 2
-        x: 7054
-        y: 2503
-        width: 1932
+        x: 5844
+        y: 1945
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -244,9 +245,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_12
       rect:
         serializedVersion: 2
-        x: 76
-        y: 85
-        width: 1951
+        x: 0
+        y: 4
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -257,9 +258,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_13
       rect:
         serializedVersion: 2
-        x: 2394
-        y: 86
-        width: 1951
+        x: 1948
+        y: 4
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -270,9 +271,9 @@ TextureImporter:
       name: Boss_SpikeTrans_Final_14
       rect:
         serializedVersion: 2
-        x: 4717
-        y: 87
-        width: 1951
+        x: 3896
+        y: 4
+        width: 1948
         height: 1941
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

@@ -18,6 +18,7 @@ public class BossController : MonoBehaviour {
     public float maxSpeedSearch; // Sets the maximum speed for Searchlight mode.
 
     // These variables manage resets between modes.
+    public GameObject enemyPrefab; // Enemy Prefab.
     public int mode; // 0 = Motion-sensing; 1 = Searchlight. Keeps track of mode.
     public int numResets; // Keeps track of the number of times the boss has reset to motion-sensing mode.
     public int initialSpawn; // Sets how many minons spawn the very first time. 
@@ -133,5 +134,14 @@ public class BossController : MonoBehaviour {
     }
 
     // Spawns numSpawn number of enemies near the boss.
-    public void SpawnEnemies(int numSpawn) {; }
+    public void SpawnEnemies(int numSpawn)
+    {
+        for (int i = 0 ; i < numSpawn / 2; i++)
+        {
+            GameObject enemy = (GameObject)GameObject.Instantiate(enemyPrefab);
+            enemy.transform.position = rb.transform.position + new Vector3(20*i, 0, 0);
+            GameObject enemy2 = (GameObject)GameObject.Instantiate(enemyPrefab);
+            enemy2.transform.position = rb.transform.position + new Vector3(-20 * i, 0, 0);
+        }
+    }
 }

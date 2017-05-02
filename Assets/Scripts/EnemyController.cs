@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour {
 		attackRechargeTime = 1.0f;
 		dead = false;
 		hitstun = 0;
-		maxHitstun = 30;
+		maxHitstun = 1;
 		//variable initializations
 		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
@@ -128,7 +128,6 @@ public class EnemyController : MonoBehaviour {
         }
 	}
 
-
     public void getHit(GameObject go, Collider other)
     {
         if (other.gameObject.transform.root.tag == "Player")
@@ -144,8 +143,7 @@ public class EnemyController : MonoBehaviour {
 			if (currentState is EnemyAttack.Attack && this.gameObject.transform.childCount > 2) {
 				Destroy (this.gameObject.transform.GetChild (this.gameObject.transform.childCount - 1).gameObject);
 			}
-			currentState = new EnemyMovement.Targeting (this);
-			hitstun = maxHitstun;
+			currentState = new EnemyStatusEffect.HitStun(this);
         }
     }
 }

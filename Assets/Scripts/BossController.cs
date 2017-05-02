@@ -52,7 +52,7 @@ public class BossController : MonoBehaviour {
         minionScaling = 2;
         speedScaling = 10;
         // Initialize detection variables.
-        detectLimit = 3;
+        detectLimit = 5;
         detected = false;
         detectTime = 0;
         // Initialize searchlight variables.

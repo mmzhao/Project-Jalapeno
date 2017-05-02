@@ -36,27 +36,31 @@ public class BossController : MonoBehaviour {
     public float fieldOfView; // Field of view in degrees from faced direction (ex. if you want to see a quarter of the map while facing NE, field of view = 45).
 	public GameObject attackObject; // The object with which we attack.
 	public GameObject projectile;
+    int hits;
+    public int transitionLimit;
 
     void Awake()
     {
         // Initialize movement variables.
-        maxSpeedMotion = 35;
-        maxSpeedSearch = 35;
+        maxSpeedMotion = 15;
+        maxSpeedSearch = 20;
         // Initialize reset variables.
         mode = 0;
         numResets = 0;
         initialSpawn = 4;
         minionScaling = 2;
-        speedScaling = 5;
+        speedScaling = 10;
         // Initialize detection variables.
         detectLimit = 3;
         detected = false;
         detectTime = 0;
         // Initialize searchlight variables.
         facing = Direction.S;
-        facingLimit = 2;
+        facingLimit = 0.5f;
         facingTime = 0;
-        fieldOfView = 0.196f;
+        fieldOfView = 0.79f;
+        hits = 0;
+        transitionLimit = 20;
 
 
         GameObject rootParent = this.transform.gameObject;
@@ -117,8 +121,13 @@ public class BossController : MonoBehaviour {
                 int dmg = t.GetComponent<AttackVariables>().Damage();
 				h.TakeDamage(dmg, t);
 				Debug.Log("Get Hit");
-				stateEnded = true;
-				nextState = new Transitioning(this);
+                hits += 1;
+                if (hits == transitionLimit)
+                {
+                    hits = 0;
+                    stateEnded = true;
+                    nextState = new Transitioning(this);
+                }
             }
         }
     }

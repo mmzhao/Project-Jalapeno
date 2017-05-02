@@ -50,7 +50,7 @@ public class EnemyAttack : MonoBehaviour {
 			for (int i = 0; i < numHitboxes; i++)
 			{
 				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-				Debug.Log (hitboxes [i]);
+//				Debug.Log (hitboxes [i]);
 //				hitboxes[i].SetActive(false);
 			}
 		}

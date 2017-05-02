@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour {
 	public GameObject ap;
 	public GameObject projectile;
     public Animator anim;
+	public bool dead;
 
 	// render latch circle
 	GameObject latchRadius;
@@ -38,6 +39,7 @@ public class EnemyController : MonoBehaviour {
 		hasLastPlayerPos = false;
 		lastAttackTime = 0.0f;
 		attackRechargeTime = 1.0f;
+		dead = false;
 		//variable initializations
 		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
@@ -102,10 +104,17 @@ public class EnemyController : MonoBehaviour {
 			currentState.Enter();
 		}
 
-        if (this.gameObject.GetComponent<Health>().currentHealth <= 0)
+		if (this.gameObject.GetComponent<Health>().currentHealth <= 0 && dead == false)
         {
-            currentState.Exit();
-            Destroy(this.gameObject);
+//            currentState.Exit();
+//            Destroy(this.gameObject);
+//			this.gameObject.GetComponent<Health>().currentHealth = 0;
+			dead = true;
+			for (int i = 1; i < this.gameObject.transform.childCount; i++) {
+				Destroy (this.gameObject.transform.GetChild(i).gameObject);
+			}
+			Destroy (this.gameObject.GetComponent<CapsuleCollider> ());
+			currentState = new EnemyMovement.Death(this);
         }
 	}
 

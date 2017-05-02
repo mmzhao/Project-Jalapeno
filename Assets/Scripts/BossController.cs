@@ -48,14 +48,14 @@ public class BossController : MonoBehaviour {
         minionScaling = 2;
         speedScaling = 5;
         // Initialize detection variables.
-        detectLimit = 10;
+        detectLimit = 3;
         detected = false;
         detectTime = 0;
         // Initialize searchlight variables.
         facing = Direction.S;
         facingLimit = 2;
         facingTime = 0;
-        fieldOfView = 11.25f;
+        fieldOfView = 0.196f;
 
 
         GameObject rootParent = this.transform.gameObject;
@@ -115,6 +115,7 @@ public class BossController : MonoBehaviour {
                 int dmg = t.GetComponent<AttackVariables>().Damage();
                 h.TakeDamage(dmg, t);
             }
+            Debug.Log("Get Hit");
             stateEnded = true;
             nextState = new Transitioning(this);
         }

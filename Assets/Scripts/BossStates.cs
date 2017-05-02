@@ -30,9 +30,10 @@ public class Targeting : BossStates
         curSpeed = bc.maxSpeedMotion;
         playerOldPos = player.transform.position;
         playerCurrPos = player.transform.position;
+        bc.detectTime = 0;
         bc.facingTime = 0;
     }
-    public override void Enter() {; }
+    public override void Enter() {Debug.Log("Entering targeting for mode " + bc.mode); }
     public override void FixedUpdate()
     {
         // Find current position of player (this becomes the old position of the player at the end of FixedUpdate() as well).
@@ -41,12 +42,12 @@ public class Targeting : BossStates
         // Motion-Sensing Mode
         if (bc.mode == 0)
         {
+            bc.detected = SearchForTarget(0);
             if (bc.detectTime >= bc.detectLimit)
             {
                 bc.stateEnded = true;
                 bc.nextState = new Transitioning(bc);
             }
-            bc.detected = SearchForTarget(0);
             if (bc.detected)
             {
                 Vector3 vecToPlayer = playerCurrPos - bc.rb.position;
@@ -72,6 +73,7 @@ public class Targeting : BossStates
         // Searchlight Mode
         if (bc.mode == 1)
         {
+            Debug.Log("Searching for target (1)");
             bc.detected = SearchForTarget(1);
             if (bc.detected)
             {
@@ -81,6 +83,7 @@ public class Targeting : BossStates
             bc.facingTime += Time.deltaTime;
             if (bc.facingTime >= bc.facingLimit)
             {
+                Debug.Log("Calling RightAdjacent");
                 bc.facing = DirectionUtil.RightAdjacent(bc.facing);
                 bc.facingTime = 0;
             }
@@ -129,7 +132,7 @@ public class Targeting : BossStates
 
     public void Move(Vector3 d)
     {
-        Vector3 dif = (d - bc.transform.position).normalized * curSpeed * Time.deltaTime;
+        Vector3 dif = (d - bc.transform.position).normalized * curSpeed;
         bc.rb.MovePosition(bc.transform.position + dif);
     } 
 }
@@ -213,7 +216,8 @@ public class Transitioning : BossStates
         transitionSpawn = 0;
         hasSpawned = false;
     }
-    public override void Enter() {; } // Start transition animation here? 
+    public override void Enter() {
+        Debug.Log("Transitioning from " + bc.mode + " to " + (1-bc.mode)); } // Start transition animation here? 
 
     public override void FixedUpdate()
     {

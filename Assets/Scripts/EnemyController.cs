@@ -104,7 +104,7 @@ public class EnemyController : MonoBehaviour {
 
 			//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
 			//		Debug.Log(currentState);
-			currentState.FixedUpdate();
+			currentState.FixedUpdate(); 
 			if (nextState != null) {
 				stateEnded = false;
 				currentState.Exit ();

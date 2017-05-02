@@ -244,6 +244,7 @@ public class Transitioning : BossStates
             if (bc.mode == 1)
             {
                 // Minion Spawning
+                bc.numResets += 1;
                 numSpawn = bc.initialSpawn + bc.minionScaling * bc.numResets;
                 bc.SpawnEnemies(numSpawn);
 

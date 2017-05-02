@@ -104,4 +104,42 @@ public class EnemyMovement : MonoBehaviour {
 
 
 	}
+
+	public class Death : EnemyState
+	{
+		EnemyController ec;
+
+
+		public Death(EnemyController enemyController)
+		{
+//			Debug.Log("ded");
+			this.ec = enemyController;
+		}
+
+		public override void Enter()
+		{
+
+		}
+
+		public override void Exit()
+		{
+//			Destroy (ec.gameObject);
+		}
+
+		public override void FixedUpdate()
+		{
+//			Debug.Log (ec.gameObject.transform.rotation.eulerAngles);
+			Quaternion change = Quaternion.Euler (0, 179 + ec.gameObject.transform.rotation.eulerAngles.y, 0);
+			ec.gameObject.transform.rotation = Quaternion.Slerp(ec.gameObject.transform.rotation, change, Time.deltaTime);
+
+			if (ec.gameObject.transform.rotation.eulerAngles.y > 340)
+				Destroy (ec.gameObject);
+		}
+
+		public override void Update()
+		{
+			//            navAgent.SetDestination(player.transform.position);
+		}
+
+	}
 }

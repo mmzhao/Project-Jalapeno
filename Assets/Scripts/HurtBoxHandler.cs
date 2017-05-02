@@ -42,8 +42,8 @@ public class HurtBoxHandler : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
 	{
-//		Debug.Log ("1 " + gameObject);
-//		Debug.Log ("2 " + other);
+		Debug.Log ("1 " + gameObject.transform.root.gameObject.name);
+		Debug.Log ("2 " + other.transform.root.gameObject.name);
         if (!(forEnemy || forBoss))
         {
             pc.getHit(gameObject, other);

@@ -150,8 +150,6 @@ public class Attacking : BossStates
 	protected float attackDuration;
 	protected float attackTimer;
 
-	GameObject attack;
-
 	public Attacking(BossController mybc)
     {
         bc = mybc;
@@ -190,30 +188,25 @@ public class Attacking : BossStates
         if (mode == 1)
         {
             // This is the angle difference between spikes
-            float angularDiff = 1.125f;
+            float angularDiff = 3f;
             // Instantiate spike attacks 2 at a time
-            for (int i = 0; i < 10; i += 1)
+            for (int i = 0; i < 17; i += 1)
             {
-//                Debug.Log("attack!");
-                //spikeAttack = (GameObject)GameObject.Instantiate(bc.attackObject);
-                //spikeAttack.transform.parent = bc.transform;
-                //// The constant factor we multiply the facing direction by should make the attack show up right in front of the boss.
-                //spikeAttack.transform.position = bc.transform.position + DirectionUtil.DirToVector(bc.facing).normalized * 2;
-                //spikeAttack.transform.localEulerAngles = new Vector3(0, -Mathf.Atan2(DirectionUtil.DirToVector(bc.facing).z, DirectionUtil.DirToVector(bc.facing).x) * 180f / Mathf.PI, 0);
-            }
-			attack = (GameObject) GameObject.Instantiate(bc.projectile);
-			damage = attack.GetComponent<AttackVariables>().Damage();
-			attack.transform.parent = bc.transform;
-			attack.transform.position = bc.transform.position + new Vector3(0, 2, 0) + facing.normalized*8;
-			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
-//			Transform hitboxContainer = findHitboxesByTag(attack.transform);
-//			for (int i = 0; i < numHitboxes; i++)
-//			{
-//				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
-//				//				Debug.Log (hitboxes [i]);
-//				//				hitboxes[i].SetActive(false);
-//			}
-			attack.GetComponent<ProjectileController>().dir = facing;
+				GameObject attack = (GameObject) GameObject.Instantiate(bc.projectile);
+				damage = attack.GetComponent<AttackVariables>().Damage();
+				attack.transform.parent = bc.transform;
+				attack.transform.position = bc.transform.position + new Vector3(0, 2, 0) + facing.normalized*8;
+				attack.transform.localEulerAngles = new Vector3 (90, 0, Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI-90+(i-8)*angularDiff);
+				//			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
+				//			Transform hitboxContainer = findHitboxesByTag(attack.transform);
+				//			for (int i = 0; i < numHitboxes; i++)
+				//			{
+				//				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
+				//				//				Debug.Log (hitboxes [i]);
+				//				//				hitboxes[i].SetActive(false);
+				//			}
+				attack.GetComponent<ProjectileController>().dir = (Quaternion.AngleAxis((8-i)*angularDiff , Vector3.up) * facing).normalized;
+			}
         }
     }
 }

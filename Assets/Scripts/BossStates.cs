@@ -54,7 +54,7 @@ public class Targeting : BossStates
                 int walllayer = 9; // fill in with the layer # of anything that obstructs enemy vision
                 if (!Physics.Raycast(bc.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
                 {
-                    Move(bc.rb.position);
+                    Move(playerCurrPos);
                     bc.anim.SetFloat("moveX", vecToPlayer.x);
                     bc.anim.SetFloat("moveZ", vecToPlayer.z);
                 }
@@ -250,8 +250,12 @@ public class Transitioning : BossStates
         {
             if (bc.mode == 1)
             {
+                // Minion Spawning
                 numSpawn = bc.initialSpawn + bc.minionScaling * bc.numResets;
                 bc.SpawnEnemies(numSpawn);
+
+                // Movespeed Increases
+                bc.maxSpeedMotion += bc.speedScaling;
             }
             hasSpawned = true;
         }

@@ -131,8 +131,14 @@ public class EnemyMovement : MonoBehaviour {
 //			Debug.Log (ec.gameObject.transform.rotation.eulerAngles);
 			Quaternion change = Quaternion.Euler (0, 179 + ec.gameObject.transform.rotation.eulerAngles.y, 0);
 			ec.gameObject.transform.rotation = Quaternion.Slerp(ec.gameObject.transform.rotation, change, Time.deltaTime);
+			ec.gameObject.GetComponentInChildren<SpriteRenderer> ().color = new Color(1f,1f,1f,ec.gameObject.GetComponentInChildren<SpriteRenderer> ().color.a*.9f);
+//			Color col = sr.color;
+//			col.a *= .7f;
+//			sr.color = col;
 
-			if (ec.gameObject.transform.rotation.eulerAngles.y > 340)
+//			Debug.Log (ec.gameObject.GetComponentInChildren<SpriteRenderer> ().color);
+
+			if (ec.gameObject.transform.rotation.eulerAngles.y > 300)
 				Destroy (ec.gameObject);
 		}
 

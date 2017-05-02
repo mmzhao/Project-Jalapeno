@@ -5,6 +5,10 @@ using UnityEngine;
 public class AttackVariables : MonoBehaviour {
 
     public int damage;
+    public float knockback;
+    public float hitstunTime;
+    public float stunTime;
+
     bool hit;
 
 	// Use this for initialization

@@ -136,19 +136,30 @@ public class Targeting : BossStates
 
 public class Attacking : BossStates
 {
-    // Tells us how long the attack is supposed to last.
-    float attackDuration;
-    // Tells us how long the attack has lasted for.
-    float attackTimer;
-    // This is the attack's actual object.
-    GameObject spikeAttack;
+	GameObject[] hitboxes;
+	float[] activateHitboxMoments = { 0f }; // these mark the timestamp to move to the next hitbox
+	float[] deactivateHitboxMoments = { .5f};
+	Vector3 facing;
+	int numHitboxes;
+	int activateHitboxIndex = 0;
+	int deactivateHitboxIndex = 0;
+	int damage;
+	protected float attackDuration;
+	protected float attackTimer;
 
-    public Attacking(BossController mybc)
+	GameObject attack;
+
+	public Attacking(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
-        attackDuration = 0;
-        attackTimer = 0;
+		facing = (player.transform.position - bc.gameObject.transform.position).normalized;
+		facing.y = 0;
+		attackDuration = 0.5f;
+		attackTimer = 0;
+		numHitboxes = activateHitboxMoments.Length;
+		hitboxes = new GameObject[numHitboxes];
+		damage = 30;
     }
     public override void Enter()
     {
@@ -168,7 +179,7 @@ public class Attacking : BossStates
 
     public void Attack(int mode)
     {
-        if (mode ==0)
+        if (mode == 0)
         {
             // Motion-Sensing Mode currently has no attack.
         }
@@ -180,13 +191,26 @@ public class Attacking : BossStates
             // Instantiate spike attacks 2 at a time
             for (int i = 0; i < 10; i += 1)
             {
-                Debug.Log("attack!");
+//                Debug.Log("attack!");
                 //spikeAttack = (GameObject)GameObject.Instantiate(bc.attackObject);
                 //spikeAttack.transform.parent = bc.transform;
                 //// The constant factor we multiply the facing direction by should make the attack show up right in front of the boss.
                 //spikeAttack.transform.position = bc.transform.position + DirectionUtil.DirToVector(bc.facing).normalized * 2;
                 //spikeAttack.transform.localEulerAngles = new Vector3(0, -Mathf.Atan2(DirectionUtil.DirToVector(bc.facing).z, DirectionUtil.DirToVector(bc.facing).x) * 180f / Mathf.PI, 0);
             }
+			attack = (GameObject) GameObject.Instantiate(bc.projectile);
+			damage = attack.GetComponent<AttackVariables>().Damage();
+			attack.transform.parent = bc.transform;
+			attack.transform.position = bc.transform.position + new Vector3(0, 2, 0) + facing.normalized*8;
+			attack.transform.localEulerAngles = new Vector3 (0, -Mathf.Atan2 (facing.z, facing.x) * 180f / Mathf.PI, 0);
+//			Transform hitboxContainer = findHitboxesByTag(attack.transform);
+//			for (int i = 0; i < numHitboxes; i++)
+//			{
+//				hitboxes[i] = hitboxContainer.GetChild(i).gameObject;
+//				//				Debug.Log (hitboxes [i]);
+//				//				hitboxes[i].SetActive(false);
+//			}
+			attack.GetComponent<ProjectileController>().dir = facing;
         }
     }
 }

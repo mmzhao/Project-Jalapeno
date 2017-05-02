@@ -34,7 +34,8 @@ public class BossController : MonoBehaviour {
     public float facingLimit; // Length of time we face in any one direction.
     public float facingTime; // Length of time we have been facing in given direction.
     public float fieldOfView; // Field of view in degrees from faced direction (ex. if you want to see a quarter of the map while facing NE, field of view = 45).
-    public GameObject attackObject; // The object with which we attack.
+	public GameObject attackObject; // The object with which we attack.
+	public GameObject projectile;
 
     void Awake()
     {
@@ -48,7 +49,7 @@ public class BossController : MonoBehaviour {
         minionScaling = 2;
         speedScaling = 5;
         // Initialize detection variables.
-        detectLimit = 10;
+        detectLimit = 3;
         detected = false;
         detectTime = 0;
         // Initialize searchlight variables.
@@ -84,6 +85,7 @@ public class BossController : MonoBehaviour {
     void Update() {; }
     void FixedUpdate()
     {
+		Debug.Log (currentState);
         rb.velocity = Vector3.zero;
         currentState.FixedUpdate();
         if (nextState != null)

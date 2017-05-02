@@ -6,12 +6,12 @@ public class DirectionUtil {
         return Mathf.Abs(from - to) * 45;
     }
 
-    public Direction LeftAdjacent(Direction d)
+    public static Direction LeftAdjacent(Direction d)
     {
         return (Direction)(((int)d - 1) % 8);
     }
 
-    public Direction RightAdjacent(Direction d)
+    public static Direction RightAdjacent(Direction d)
     {
         return (Direction)(((int)d + 1) % 8);
     }

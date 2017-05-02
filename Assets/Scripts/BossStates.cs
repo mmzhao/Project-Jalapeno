@@ -140,6 +140,8 @@ public class Attacking : BossStates
     float attackDuration;
     // Tells us how long the attack has lasted for.
     float attackTimer;
+    // This is the attack's actual object.
+    GameObject spikeAttack;
 
     public Attacking(BossController mybc)
     {
@@ -166,10 +168,26 @@ public class Attacking : BossStates
 
     public void Attack(int mode)
     {
-        // Motion-Sensing Mode currently has no attack so the mode parameter should go unused.
-
+        if (mode ==0)
+        {
+            // Motion-Sensing Mode currently has no attack.
+        }
         // INSERT ATTACK IN THE DIRECTION YOU ARE FACING.
-        Debug.Log("I should be attacking but I have no attack");
+        if (mode == 1)
+        {
+            // This is the angle difference between spikes
+            float angularDiff = 1.125f;
+            // Instantiate spike attacks 2 at a time
+            for (int i = 0; i < 10; i += 1)
+            {
+                Debug.Log("attack!");
+                //spikeAttack = (GameObject)GameObject.Instantiate(bc.attackObject);
+                //spikeAttack.transform.parent = bc.transform;
+                //// The constant factor we multiply the facing direction by should make the attack show up right in front of the boss.
+                //spikeAttack.transform.position = bc.transform.position + DirectionUtil.DirToVector(bc.facing).normalized * 2;
+                //spikeAttack.transform.localEulerAngles = new Vector3(0, -Mathf.Atan2(DirectionUtil.DirToVector(bc.facing).z, DirectionUtil.DirToVector(bc.facing).x) * 180f / Mathf.PI, 0);
+            }
+        }
     }
 }
 

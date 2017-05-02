@@ -11,7 +11,9 @@ using UnityEngine;
 public class HurtBoxHandler : MonoBehaviour {
     private PlayerController pc;
     private EnemyController ec;
+    private BossController bc;
     public bool forEnemy;
+    public bool forBoss;
 
     void Awake ()
     {
@@ -20,6 +22,8 @@ public class HurtBoxHandler : MonoBehaviour {
 			ec = transform.parent.parent.GetComponent<EnemyController>();
 //			Debug.Log (transform.parent.parent);
         }
+        if (forBoss)
+            bc = transform.parent.parent.GetComponent<BossController>();
         else
         {
             pc = transform.root.GetComponent<PlayerController>();
@@ -40,13 +44,18 @@ public class HurtBoxHandler : MonoBehaviour {
 	{
 //		Debug.Log ("1 " + gameObject);
 //		Debug.Log ("2 " + other);
-        if (!forEnemy)
+        if (!(forEnemy || forBoss))
         {
             pc.getHit(gameObject, other);
         }
         else
         {
 //			Debug.Log (ec);
+            if (forBoss)
+            {
+                bc.getHit(gameObject, other);
+                return;
+            }
             ec.getHit(gameObject, other);
         }
     }

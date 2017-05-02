@@ -23,25 +23,14 @@ public class Targeting : BossStates
     Vector3 playerOldPos;
     Vector3 playerCurrPos;
 
-    // SEARCHLIGHT MODE VARIABLES
-    // Direction we are facing.
-    Direction facing;
-    // Length of time we face in any one direction.
-    float facingLimit;
-    // Length of time we have been facing in given direction.
-    float facingTime;
-    // Field of view in degrees from faced direction (ex. if you want to see a quarter of the map while facing NE, field of view = 45).
-    float fieldOfView;
-
     public Targeting(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
-        curSpeed = 0;
+        curSpeed = bc.maxSpeedMotion;
         playerOldPos = player.transform.position;
         playerCurrPos = player.transform.position;
-        facingLimit = bc.facingLimit;
-        facingTime = 0;
+        bc.facingTime = 0;
     }
     public override void Enter() {; }
     public override void FixedUpdate()
@@ -89,10 +78,11 @@ public class Targeting : BossStates
                 bc.stateEnded = true;
                 bc.nextState = new Attacking(bc);
             }
-            facingTime += Time.deltaTime;
-            if (facingTime >= facingLimit)
+            bc.facingTime += Time.deltaTime;
+            if (bc.facingTime >= bc.facingLimit)
             {
-                facing = DirectionUtil.RightAdjacent(facing);
+                bc.facing = DirectionUtil.RightAdjacent(bc.facing);
+                bc.facingTime = 0;
             }
         }
 
@@ -117,63 +107,151 @@ public class Targeting : BossStates
                 return false;
             }
         }
+
+        // Seachlight Mode
         else
         {
+            Vector3 vecToPlayer = playerCurrPos - bc.rb.position;
+            float dp = Vector3.Dot(DirectionUtil.DirToVector(bc.facing), vecToPlayer.normalized);
+            float angle = Mathf.Acos(dp);
+            int walllayer = 9; // fill in with the layer # of anything that obstructs enemy vision
+            
+            if (angle <= bc.fieldOfView)
+            {
+                if (!Physics.Raycast(bc.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
+                {
+                    return true;
+                }
+            }
             return false;
         }
     }
 
-    public void Move(Vector3 d) {; } 
+    public void Move(Vector3 d)
+    {
+        Vector3 dif = (d - bc.transform.position).normalized * curSpeed * Time.deltaTime;
+        bc.rb.MovePosition(bc.transform.position + dif);
+    } 
 }
 
 public class Attacking : BossStates
 {
+    // Tells us how long the attack is supposed to last.
+    float attackDuration;
+    // Tells us how long the attack has lasted for.
+    float attackTimer;
+
     public Attacking(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
+        attackDuration = 0;
+        attackTimer = 0;
     }
-    public override void Enter() {; }
-    public override void FixedUpdate() {; }
+    public override void Enter()
+    {
+        Attack(bc.mode);
+    }
+    public override void FixedUpdate()
+    {
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= attackDuration)
+        {
+            bc.stateEnded = true;
+            bc.nextState = new Targeting(bc);
+        }
+    }
     public override void Update() {; }
     public override void Exit() {; }
 
-    public void Attack(int mode) {; }
+    public void Attack(int mode)
+    {
+        // Motion-Sensing Mode currently has no attack so the mode parameter should go unused.
+
+        // INSERT ATTACK IN THE DIRECTION YOU ARE FACING.
+        Debug.Log("I should be attacking but I have no attack");
+    }
 }
 
 public class Transitioning : BossStates
 {
     // numSpawn indicates how many new enemies to spawn when transitioning from Searchlight back to Motion-Sensing.
-    public int numSpawn; 
+    public int numSpawn;
+    // How long the transition animation should take.
+    float transitionDuration;
+    // How long the transition animation has taken.
+    float transitionTime;
+    // When we should trigger minion spawn.
+    float transitionSpawn;
+    bool hasSpawned;
+
     public Transitioning(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
         numSpawn = 0;
+        transitionDuration = 0;
+        transitionTime = 0;
+        transitionSpawn = 0;
+        hasSpawned = false;
     }
-    public override void Enter()
+    public override void Enter() {; } // Start transition animation here? 
+
+    public override void FixedUpdate()
     {
-        if (bc.mode == 1)
+        transitionTime += Time.deltaTime;
+        if (transitionTime >= transitionSpawn && !hasSpawned)
         {
-            numSpawn = bc.initialSpawn + bc.minionScaling * bc.numResets;
-            bc.SpawnEnemies(numSpawn);
+            if (bc.mode == 1)
+            {
+                numSpawn = bc.initialSpawn + bc.minionScaling * bc.numResets;
+                bc.SpawnEnemies(numSpawn);
+            }
+            hasSpawned = true;
         }
+        if (transitionTime >= transitionDuration)
+        {
+            bc.stateEnded = true;
+            bc.nextState = new Targeting(bc);
+            bc.mode = 1 - bc.mode;
+        }
+       
     }
-    public override void FixedUpdate() {; }
     public override void Update() {; }
     public override void Exit() {; }
 }
 
 public class Dying : BossStates
 {
+    // Dying animation length
+    float dieDuration;
+    // Dying animation timer
+    float dieTimer;
+
     public Dying(BossController mybc)
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    public override void Enter() {; }
-    public override void FixedUpdate() {; }
+    public override void Enter()
+    {
+        Die();
+    }
+    public override void FixedUpdate()
+    {
+        dieTimer += Time.deltaTime;
+        if (dieTimer >= dieDuration)
+        {
+            ; // Go to end screen
+        }
+    }
     public override void Update() {; }
     public override void Exit() {; }
+
+    // Die animation here
+    public void Die()
+    {
+        GameObject.Destroy(bc.gameObject);
+    }
 }
 

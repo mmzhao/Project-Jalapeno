@@ -21,6 +21,8 @@ public class EnemyController : MonoBehaviour {
 	public GameObject projectile;
     public Animator anim;
 	public bool dead;
+	public int hitstun;
+	public int maxHitstun;
 
 	// render latch circle
 	GameObject latchRadius;
@@ -34,12 +36,14 @@ public class EnemyController : MonoBehaviour {
 	void Awake ()
 	{
 		maxSpeed = 50.0f;
-		targetRange = 50.0f;
-		attackRange = 20.0f;
+		targetRange = 70.0f;
+		attackRange = 40.0f;
 		hasLastPlayerPos = false;
 		lastAttackTime = 0.0f;
 		attackRechargeTime = 1.0f;
 		dead = false;
+		hitstun = 0;
+		maxHitstun = 30;
 		//variable initializations
 		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
@@ -83,25 +87,31 @@ public class EnemyController : MonoBehaviour {
 	void FixedUpdate()
 	{
 //		Debug.Log (currentState);
-		rb.velocity = Vector3.zero;
-		if (lastAttackTime > 0.0f) 
-		{
-			lastAttackTime -= Time.deltaTime;
+		if (hitstun > 0 && !dead) {
+			hitstun -= 1;
+			if (hitstun < maxHitstun-1)
+				rb.velocity = Vector3.zero;
 		}
-		//latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
+		else{
+			rb.velocity = Vector3.zero;
+			if (lastAttackTime > 0.0f) 
+			{
+				lastAttackTime -= Time.deltaTime;
+			}
+			//latchRadius.transform.position = gameObject.transform.position + new Vector3(0, .2f, 0);
 
-		//attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
+			//attackRadius.transform.position = gameObject.transform.position + new Vector3(0, .4f, 0);
 
-		//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
-		//		Debug.Log(currentState);
-		currentState.FixedUpdate();
-		if (nextState != null)
-		{
-			stateEnded = false;
-			currentState.Exit();
-			currentState = nextState;
-			nextState = null;
-			currentState.Enter();
+			//		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
+			//		Debug.Log(currentState);
+			currentState.FixedUpdate();
+			if (nextState != null) {
+				stateEnded = false;
+				currentState.Exit ();
+				currentState = nextState;
+				nextState = null;
+				currentState.Enter ();
+			}
 		}
 
 		if (this.gameObject.GetComponent<Health>().currentHealth <= 0 && dead == false)
@@ -129,6 +139,13 @@ public class EnemyController : MonoBehaviour {
 
             int dmg = t.GetComponent<AttackVariables>().Damage();
             h.TakeDamage(dmg, t);
+
+			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * 200;
+			if (currentState is EnemyAttack.Attack && this.gameObject.transform.childCount > 2) {
+				Destroy (this.gameObject.transform.GetChild (this.gameObject.transform.childCount - 1).gameObject);
+			}
+			currentState = new EnemyMovement.Targeting (this);
+			hitstun = maxHitstun;
         }
     }
 }

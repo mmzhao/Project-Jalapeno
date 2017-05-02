@@ -78,7 +78,12 @@ public class EnemyMovement : MonoBehaviour {
 			if (player != null)
 			{
 				Vector3 vecToPlayer = player.transform.position - ec.rb.position;
-				if (vecToPlayer.magnitude <= attackRange && ec.lastAttackTime <= 0.0f) 
+                int walllayer = 9; // fill in with the layer # of anything that obstructs enemy vision
+                if (Physics.Raycast(ec.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
+                {
+                    vecToPlayer = new Vector3(attackRange + 1, 0, 0);
+                }
+                if (vecToPlayer.magnitude <= attackRange && ec.lastAttackTime <= 0.0f) 
 				{
 					ec.nextState = new EnemyAttack.Attack(ec, vecToPlayer.normalized);
                 }

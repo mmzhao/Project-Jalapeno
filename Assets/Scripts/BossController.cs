@@ -30,18 +30,33 @@ public class BossController : MonoBehaviour {
     public float detectTime; // Keeps track of how long it has been since player was last detected (requires detected to be false).
 
     // These variables manage searchlight.
+    public Direction facing; // Direction we are facing.
     public float facingLimit; // Length of time we face in any one direction.
+    public float facingTime; // Length of time we have been facing in given direction.
+    public float fieldOfView; // Field of view in degrees from faced direction (ex. if you want to see a quarter of the map while facing NE, field of view = 45).
 
     void Awake()
     {
+        // Initialize movement variables.
         maxSpeedMotion = 35;
         maxSpeedSearch = 35;
+        // Initialize reset variables.
         mode = 0;
         numResets = 0;
         initialSpawn = 4;
         minionScaling = 2;
         speedScaling = 5;
-  
+        // Initialize detection variables.
+        detectLimit = 2;
+        detected = false;
+        detectTime = 0;
+        // Initialize searchlight variables.
+        facing = Direction.S;
+        facingLimit = 2;
+        facingTime = 0;
+        fieldOfView = 11.25f;
+
+
         GameObject rootParent = this.transform.gameObject;
         if (rb == null)
         {
@@ -62,6 +77,7 @@ public class BossController : MonoBehaviour {
         rb.constraints = RigidbodyConstraints.FreezeRotation;
         rb.constraints = RigidbodyConstraints.FreezePositionY;
         currentState = new Targeting(this);
+        SpawnEnemies(initialSpawn);
     }
 
     void Update() {; }

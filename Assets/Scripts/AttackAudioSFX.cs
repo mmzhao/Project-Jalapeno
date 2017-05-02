@@ -21,12 +21,20 @@ public class AttackAudioSFX : MonoBehaviour {
 
     public void playRandomDefaultClip ()
     {
+        if (defaultSFX.Length == 0)
+        {
+            return;
+        }
         audioSource.clip = defaultSFX[Random.Range(0, defaultSFX.Length)];
         audioSource.Play();
     }
 
     public void playRandomOnHitClip ()
     {
+        if (onHitSFX.Length == 0)
+        {
+            return;
+        }
         audioSource.clip = onHitSFX[Random.Range(0, onHitSFX.Length)];
         audioSource.Play();
     }

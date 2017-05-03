@@ -40,10 +40,10 @@ public class BossController : MonoBehaviour {
     int hits;
     public int transitionLimit;
 
-    //stuff for what happens when the boss dies
-    public GameObject dialogueTriggerZone;
-    public GameObject dialoguePanel;
-
+    // dialogue stuff
+    public CutsceneDialogue iSeeYouCutsceneDialogue;
+    public CutsceneDialogue deathCutsceneDialogue;
+    public bool iSeeYouCutsceneDialogueHasPlayed { get; set; }
 
     void Awake()
     {
@@ -132,9 +132,7 @@ public class BossController : MonoBehaviour {
         }
         if (this.gameObject.GetComponent<Health>().currentHealth <= 0)
         {
-            currentState.Exit();
-            nextState = null;
-            currentState = new Dying(this);
+            nextState = new Dying(this);
         }
     }
 
@@ -148,9 +146,16 @@ public class BossController : MonoBehaviour {
                 Transform t = other.transform;
                 while (t.parent != t.root) t = t.parent;
 
-                int dmg = t.GetComponent<AttackVariables>().Damage();
-				h.TakeDamage(dmg, t);
-				Debug.Log("Get Hit");
+                AttackVariables av = t.GetComponent<AttackVariables>();
+                int dmg = av.Damage();
+                bool hit = h.TakeDamage(dmg, t);
+                if (hit)
+                {
+                    av.audioSFX.playRandomOnHitClip(); // handle sounds
+                    PlayerController pc = t.root.gameObject.GetComponent<PlayerController>();
+                    if (pc != null) pc.addRage(av.rageGain);
+                }
+                Debug.Log("Get Hit");
                 hits += 1;
                 if (hits == transitionLimit)
                 {
@@ -158,6 +163,8 @@ public class BossController : MonoBehaviour {
                     stateEnded = true;
                     nextState = new Transitioning(this);
                 }
+
+
             }
         }
     }

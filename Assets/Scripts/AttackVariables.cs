@@ -9,6 +9,7 @@ public class AttackVariables : MonoBehaviour {
     public float hitstunTime;
     public float stunTime;
     public AttackAudioSFX audioSFX;
+    public int rageGain;
 
     bool hit;
 

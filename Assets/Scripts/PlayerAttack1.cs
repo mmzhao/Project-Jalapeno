@@ -34,7 +34,7 @@ public class Attack1 : PlayerAttack {
         counter = 0;
         donecount = 10;
 		facing = pc.playerToMouse.normalized;
-		pc.attack1Charges -= 1;
+        //pc.attack1Charges -= 1;
         attackDuration = 0.65f;
         numHitboxes = activateHitboxMoments.Length;
         hitboxes = new GameObject[numHitboxes];

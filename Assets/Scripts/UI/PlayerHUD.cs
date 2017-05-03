@@ -5,18 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerHUD : MonoBehaviour {
 
+    public PlayerController pc;
+
     // Health variables
     public Health healthScript;
     public Slider healthBar;
     public Text healthText;
 
     // Shield variables
-    public PlayerController pc;
     public Slider shieldBar;
     public Text shieldText;
 
-
-
+    // Rage variables
+    public Slider rageBar;
+    public Text rageText;
 
 
     // Use this for initialization
@@ -31,8 +33,8 @@ public class PlayerHUD : MonoBehaviour {
     void Update () {
         UpdateHealth();
         UpdateShield();
-
-	}
+        UpdateRage();
+    }
 
     void UpdateHealth ()
     {
@@ -54,5 +56,16 @@ public class PlayerHUD : MonoBehaviour {
         shieldBar.value = currentShield;
 
         shieldText.text = currentShield + "/" + maxShield;
+    }
+
+    void UpdateRage()
+    {
+        int maxRage = (int)pc.maxRage;
+        int currentRage = (int)pc.currentRage;
+
+        rageBar.maxValue = maxRage;
+        rageBar.value = currentRage;
+
+        rageText.text = currentRage + "/" + maxRage;
     }
 }

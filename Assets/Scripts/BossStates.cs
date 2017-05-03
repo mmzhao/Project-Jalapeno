@@ -51,6 +51,14 @@ public class Targeting : BossStates
             if (bc.detected)
             {
                 Vector3 vecToPlayer = playerCurrPos - bc.rb.position;
+
+                if (!bc.iSeeYouCutsceneDialogueHasPlayed && vecToPlayer.magnitude <= 50)
+                {
+                    bc.iSeeYouCutsceneDialogueHasPlayed = true;
+                    bc.iSeeYouCutsceneDialogue.gameObject.SetActive(true);
+                    bc.iSeeYouCutsceneDialogue.UpdateDialogue();
+                }
+                
                 int walllayer = 9; // fill in with the layer # of anything that obstructs enemy vision
                 if (!Physics.Raycast(bc.rb.position, vecToPlayer, vecToPlayer.magnitude, (1 << walllayer)))
                 {
@@ -74,19 +82,20 @@ public class Targeting : BossStates
         if (bc.mode == 1)
         {
             Debug.Log("Searching for target (1)");
-            bc.detected = SearchForTarget(1);
-            if (bc.detected)
-            {
-                bc.stateEnded = true;
-                bc.nextState = new Attacking(bc);
-            }
-            bc.facingTime += Time.deltaTime;
-            if (bc.facingTime >= bc.facingLimit)
-            {
-                Debug.Log("Calling RightAdjacent");
-                bc.facing = DirectionUtil.RightAdjacent(bc.facing);
-                bc.facingTime = 0;
-            }
+            //uncomment this all when we have it working
+            //bc.detected = SearchForTarget(1);
+            //if (bc.detected)
+            //{
+            //    bc.stateEnded = true;
+            //    bc.nextState = new Attacking(bc);
+            //}
+            //bc.facingTime += Time.deltaTime;
+            //if (bc.facingTime >= bc.facingLimit)
+            //{
+            //    Debug.Log("Calling RightAdjacent");
+            //    bc.facing = DirectionUtil.RightAdjacent(bc.facing);
+            //    bc.facingTime = 0;
+            //}
         }
 
         // Current position becomes old position
@@ -166,6 +175,7 @@ public class Attacking : BossStates
     public override void Enter()
     {
         Attack(bc.mode);
+        Debug.Log("attacking");
     }
     public override void FixedUpdate()
     {
@@ -281,14 +291,28 @@ public class Dying : BossStates
     public override void Enter()
     {
         Die();
+        foreach(EnemyController ec in GameObject.FindObjectsOfType<EnemyController>())
+        {
+            ec.formallyKillThis();
+        }
     }
     public override void FixedUpdate()
     {
-        dieTimer += Time.deltaTime;
-        if (dieTimer >= dieDuration)
-        {
-            ; // Go to end screen
-        }
+        Quaternion change = Quaternion.Euler(0, 179 + bc.gameObject.transform.rotation.eulerAngles.y, 0);
+        bc.gameObject.transform.rotation = Quaternion.Slerp(bc.gameObject.transform.rotation, change, Time.deltaTime);
+        bc.gameObject.GetComponentInChildren<SpriteRenderer>().color = new Color(1f, 1f, 1f, bc.gameObject.GetComponentInChildren<SpriteRenderer>().color.a * .9f);
+        //			Color col = sr.color;
+        //			col.a *= .7f;
+        //			sr.color = col;
+
+        //			Debug.Log (ec.gameObject.GetComponentInChildren<SpriteRenderer> ().color);
+
+        if (bc.gameObject.transform.rotation.eulerAngles.y > 200) LoadOnClick.StaticLoadSceneByName("Credits");
+        //dieTimer += Time.deltaTime;
+        //if (dieTimer >= dieDuration)
+        //{
+            
+        //}
     }
     public override void Update() {; }
     public override void Exit() {; }
@@ -296,9 +320,10 @@ public class Dying : BossStates
     // Die animation here
     public void Die()
     {
-
-        GameObject dt = (GameObject)GameObject.Instantiate(bc.dialogueTriggerZone, GameObject.FindGameObjectsWithTag("Player")[0].transform, true);
-        GameObject.Destroy(bc.gameObject);
+        bc.deathCutsceneDialogue.gameObject.SetActive(true);
+        bc.deathCutsceneDialogue.UpdateDialogue();
     }
+
+
 }
 

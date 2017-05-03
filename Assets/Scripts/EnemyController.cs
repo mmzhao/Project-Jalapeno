@@ -137,10 +137,23 @@ public class EnemyController : MonoBehaviour {
             int dmg = av.Damage();
             bool hit = h.TakeDamage(dmg, t);
 
-            if (hit) av.audioSFX.playRandomOnHitClip(); // handle sounds
+            if (hit)
+            {
+                av.audioSFX.playRandomOnHitClip(); // handle sounds
+                PlayerController pc = t.root.gameObject.GetComponent<PlayerController>();
+                if (pc != null) pc.addRage(av.rageGain);
+            }
+            
+
+            
 
 			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * av.knockback;
             if (!dead) nextState = new EnemyStatusEffect.HitStun(this, av.hitstunTime);
         }
+    }
+
+    public void formallyKillThis()
+    {
+        nextState = new EnemyMovement.Death(this);
     }
 }

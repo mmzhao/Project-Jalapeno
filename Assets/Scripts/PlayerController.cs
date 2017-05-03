@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(PlayerMovement))]
+[RequireComponent(typeof(Health))]
 public class PlayerController : MonoBehaviour {
 
     public PlayerState currentState;
@@ -20,9 +21,17 @@ public class PlayerController : MonoBehaviour {
 
     public GameObject hurtBoxes;
 
+    public Health healthManager;
+
 	//	Attack prefabs
 	public GameObject ap1;
     public GameObject ap2;
+
+    // Rage parameters
+    public int baseRage; // resting amount of rage
+    public float maxRage;
+    public float currentRage;
+    public float rageChargeRate;
 
     //attack parameters
     public float attack1Charges { get; set; }
@@ -56,6 +65,8 @@ public class PlayerController : MonoBehaviour {
         if (maxAttack2Charges == 0) maxAttack2Charges = 5;
         if (maxDashCharges == 0) maxDashCharges = 5;
         if (maxShieldTime == 0) maxShieldTime = 5; // in seconds  
+        if (baseRage == 0) baseRage = 10;
+        if (maxRage == 0) maxRage = 30; // in seconds  
 
         attack1Charges = maxAttack1Charges;
 		attack2Charges = maxAttack2Charges;
@@ -90,6 +101,10 @@ public class PlayerController : MonoBehaviour {
             }
             hurtBoxes = hurtTransform.gameObject;
         }
+        if(healthManager == null)
+        {
+            healthManager = GetComponent<Health>();
+        }
         
     }
 
@@ -103,8 +118,9 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
-//		Debug.Log (text.text);
+        if (Input.GetButtonDown("Heal")) Heal();
+        //text.text = "Attack1 Charges: " + (int) attack1Charges + " " + "Attack2 Charges: " + (int) attack2Charges + " " + "Dash Charges: " + (int) dashCharges;
+        //		Debug.Log (text.text);
 
         //register all the inputs that need to be dynamically tracked
         //movement key inputs
@@ -136,18 +152,18 @@ public class PlayerController : MonoBehaviour {
         if (this.GetComponent<Health>().currentHealth <= 0)
         {
             this.currentState.Exit();
-            Destroy(this.gameObject);
+            LoadOnClick.StaticLoadSceneByName("TestLv1");
         }
 
     }
 
     void FixedUpdate()
     {
-//		Debug.Log (currentState);
+        //		Debug.Log (currentState);
         //		Debug.Log(GameObject.FindGameObjectWithTag ("Player").GetComponent<Health>().currentHealth);
         //		GameObject.FindGameObjectWithTag ("Player").GetComponent<Health> ().TakeDamage (1);
-		//rb.velocity = Vector3.zero;
-	
+        //rb.velocity = Vector3.zero;
+        
         if (nextState != null)
         {
             stateEnded = false;
@@ -161,6 +177,16 @@ public class PlayerController : MonoBehaviour {
         rechargeMoves();
     }
 
+    public void Heal ()
+    {
+        if (canHeal())
+        {
+            currentRage -= 15;
+            healthManager.currentHealth += 50;
+            healthManager.currentHealth = Mathf.Min(healthManager.currentHealth, healthManager.maxHealth);
+        }
+    }
+
     public void getHit (GameObject go, Collider other)
     {
         if (go.tag == "Shield")
@@ -172,23 +198,42 @@ public class PlayerController : MonoBehaviour {
 			if ((other.gameObject.transform.root.name.Length >= 5 &&
 				other.gameObject.transform.root.name.Substring(0, 5) == "Enemy") || other.gameObject.transform.root.tag == "Enemy")
             {
-				if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Hit())
+				if (!healthManager.damaged && !other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Hit())
                 {
 					other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().ToggleHit();
-					GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().TakeDamage(other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Damage());
+                    healthManager.TakeDamage(other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Damage());
                 }
             }
         }
     }
 
-	public bool canAttack1()
+    public bool canHeal()
+    {
+        return currentRage >= 15 && healthManager.currentHealth < healthManager.maxHealth;
+    }
+
+    public void addRage(int rageAmount)
+    {
+        currentRage += rageAmount;
+        currentRage = Mathf.Min(currentRage, maxRage);
+    }
+
+    public void addRage(float rageAmount)
+    {
+        currentRage += rageAmount;
+        currentRage = Mathf.Min(currentRage, maxRage);
+    }
+
+    public bool canAttack1()
 	{
-		return attack1Charges >= 1;
+        //return attack1Charges >= 1;
+        return true;
 	}
 
 	public bool canAttack2()
 	{
-		return attack2Charges >= 1;
+        //return attack2Charges >= 1;
+        return true;
 	}
 
 	public bool canDash()
@@ -215,24 +260,24 @@ public class PlayerController : MonoBehaviour {
                 shieldTime += Time.deltaTime * shieldChargeRate;
             }
         }
-        if (attack1Charges < maxAttack1Charges)
-        {
-            attack1Charges += Time.deltaTime * attack1ChargeRate;
-			if (attack1Charges > maxAttack1Charges)
-				attack1Charges = maxAttack1Charges;
-        }
-        if (attack2Charges < maxAttack2Charges)
-        {
-            attack2Charges += Time.deltaTime * attack2ChargeRate;
-			if (attack2Charges > maxAttack2Charges)
-				attack2Charges = maxAttack2Charges;
-        }
+        //     if (attack1Charges < maxAttack1Charges)
+        //     {
+        //         attack1Charges += Time.deltaTime * attack1ChargeRate;
+        //if (attack1Charges > maxAttack1Charges)
+        //	attack1Charges = maxAttack1Charges;
+        //     }
+        //     if (attack2Charges < maxAttack2Charges)
+        //     {
+        //         attack2Charges += Time.deltaTime * attack2ChargeRate;
+        //if (attack2Charges > maxAttack2Charges)
+        //	attack2Charges = maxAttack2Charges;
+        //     }
         if (dashCharges < maxDashCharges)
         {
-            dashCharges += Time.deltaTime * dashChargeRate;
-			if (dashCharges > maxDashCharges)
-				dashCharges = maxDashCharges;
+             dashCharges += Time.deltaTime * dashChargeRate;
+             if (dashCharges > maxDashCharges) dashCharges = maxDashCharges;
         }
+        addRage(rageChargeRate * Time.deltaTime);
     }
 
 }

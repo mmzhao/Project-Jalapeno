@@ -43,7 +43,7 @@ public class EnemyController : MonoBehaviour {
 		attackRechargeTime = 1.0f;
 		dead = false;
 		hitstun = 0;
-		maxHitstun = 1;
+		maxHitstun = 2;
 		//variable initializations
 		GameObject rootParent = this.transform.gameObject;
 		if (rb == null)
@@ -139,8 +139,8 @@ public class EnemyController : MonoBehaviour {
 
             if (hit) av.audioSFX.playRandomOnHitClip(); // handle sounds
 
-			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * 200;
-            if (!dead) nextState = new EnemyStatusEffect.HitStun(this);
+			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * av.knockback;
+            if (!dead) nextState = new EnemyStatusEffect.HitStun(this, av.hitstunTime);
         }
     }
 }

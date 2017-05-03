@@ -21,9 +21,8 @@ public class Shielding : PlayerState
         pc.anim.SetFloat("p2mZ", pc.playerToMouse.z);
         pc.anim.SetFloat("velocityX", pc.playerToMouse.x);
         pc.anim.SetFloat("velocityZ", pc.playerToMouse.z);
-
-        playerShield.SetActive(true);
         defaultHurtBox.SetActive(false);
+        playerShield.SetActive(true);
     }
 
     public override void Exit()
@@ -34,6 +33,7 @@ public class Shielding : PlayerState
 
     public override void FixedUpdate()
     {
+        if (!playerShield.activeSelf) playerShield.SetActive(true);
         if (!Input.GetButton("Shield") || pc.shieldTime <= 0)
         {
 			if (pc.shieldTime <= 0) {

@@ -169,7 +169,6 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-            print(other.gameObject.transform.root.tag);
 			if ((other.gameObject.transform.root.name.Length >= 5 &&
 				other.gameObject.transform.root.name.Substring(0, 5) == "Enemy") || other.gameObject.transform.root.tag == "Enemy")
             {

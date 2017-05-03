@@ -295,6 +295,8 @@ public class Dying : BossStates
     // Die animation here
     public void Die()
     {
+
+        GameObject dt = (GameObject)GameObject.Instantiate(bc.dialogueTriggerZone, GameObject.FindGameObjectsWithTag("Player")[0].transform, true);
         GameObject.Destroy(bc.gameObject);
     }
 }

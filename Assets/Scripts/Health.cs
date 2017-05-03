@@ -53,13 +53,15 @@ public class Health : MonoBehaviour
         curFlashes++;
     }
 
-    public void TakeDamage (int amount, Transform attack)
+    public bool TakeDamage (int amount, Transform attack)
     {
         if (!hitBy.Contains(attack))
         {
             TakeDamage(amount);
             hitBy.Add(attack);
+            return true;
         }
+        return false;
     }
 
 	public void TakeDamage (int amount)

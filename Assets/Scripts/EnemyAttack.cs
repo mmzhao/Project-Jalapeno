@@ -46,6 +46,7 @@ public class EnemyAttack : MonoBehaviour {
 		// Destroy hitboxes
 		public override void Exit()
 		{
+            if (!attackLaunched) Destroy(attack);
 		}
 
 		public override void FixedUpdate()

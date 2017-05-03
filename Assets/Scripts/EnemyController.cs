@@ -116,15 +116,12 @@ public class EnemyController : MonoBehaviour {
 
 		if (this.gameObject.GetComponent<Health>().currentHealth <= 0 && dead == false)
         {
-//            currentState.Exit();
-//            Destroy(this.gameObject);
-//			this.gameObject.GetComponent<Health>().currentHealth = 0;
 			dead = true;
 			for (int i = 1; i < this.gameObject.transform.childCount; i++) {
 				Destroy (this.gameObject.transform.GetChild(i).gameObject);
 			}
 			Destroy (this.gameObject.GetComponent<CapsuleCollider> ());
-			currentState = new EnemyMovement.Death(this);
+			nextState = new EnemyMovement.Death(this);
         }
 	}
 
@@ -136,14 +133,15 @@ public class EnemyController : MonoBehaviour {
             Transform t = other.transform;
             while (t.parent != t.root) t = t.parent;
 
-            int dmg = t.GetComponent<AttackVariables>().Damage();
-            h.TakeDamage(dmg, t);
+            AttackVariables av = t.GetComponent<AttackVariables>();
+            int dmg = av.Damage();
+            bool hit = h.TakeDamage(dmg, t);
+
+            if (hit) av.audioSFX.playRandomOnHitClip(); // handle sounds
 
 			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * 200;
-			if (currentState is EnemyAttack.Attack && this.gameObject.transform.childCount > 2) {
-				Destroy (this.gameObject.transform.GetChild (this.gameObject.transform.childCount - 1).gameObject);
-			}
-			currentState = new EnemyStatusEffect.HitStun(this);
+
+			nextState = new EnemyStatusEffect.HitStun(this);
         }
     }
 }

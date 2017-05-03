@@ -8,13 +8,16 @@ public class AttackVariables : MonoBehaviour {
     public float knockback;
     public float hitstunTime;
     public float stunTime;
+    public AttackAudioSFX audioSFX;
 
     bool hit;
 
 	// Use this for initialization
-	void Start () {
+    void Awake ()
+    {
+        audioSFX = GetComponent<AttackAudioSFX>();
         hit = false;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

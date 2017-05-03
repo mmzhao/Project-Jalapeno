@@ -15,7 +15,6 @@ public class ProjectileController : MonoBehaviour {
 		if (activeTime == 0) activeTime = 2.0f;
 		counter = 0;
         beginCounting = false;
-
     }
 
 	// Use this for initialization

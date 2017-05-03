@@ -93,9 +93,7 @@ public class BossController : MonoBehaviour {
 		for (int i = 0; i <= 8; i++) {
 			gameObject.transform.GetChild (i).gameObject.SetActive (false);
 		}
-		if (mode == 0) {
-			gameObject.transform.GetChild (0).gameObject.SetActive (true);
-		} else if (mode == 1) {
+		if (mode == 1) {
 			if (facing == Direction.S) {
 				gameObject.transform.GetChild (1).gameObject.SetActive (true);
 			} else if (facing == Direction.SW) {
@@ -113,6 +111,8 @@ public class BossController : MonoBehaviour {
 			} else if (facing == Direction.SE) {
 				gameObject.transform.GetChild (8).gameObject.SetActive (true);
 			} 
+		} else {
+			gameObject.transform.GetChild (0).gameObject.SetActive (true);
 		}
 //		Debug.Log (currentState);
         rb.velocity = Vector3.zero;

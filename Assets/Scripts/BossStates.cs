@@ -154,7 +154,8 @@ public class Attacking : BossStates
     {
         bc = mybc;
         player = GameObject.FindGameObjectWithTag("Player");
-		facing = (player.transform.position - bc.gameObject.transform.position).normalized;
+		facing = DirectionUtil.DirToVector(bc.facing);
+//		facing = (player.transform.position - bc.gameObject.transform.position).normalized;
 		facing.y = 0;
 		attackDuration = 0.5f;
 		attackTimer = 0;

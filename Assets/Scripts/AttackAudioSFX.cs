@@ -2,22 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class AttackAudioSFX : MonoBehaviour {
 
     public AudioClip[] defaultSFX;
     public AudioClip[] onHitSFX;
-    public AudioSource audioSource;
+    public AudioSource defaultAudioSource;
+    public AudioSource onHitAudioSource;
 
     public bool autoPlayAudio;
     public int autoPlayIndex = -1; // -1 means play a random clip
     
 
     // Use this for initialization
+    void Awake ()
+    {
+        defaultAudioSource = addAudioSource();
+        onHitAudioSource = addAudioSource();
+    }
+
     void Start () {
-        audioSource = GetComponent<AudioSource>();
         if (autoPlayAudio) playDefaultClip(autoPlayIndex);
 	}
+
+    public AudioSource addAudioSource ()
+    {
+        return gameObject.AddComponent<AudioSource>();
+    }
 
     public void playRandomDefaultClip ()
     {
@@ -25,8 +35,8 @@ public class AttackAudioSFX : MonoBehaviour {
         {
             return;
         }
-        audioSource.clip = defaultSFX[Random.Range(0, defaultSFX.Length)];
-        audioSource.Play();
+        defaultAudioSource.clip = defaultSFX[Random.Range(0, defaultSFX.Length)];
+        defaultAudioSource.Play();
     }
 
     public void playRandomOnHitClip ()
@@ -35,16 +45,16 @@ public class AttackAudioSFX : MonoBehaviour {
         {
             return;
         }
-        audioSource.clip = onHitSFX[Random.Range(0, onHitSFX.Length)];
-        audioSource.Play();
+        onHitAudioSource.clip = onHitSFX[Random.Range(0, onHitSFX.Length)];
+        onHitAudioSource.Play();
     }
 
     public void playDefaultClip (int i)
     {
         if ( i < defaultSFX.Length && i >= 0)
         {
-            audioSource.clip = defaultSFX[i];
-            audioSource.Play();
+            defaultAudioSource.clip = defaultSFX[i];
+            defaultAudioSource.Play();
         }
         else
         {
@@ -54,10 +64,11 @@ public class AttackAudioSFX : MonoBehaviour {
 
     public void playOnHitClip (int i)
     {
+        
         if (i < onHitSFX.Length && i >= 0)
         {
-            audioSource.clip = onHitSFX[i];
-            audioSource.Play();
+            onHitAudioSource.clip = onHitSFX[i];
+            onHitAudioSource.Play();
         }
         else
         {

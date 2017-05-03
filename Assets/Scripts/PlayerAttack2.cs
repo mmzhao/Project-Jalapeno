@@ -32,8 +32,8 @@ public class Attack2 : PlayerAttack {
 		counter = 0;
 		donecount = 10;
 		facing = pc.playerToMouse.normalized;
-		pc.attack2Charges -= 1;
-		attackDuration = 0.4f;
+        //pc.attack2Charges -= 1;
+        attackDuration = 0.4f;
 		numHitboxes = activateHitboxMoments.Length;
 		hitboxes = new GameObject[numHitboxes];
 		damage = 30;

@@ -17,9 +17,6 @@ public class CreditDirector : MonoBehaviour {
 
     private int panelIndex = 0;
     private int panelState = 0; // 0 means alpha rising, 1 means alpha max, 2 means alpha declining
-
-    private LoadOnClick loc;
-
 	// Use this for initialization
 	void Start () {
         if (credits == null) credits = GetComponent<Canvas>();
@@ -28,12 +25,10 @@ public class CreditDirector : MonoBehaviour {
         {
             cg.alpha = 0;
         }
-
-        loc = GetComponent<LoadOnClick>();
 	}
 	
 	void FixedUpdate () {
-        if (panelIndex == canvasGroups.Length) loc.LoadSceneByName("MainMenu");
+        if (panelIndex == canvasGroups.Length) LoadOnClick.StaticLoadSceneByName("MainMenu");
         switch (panelState)
         {
             case 0:

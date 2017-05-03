@@ -40,6 +40,11 @@ public class BossController : MonoBehaviour {
     int hits;
     public int transitionLimit;
 
+    // dialogue stuff
+    public CutsceneDialogue iSeeYouCutsceneDialogue;
+    public CutsceneDialogue deathCutsceneDialogue;
+    public bool iSeeYouCutsceneDialogueHasPlayed { get; set; }
+
     void Awake()
     {
         // Initialize movement variables.
@@ -57,7 +62,7 @@ public class BossController : MonoBehaviour {
         detectTime = 0;
         // Initialize searchlight variables.
         facing = Direction.S;
-        facingLimit = 0.5f;
+        facingLimit = 1.5f;
         facingTime = 0;
         fieldOfView = 0.79f;
         hits = 0;
@@ -90,12 +95,29 @@ public class BossController : MonoBehaviour {
     void Update() {; }
     void FixedUpdate()
     {
-		if (mode == 0) {
+		for (int i = 0; i <= 8; i++) {
+			gameObject.transform.GetChild (i).gameObject.SetActive (false);
+		}
+		if (mode == 1) {
+			if (facing == Direction.S) {
+				gameObject.transform.GetChild (1).gameObject.SetActive (true);
+			} else if (facing == Direction.SW) {
+				gameObject.transform.GetChild (2).gameObject.SetActive (true);
+			} else if (facing == Direction.W) {
+				gameObject.transform.GetChild (3).gameObject.SetActive (true);
+			} else if (facing == Direction.NW) {
+				gameObject.transform.GetChild (4).gameObject.SetActive (true);
+			} else if (facing == Direction.N) {
+				gameObject.transform.GetChild (5).gameObject.SetActive (true);
+			} else if (facing == Direction.NE) {
+				gameObject.transform.GetChild (6).gameObject.SetActive (true);
+			} else if (facing == Direction.E) {
+				gameObject.transform.GetChild (7).gameObject.SetActive (true);
+			} else if (facing == Direction.SE) {
+				gameObject.transform.GetChild (8).gameObject.SetActive (true);
+			} 
+		} else {
 			gameObject.transform.GetChild (0).gameObject.SetActive (true);
-			gameObject.transform.GetChild (1).gameObject.SetActive (false);
-		} else if (mode == 1) {
-			gameObject.transform.GetChild (0).gameObject.SetActive (false);
-			gameObject.transform.GetChild (1).gameObject.SetActive (true);
 		}
 //		Debug.Log (currentState);
         rb.velocity = Vector3.zero;
@@ -110,9 +132,7 @@ public class BossController : MonoBehaviour {
         }
         if (this.gameObject.GetComponent<Health>().currentHealth <= 0)
         {
-            currentState.Exit();
-            nextState = null;
-            currentState = new Dying(this);
+            nextState = new Dying(this);
         }
     }
 
@@ -126,9 +146,16 @@ public class BossController : MonoBehaviour {
                 Transform t = other.transform;
                 while (t.parent != t.root) t = t.parent;
 
-                int dmg = t.GetComponent<AttackVariables>().Damage();
-				h.TakeDamage(dmg, t);
-				Debug.Log("Get Hit");
+                AttackVariables av = t.GetComponent<AttackVariables>();
+                int dmg = av.Damage();
+                bool hit = h.TakeDamage(dmg, t);
+                if (hit)
+                {
+                    av.audioSFX.playRandomOnHitClip(); // handle sounds
+                    PlayerController pc = t.root.gameObject.GetComponent<PlayerController>();
+                    if (pc != null) pc.addRage(av.rageGain);
+                }
+                Debug.Log("Get Hit");
                 hits += 1;
                 if (hits == transitionLimit)
                 {
@@ -136,6 +163,8 @@ public class BossController : MonoBehaviour {
                     stateEnded = true;
                     nextState = new Transitioning(this);
                 }
+
+
             }
         }
     }

@@ -15,7 +15,7 @@ public class EnemyStatusEffect : MonoBehaviour {
         public float targetRange;
         public float attackRange;
 
-        public HitStun(EnemyController enemyController)
+        public HitStun(EnemyController enemyController, float hitStunTime)
         {
             this.ec = enemyController;
             this.movement = enemyController.movement;
@@ -23,7 +23,7 @@ public class EnemyStatusEffect : MonoBehaviour {
             this.player = GameObject.FindGameObjectWithTag("Player");
             this.targetRange = enemyController.targetRange;
             this.attackRange = enemyController.attackRange;
-            stunTime = ec.maxHitstun;
+            stunTime = Math.Min(ec.maxHitstun, hitStunTime);
             ec.anim.SetInteger("state", 1);
         }
 

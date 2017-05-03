@@ -117,7 +117,6 @@ public class EnemyMovement : MonoBehaviour {
 
 		public Death(EnemyController enemyController)
 		{
-//			Debug.Log("ded");
 			this.ec = enemyController;
 		}
 

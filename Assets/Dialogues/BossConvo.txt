@@ -4,3 +4,11 @@ CrystalGuy/*KingEvil*/KingEvil:Life will cease to be exciting without updated co
 *CrystalGuy*/KingEvil/CrystalGuy:YOU'RE A MONSTER.
 CrystalGuy/*KingEvil*/KingEvil:....
 CrystalGuy/*KingEvil*/KingEvil:Enough of your nonsense. You bow to me willingly or not!
+*CrystalGuy*/KingEvil/CrystalGuy:I have to stop King Evil, and I need your help.
+*CrystalGuy*/KingEvil/CrystalGuy:In the upper left hand corner of the screen are 3 bars. The first is my health. If that drops to zero I die. Don't let that happen.
+*CrystalGuy*/KingEvil/CrystalGuy:The next bar is my shield. Press <<left shift>> to activate my shield. I'll be immobile, but my health won't take damage from enemy attacks.
+*CrystalGuy*/KingEvil/CrystalGuy:The last bar, the orange one, is my rage power. The more I hit stuff, the more rage I get. I can spend 15 rage to recover 30 health by pressing the <<f>> key.
+*CrystalGuy*/KingEvil/CrystalGuy:We can hit our enemies with the <<left mouse button>> and <<right mouse button>>.
+*CrystalGuy*/KingEvil/CrystalGuy:Finally, use the <<space bar>> to dash. Careful now, I can only dash so much in a short time span. After that, I'll need to wait a while for my stamina to recover.
+*CrystalGuy*/KingEvil/CrystalGuy:We'll have to destroy all the killbots in a room before proceeding. Shouldn't be too hard.
+*CrystalGuy*/KingEvil/CrystalGuy:Alrighty! Let's go get'em!

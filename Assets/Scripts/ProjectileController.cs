@@ -2,35 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class ProjectileController : MonoBehaviour {
-
-	public Vector3 dir;
-	int donecount;
-	int counter;
-	float speed;
-	int damage;
+    public Vector3 dir;
+	public float activeTime;
+	private float counter = 0;
+    private bool beginCounting;
+    public float speed;
 
 	void Awake ()
 	{
-		speed = 1.0f;
-		donecount = 100;
+		if (activeTime == 0) activeTime = 2.0f;
 		counter = 0;
-	}
+        beginCounting = false;
+
+    }
 
 	// Use this for initialization
-	void Start () {
-		
-	}
-
+	void Start ()
+    {
+    }
 
 	void FixedUpdate()
 	{
-		gameObject.transform.position += speed * dir.normalized;
-
-		counter += 1;
-		if (counter >= donecount) 
+        if (beginCounting) counter += Time.deltaTime;
+		if (counter >= activeTime) 
 		{
 			GameObject.Destroy (gameObject);
 		}
 	}
+
+    public void launchProjectile(Vector3 dir, float speed)
+    {
+        GetComponent<Rigidbody>().velocity = speed * dir.normalized;
+        beginCounting = true;
+    }
+
+    public void launchProjectile()
+    {
+        GetComponent<Rigidbody>().velocity = speed * dir.normalized;
+        beginCounting = true;
+    }
 }

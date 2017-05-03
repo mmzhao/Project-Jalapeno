@@ -40,6 +40,11 @@ public class BossController : MonoBehaviour {
     int hits;
     public int transitionLimit;
 
+    //stuff for what happens when the boss dies
+    public GameObject dialogueTriggerZone;
+    public GameObject dialoguePanel;
+
+
     void Awake()
     {
         // Initialize movement variables.

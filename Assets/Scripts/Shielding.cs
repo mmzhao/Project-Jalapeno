@@ -34,7 +34,6 @@ public class Shielding : PlayerState
 
     public override void FixedUpdate()
     {
-        Debug.Log(pc.shieldTime);
         if (!Input.GetButton("Shield") || pc.shieldTime <= 0)
         {
 			if (pc.shieldTime <= 0) {
@@ -48,6 +47,34 @@ public class Shielding : PlayerState
         base.FixedUpdate();
         pc.shieldTime -= Time.deltaTime;
 
+    }
+
+    public new PlayerState HandleInput()
+    {
+        if (pc.stateEnded && ((Input.GetButton("Attack1") && pc.canAttack1()) || (Input.GetButton("Attack2") && pc.canAttack2())))
+        {
+            if (Input.GetButton("Attack1") && pc.canAttack1())
+            {
+                return new Attack1(pc);
+            }
+            if (Input.GetButton("Attack2") && pc.canAttack2())
+            {
+                return new Attack2(pc);
+            }
+        }
+        else if (pc.stateEnded && (Input.GetButton("Vertical") || Input.GetButton("Horizontal")))
+        {
+            if (Input.GetButton("Dash") && pc.canDash())
+            {
+                Vector3 dir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+                return new PlayerMovement.Dash(pc, dir);
+            }
+        }
+        if (pc.movementInput == Vector3.zero)
+        {
+            return new PlayerMovement.Idle(pc);
+        }
+        return null;
     }
 
     public override void Update()

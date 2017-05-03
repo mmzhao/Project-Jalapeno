@@ -169,11 +169,9 @@ public class PlayerController : MonoBehaviour {
         }
         else
         {
-//			Debug.Log (other.gameObject.transform.root.name);
-//			Debug.Log (other.gameObject.transform.parent.name);
-//			Debug.Log (other.gameObject.transform.parent.parent.parent.name);
-			if (other.gameObject.transform.parent.parent.parent.name.Length >= 5 &&
-				other.gameObject.transform.parent.parent.parent.name.Substring(0, 5) == "Enemy")
+            print(other.gameObject.transform.root.tag);
+			if ((other.gameObject.transform.root.name.Length >= 5 &&
+				other.gameObject.transform.root.name.Substring(0, 5) == "Enemy") || other.gameObject.transform.root.tag == "Enemy")
             {
 				if (!GameObject.FindGameObjectWithTag("Player").GetComponent<Health>().damaged && !other.gameObject.transform.parent.parent.GetComponent<AttackVariables>().Hit())
                 {

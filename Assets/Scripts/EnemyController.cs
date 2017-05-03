@@ -114,7 +114,7 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 
-		if (this.gameObject.GetComponent<Health>().currentHealth <= 0 && dead == false)
+		if (this.gameObject.GetComponent<Health>().currentHealth <= 0)
         {
 			dead = true;
 			for (int i = 1; i < this.gameObject.transform.childCount; i++) {
@@ -140,8 +140,7 @@ public class EnemyController : MonoBehaviour {
             if (hit) av.audioSFX.playRandomOnHitClip(); // handle sounds
 
 			rb.velocity = (gameObject.transform.position - other.transform.position).normalized * 200;
-
-			nextState = new EnemyStatusEffect.HitStun(this);
+            if (!dead) nextState = new EnemyStatusEffect.HitStun(this);
         }
     }
 }

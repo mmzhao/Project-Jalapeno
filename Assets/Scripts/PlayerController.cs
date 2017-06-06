@@ -152,7 +152,7 @@ public class PlayerController : MonoBehaviour {
         if (this.GetComponent<Health>().currentHealth <= 0)
         {
             this.currentState.Exit();
-            LoadOnClick.StaticLoadSceneByName("TestLv1");
+            LoadOnClick.StaticLoadSceneByName("MainMenu");
         }
 
     }

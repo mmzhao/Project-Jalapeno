@@ -99,11 +99,11 @@ public class CutsceneDialogue : MonoBehaviour {
             rightSprite.color = new Color(1, 1, 1, 1);
         }
 
-        Sprite sp = null;
-        spriteDict.TryGetValue(leftSprites[currentLine], out sp);
-        leftSprite.sprite = sp;
-        spriteDict.TryGetValue(rightSprites[currentLine], out sp);
-        rightSprite.sprite = sp;
+//        Sprite sp = null;
+//        spriteDict.TryGetValue(leftSprites[currentLine], out sp);
+//		Debug.Log (leftSprite.sprite, rightSprite.sprite);
+//        spriteDict.TryGetValue(rightSprites[currentLine], out sp);
+//        rightSprite.sprite = sp;
 
         currentLine++;
     }

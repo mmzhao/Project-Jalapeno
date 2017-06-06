@@ -83,19 +83,19 @@ public class Targeting : BossStates
         {
             Debug.Log("Searching for target (1)");
             //uncomment this all when we have it working
-            //bc.detected = SearchForTarget(1);
-            //if (bc.detected)
-            //{
-            //    bc.stateEnded = true;
-            //    bc.nextState = new Attacking(bc);
-            //}
-            //bc.facingTime += Time.deltaTime;
-            //if (bc.facingTime >= bc.facingLimit)
-            //{
-            //    Debug.Log("Calling RightAdjacent");
-            //    bc.facing = DirectionUtil.RightAdjacent(bc.facing);
-            //    bc.facingTime = 0;
-            //}
+            bc.detected = SearchForTarget(1);
+            if (bc.detected)
+            {
+                bc.stateEnded = true;
+                bc.nextState = new Attacking(bc);
+            }
+            bc.facingTime += Time.deltaTime;
+            if (bc.facingTime >= bc.facingLimit)
+            {
+                Debug.Log("Calling RightAdjacent");
+                bc.facing = DirectionUtil.RightAdjacent(bc.facing);
+                bc.facingTime = 0;
+            }
         }
 
         // Current position becomes old position
@@ -217,6 +217,8 @@ public class Attacking : BossStates
 				//				//				hitboxes[i].SetActive(false);
 				//			}
 				attack.GetComponent<ProjectileController>().dir = (Quaternion.AngleAxis((8-i)*angularDiff , Vector3.up) * facing).normalized;
+				Debug.Log (attack.GetComponent<ProjectileController> ().dir);
+				attack.GetComponent<ProjectileController>().launchProjectile(attack.GetComponent<ProjectileController>().dir, 40);
 			}
         }
     }
